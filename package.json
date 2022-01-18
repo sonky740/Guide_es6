@@ -1,0 +1,53 @@
+{
+  "name": "default_gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node node_modules/gulp/bin/gulp.js dev",
+    "build": "node node_modules/gulp/bin/gulp.js build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonky740/default_gulp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonky740/default_gulp/issues"
+  },
+  "homepage": "https://github.com/sonky740/default_gulp#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.7",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-bro": "^2.0.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-copy": "^4.0.1",
+    "gulp-file-include": "^2.3.0",
+    "gulp-html-beautify": "^1.0.1",
+    "gulp-pretty-html": "^2.0.10",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-watch": "^5.0.1",
+    "merge-stream": "^2.0.0",
+    "prettier": "^2.5.1",
+    "sass": "^1.47.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "browserslist": [
+    "last 2 version, > 2%"
+  ],
+  "dependencies": {
+    "core-js": "^3.20.2"
+  }
+}
