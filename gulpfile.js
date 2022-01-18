@@ -16,9 +16,6 @@ const paths = {
   },
   srcDist: (path = '') => {
     return './dist/' + path;
-  },
-  guide: (path = '') => {
-    return './dist/guide/' + path;
   }
 };
 
@@ -43,26 +40,6 @@ const cleanImages = () => {
     res();
   });
 };
-
-/**
- * js 폴더 정리
- */
-// const cleanJs = () => {
-//   return new Promise(res => {
-//     fs.rmdirSync(paths.srcDist('/resources/js'), {
-//       recursive: true
-//     });
-//     res();
-//   });
-// };
-// const guideCleanJs = () => {
-//   return new Promise(res => {
-//     fs.rmdirSync(paths.guide('/resources/js'), {
-//       recursive: true
-//     });
-//     res();
-//   });
-// };
 
 /**
  * include 처리 된 HTML 생성
@@ -150,16 +127,6 @@ const copyJs = () => {
 };
 
 /**
- * 가이드 js 복사
- */
-const guideCopyJs = () => {
-  return gulp
-    .src(paths.src('guide/resources/js/**'))
-    .pipe(gulp.dest(paths.guide('resources/js')))
-    .pipe(devServer.stream());
-};
-
-/**
  * scss 컴파일
  */
 const compileScss = () => {
@@ -174,27 +141,15 @@ const compileScss = () => {
     .pipe(devServer.stream());
 };
 
-const guideScss = () => {
-  return gulp
-    .src(paths.src('guide/resources/scss/**/*.scss'))
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-    .pipe(autoPrefixer())
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.guide('resources/css')))
-    .pipe(devServer.stream());
-};
-
 /**
  * 개발모드 실행시 처음에 기본적으로 실행 될 task
  */
-const devStartFunctions = series(cleanDir, toHTML, prettyHTML, compileScss, guideScss, copyVendorJs, copyJs, guideCopyJs, copyFonts, copyImages);
+const devStartFunctions = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyJs, copyFonts, copyImages);
 
 /**
  * 빌드 task 들을 순차적으로 실행한다.
  */
-exports.build = series(cleanDir, toHTML, prettyHTML, compileScss, guideScss, copyVendorJs, copyJs, guideCopyJs, copyFonts, copyImages);
+exports.build = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyJs, copyFonts, copyImages);
 
 /**
  * 개발서버 시작
@@ -216,10 +171,8 @@ exports.dev = async function () {
   watch(paths.src('**/*.html'), series(toHTML, prettyHTML));
   // scss 파일 변경 감시
   watch(paths.src('resources/scss/**/*.scss'), series(compileScss));
-  watch(paths.src('guide/resources/scss/**/*.scss'), series(guideScss));
   // 이미지 변경 감시
   watch(paths.src('resources/images'), series(cleanImages, copyImages));
   // 자바스크립트 파일 변경 감시
   watch(paths.src('resources/js'), series(copyJs));
-  watch(paths.src('guide/resources/js'), series(guideCopyJs));
 };

@@ -1,5 +1,5 @@
 {
-  "name": "default_gulp",
+  "name": "guide_es6",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sonky740/default_gulp.git"
+    "url": "git+https://github.com/sonky740/Guide_es6.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sonky740/default_gulp/issues"
+    "url": "https://github.com/sonky740/Guide_es6/issues"
   },
-  "homepage": "https://github.com/sonky740/default_gulp#readme",
+  "homepage": "https://github.com/sonky740/Guide_es6#readme",
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/plugin-transform-runtime": "^7.16.7",
