@@ -1,0 +1,14 @@
+// ios input focus issue: 16px이하면 확대되는 이슈
+@mixin input($size) {
+    @if ($size>=16) {
+        width: 100%;
+        font-size: $size*0.1rem;
+    }
+
+    @else {
+        width: 100% / ($size / 16);
+        font-size: 1.6rem;
+        transform: scale($size/16);
+        transform-origin: left;
+    }
+}

@@ -1,5 +1,6 @@
-import polyfill from './polyfill.js';
-// import { numberComma, siblings, checkVersion } from './util.js';
+import polyfill from './util/polyfill.js';
+import lyNav from './layout/ly_nav.js';
+import Modal from './ui/modal.js';
 
 /**
  * @author 손기연
@@ -7,9 +8,12 @@ import polyfill from './polyfill.js';
  * @namespace UI_Control
  *
  * 목차
- * @see Any //
+ * @see lyNav // 레이아웃 네비게이션
  */
 
 window.addEventListener('DOMContentLoaded', function () {
   polyfill();
+
+  lyNav();
+  if (document.querySelectorAll('[data-modal]').length) new Modal();
 });

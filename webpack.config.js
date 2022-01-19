@@ -1,3 +1,5 @@
+const TerserPlugin = require('terser-webpack-plugin');
+
 const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
@@ -16,5 +18,19 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
+  },
+  optimization: {
+    minimizer:
+      mode === 'production'
+        ? [
+            new TerserPlugin({
+              terserOptions: {
+                compress: {
+                  drop_console: true
+                }
+              }
+            })
+          ]
+        : []
   }
 };

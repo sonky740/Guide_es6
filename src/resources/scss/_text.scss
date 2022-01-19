@@ -1,0 +1,18 @@
+.main-title {
+    margin-bottom: 2rem;
+    @include font('SCoreDream', 900);
+    font-size: 4.8rem;
+    font-style: italic;
+    text-align: center;
+    text-decoration: underline;
+
+    @media (max-width: 720px) {
+        font-size: 4rem;
+    }
+}
+
+a.link_text,
+button.link_text {
+    color: #a1a1a1;
+    text-decoration: underline;
+}

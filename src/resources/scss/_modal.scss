@@ -1,0 +1,242 @@
+.ly-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(20, 20, 20, .32);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &-header {
+        position: relative;
+    }
+
+    &-title {
+        padding: 2rem 1.6rem 0.6rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        text-align: center;
+        color: #222;
+
+        &.ir {
+            color: transparent;
+        }
+    }
+
+    &-wrap {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 76.8rem;
+        min-height: 20rem;
+        background: #fff;
+
+        >.btn-wrap {
+            position: relative;
+            width: 100%;
+            min-height: 6.6rem;
+            background: #fff;
+            padding: 0 3.5rem 1.4rem;
+            z-index: 1;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: -2rem;
+                left: 0;
+                width: 100%;
+                height: 2rem;
+                background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 90%);
+            }
+
+            .btn {
+                height: 100%;
+            }
+        }
+    }
+
+    &-content {
+        flex: 1;
+        padding: 0 2rem 8rem;
+        color: #222;
+        overflow: auto;
+    }
+
+    &-close {
+        position: absolute;
+        top: 0.8rem;
+        left: 0.8rem;
+        width: 2.8rem;
+        height: 2.8rem;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: url('../images/icon_close.svg') no-repeat 50% 50%;
+            border-radius: 0.4rem;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &.modal-in {
+        display: block;
+
+        &:before {
+            animation: modal-dim-in .4s;
+
+            @keyframes modal-dim-in {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .ly-modal-wrap {
+            animation: modal-in .4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            @keyframes modal-in {
+                0% {
+                    transform: translate(-50%, -10%);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translate(-50%, 0%);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.modal-out {
+        display: block;
+
+        &:before {
+            animation: modal-dim-out .4s;
+
+            @keyframes modal-dim-out {
+                0% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
+
+        .ly-modal-wrap {
+            animation: modal-out .4s cubic-bezier(0.36, 0, 0.66, -0.56);
+
+            @keyframes modal-out {
+                from {
+                    transform: translate(-50%, 0%);
+                    opacity: 1;
+                }
+
+                to {
+                    transform: translate(-50%, -10%);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &.full {
+        .ly-modal-wrap {
+            top: 0;
+            max-width: 100%;
+            transform: translate(-50%, 0);
+            height: 100%;
+
+            // ios15 이슈
+            &:after {
+                content: "";
+                position: fixed;
+                bottom: -100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+        }
+
+        &.fade {
+            .ly-modal-wrap {
+                top: 0;
+            }
+        }
+    }
+
+    &.btm {
+        .ly-modal-wrap {
+            top: auto;
+            bottom: 0;
+            max-width: 100%;
+            max-height: calc(100% - 6rem);
+            border-radius: 2.8rem 2.8rem 0 0;
+            box-shadow: 0 -0.6rem 2rem rgba(0, 0, 0, .16);
+            transform: translate(-50%, 0);
+
+            // ios15 이슈
+            &:after {
+                content: "";
+                position: fixed;
+                bottom: -100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+        }
+
+        .ly-modal-title {
+            padding-top: 3rem;
+        }
+
+        .ly-modal-close {
+            top: 3rem;
+            left: 2rem;
+        }
+
+        &.fade {
+            .ly-modal-wrap {
+                transform: translate(-50%, 0);
+            }
+        }
+    }
+
+    // 필터 main_filter_p
+    &-filter {
+        .ly-modal-content {
+            padding-top: 4rem;
+        }
+    }
+}

@@ -1,0 +1,205 @@
+// NotoSansKR
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 200;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Thin.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Thin.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Thin.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 300;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Light.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Light.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Light.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Regular.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Regular.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Regular.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 500;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Medium.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Medium.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Medium.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Bold.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Bold.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Bold.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 900;
+    font-style: normal;
+    src:
+        url('../fonts/NotoSansKR/NotoSansKR-Black.woff2'),
+        url('../fonts/NotoSansKR/NotoSansKR-Black.woff'),
+        url('../fonts/NotoSansKR/NotoSansKR-Black.otf') format('opentype'),
+}
+
+// NanumSquare
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 300;
+    font-style: normal;
+    src:
+        url('../fonts/NanumSquare/NanumSquare-Light.woff')
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url('../fonts/NanumSquare/NanumSquare-Regular.woff')
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url('../fonts/NanumSquare/NanumSquare-Bold.woff')
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 900;
+    font-style: normal;
+    src:
+        url('../fonts/NanumSquare/NanumSquare-ExtraBold.woff')
+}
+
+// Lato
+@font-face {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-style: normal;
+    src:
+        url('../fonts/Lato/Lato-Regular.woff')
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url('../fonts/Lato/Lato-Regular.woff')
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url('../fonts/Lato/Lato-Bold.woff')
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 900;
+    font-style: normal;
+    src:
+        url('../fonts/Lato/Lato-Black.woff')
+}
+
+// Roboto
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url('../fonts/Roboto/Roboto-Regular.woff')
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    src:
+        url('../fonts/Roboto/Roboto-Bold.woff')
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url('../fonts/Roboto/Roboto-Bold.woff')
+}
+
+// SCoreDream
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-Regular.woff')
+}
+
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 500;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-Medium.woff')
+}
+
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 600;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-Bold.woff')
+}
+
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-ExtraBold.woff')
+}
+
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 800;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-Heavy.woff')
+}
+
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 900;
+    font-style: normal;
+    src:
+        url('../fonts/SCoreDream/SCoreDream-Black.woff')
+}
+
+@mixin font($font-family, $font-weight: 400) {
+    font-family: $font-family, 'NotoSansKR';
+    font-weight: $font-weight;
+}

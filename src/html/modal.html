@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../resources/css/common.min.css">
+    <title>modal</title>
+</head>
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+
+            </nav>
+            <div class="guide-content">
+                <button type="button" data-modal-trigger="modal1">모달 트리거1 (full)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal1" class="ly-modal full" data-modal>
+        <div class="ly-modal-wrap">
+            <header class="ly-modal-header">
+                <h1 class="ly-modal-title">모달 타이틀</h1>
+                <button type="button" class="ly-modal-close" data-modal-close><span class="blind">닫기</span></button>
+            </header>
+            <div class="ly-modal-content">
+                <button type="button" data-modal-trigger="modal2">모달 트리거2</button>
+                내용
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/ui.js"></script>
+</body>
+
+</html>
