@@ -15,5 +15,8 @@ window.addEventListener('DOMContentLoaded', function () {
   polyfill();
 
   lyNav();
-  if (document.querySelectorAll('[data-modal]').length) new Modal();
+
+  document.querySelectorAll('[data-modal]').forEach(el => {
+    if (!Modal.getInstance(el)) new Modal(el);
+  });
 });

@@ -1,5 +1,5 @@
 {
   "htmlhint.options": {
-    "spec-char-escape": false // html 내 for문 ">" 이거때문에 false 처리
+    // "spec-char-escape": false // html 내 for문 ">" 이거때문에 false 처리
   }
 }
