@@ -1,3 +1,4 @@
+const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -12,6 +13,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: path.resolve(__dirname, './src/resources/js/ui.js'),
+        loader: 'expose-loader',
+        options: {
+          exposes: {
+            globalName: 'SKY',
+            override: true
+          }
+        }
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

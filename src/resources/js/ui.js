@@ -21,6 +21,4 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-export default {
-  Modal
-};
+export { Modal };
