@@ -9,13 +9,13 @@ class BaseComponent {
     }
 
     this._element = element;
-    Data.setData(this._element, this.constructor.DATA_KEY, this);
+    Data.setData(this._element, this.constructor.NAME, this);
   }
 
-  dispose() {
-    Data.removeData(this._element, this.constructor.DATA_KEY);
-    console.log('dispose');
-  }
+  // dispose() {
+  //   Data.removeData(this._element, this.constructor.NAME);
+  //   console.log('dispose');
+  // }
 }
 
 export default BaseComponent;

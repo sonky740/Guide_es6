@@ -1,3 +1,7 @@
+@import 'keyframe';
+
+$modal-delay: .4s;
+
 .ly-modal {
     display: none;
     position: fixed;
@@ -49,6 +53,7 @@
         max-width: 76.8rem;
         min-height: 20rem;
         background: #fff;
+        transform: translate(-50%, -50%);
 
         >.btn-wrap {
             position: relative;
@@ -83,21 +88,26 @@
 
     &-close {
         position: absolute;
-        top: 0.8rem;
-        left: 0.8rem;
+        top: 1.8rem;
+        right: 0.8rem;
         width: 2.8rem;
         height: 2.8rem;
 
-        &:before {
+        &:before,
+        &:after {
             content: "";
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 1.5rem;
-            height: 1.5rem;
-            background: url('../images/icon_close.svg') no-repeat 50% 50%;
-            border-radius: 0.4rem;
-            transform: translate(-50%, -50%);
+            width: 1.8rem;
+            height: 0.2rem;
+            background: #222;
+            border-radius: 0.2rem;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
         }
     }
 
@@ -105,32 +115,18 @@
         display: block;
 
         &:before {
-            animation: modal-dim-in .4s;
-
-            @keyframes modal-dim-in {
-                0% {
-                    opacity: 0;
-                }
-
-                100% {
-                    opacity: 1;
-                }
-            }
+            animation: modal-dim-in $modal-delay;
         }
 
+        // 기본, full 팝업
         .ly-modal-wrap {
-            animation: modal-in .4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: modal-in $modal-delay cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-            @keyframes modal-in {
-                0% {
-                    transform: translate(-50%, -10%);
-                    opacity: 0;
-                }
-
-                100% {
-                    transform: translate(-50%, 0%);
-                    opacity: 1;
-                }
+        // btm 팝업
+        &.btm {
+            .ly-modal-wrap {
+                animation: modal-btm-in $modal-delay cubic-bezier(0.34, 1.56, 0.64, 1);
             }
         }
     }
@@ -139,41 +135,25 @@
         display: block;
 
         &:before {
-            animation: modal-dim-out .4s;
-
-            @keyframes modal-dim-out {
-                0% {
-                    opacity: 1;
-                }
-
-                100% {
-                    opacity: 0;
-                }
-            }
+            animation: modal-dim-out $modal-delay;
         }
 
+        // 기본, full 팝업
         .ly-modal-wrap {
-            animation: modal-out .4s cubic-bezier(0.36, 0, 0.66, -0.56);
+            animation: modal-out $modal-delay cubic-bezier(0.36, 0, 0.66, -0.56);
+        }
 
-            @keyframes modal-out {
-                from {
-                    transform: translate(-50%, 0%);
-                    opacity: 1;
-                }
-
-                to {
-                    transform: translate(-50%, -10%);
-                    opacity: 0;
-                }
+        // btm 팝업
+        &.btm {
+            .ly-modal-wrap {
+                animation: modal-btm-out $modal-delay cubic-bezier(0.36, 0, 0.66, -0.56);
             }
         }
     }
 
     &.full {
         .ly-modal-wrap {
-            top: 0;
             max-width: 100%;
-            transform: translate(-50%, 0);
             height: 100%;
 
             // ios15 이슈
@@ -223,20 +203,12 @@
 
         .ly-modal-close {
             top: 3rem;
-            left: 2rem;
         }
 
         &.fade {
             .ly-modal-wrap {
                 transform: translate(-50%, 0);
             }
-        }
-    }
-
-    // 필터 main_filter_p
-    &-filter {
-        .ly-modal-content {
-            padding-top: 4rem;
         }
     }
 }

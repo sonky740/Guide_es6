@@ -20,3 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
     if (!Modal.getInstance(el)) new Modal(el);
   });
 });
+
+export default {
+  Modal
+};

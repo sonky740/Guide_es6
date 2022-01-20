@@ -1,0 +1,67 @@
+@keyframes modal-dim-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-dim-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes modal-in {
+    0% {
+        transform: translate(-50%, -65%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes modal-out {
+    from {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, -65%);
+        opacity: 0;
+    }
+}
+
+@keyframes modal-btm-in {
+    0% {
+        transform: translate(-50%, 30%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes modal-btm-out {
+    from {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, 30%);
+        opacity: 0;
+    }
+}

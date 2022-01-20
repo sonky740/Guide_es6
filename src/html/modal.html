@@ -19,6 +19,8 @@
             </nav>
             <div class="guide-content">
                 <button type="button" data-modal-trigger="modal1">모달 트리거1 (full)</button>
+                <br>
+                <button type="button" data-modal-trigger="modal3">모달 트리거1 (btm)</button>
             </div>
         </div>
     </div>
@@ -64,6 +66,26 @@
     </div>
 
     <script src="../resources/js/ui.js"></script>
+    <script>
+        const modalEl = document.querySelector('#modal3');
+        const modal = new Modal(modalEl);
+        modal.show();
+
+        document.querySelectorAll('[data-modal]').forEach(function (el) {
+            el.addEventListener('modal.showing', function () {
+                console.log(this, 'showing');
+            })
+            el.addEventListener('modal.shown', function () {
+                console.log(this, 'shown');
+            })
+            el.addEventListener('modal.hiding', function () {
+                console.log(this, 'hiding');
+            })
+            el.addEventListener('modal.hidden', function () {
+                console.log(this, 'hidden');
+            })
+        })
+    </script>
 </body>
 
 </html>
