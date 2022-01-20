@@ -101,12 +101,17 @@
             }
         }
     }
-    
+
     &-content {
         display: none;
         position: absolute;
         top: 0;
         right: $ly-nav-width;
+        flex-direction: column;
+        justify-content: center;
+        width: 50rem;
+        height: 100vh;
+        padding: 6rem;
         background: rgba(0, 0, 0, .9);
 
         &-title {
@@ -134,7 +139,7 @@
                         transition: width .3s cubic-bezier(0.755, 0.05, 0.855, 0.06);
                     }
 
-                    &:hover{
+                    &:hover {
                         &:after {
                             width: 100%;
                         }
@@ -142,18 +147,10 @@
                 }
             }
         }
-        
-        &.shown {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 50rem;
-            height: 100vh;
-            padding: 6rem;
-        }
 
         &.on {
-            animation: ly-nav-content-on .4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            display: flex;
+            animation: ly-nav-content-on .4s;
 
             &:after {
                 content: "";
@@ -181,7 +178,8 @@
         }
 
         &.off {
-            animation: ly-nav-content-off .4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            display: flex;
+            animation: ly-nav-content-off .4s;
 
             &:after {
                 content: "";
@@ -198,7 +196,7 @@
                     transform: translateX(-2rem);
                 }
 
-                40% {
+                50% {
                     transform: translateX(0);
                 }
 
@@ -213,6 +211,7 @@
     // 모바일에서
     @media (max-width: 640px) {
         width: 100%;
+
         &-header {
             flex-direction: row;
             width: 100%;
@@ -245,11 +244,8 @@
         &-content {
             top: $ly-nav-width;
             right: 0;
-            
-            &.shown {
-                width: 100%;
-                height: calc(100vh - $ly-nav-width);
-            }
+            width: 100%;
+            height: calc(100vh - $ly-nav-width);
         }
 
         +.ly-content {
