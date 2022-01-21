@@ -29,6 +29,8 @@ class Modal extends BaseComponent {
         this.hide();
       });
     });
+
+    Data.setData(element, NAME, this);
   }
 
   show(e) {
@@ -86,8 +88,25 @@ class Modal extends BaseComponent {
   }
 
   static getInstance(element) {
-    return Data.getData(element, NAME);
+    return Data.getData(element, this.NAME);
   }
 }
+
+document.addEventListener('click', e => {
+  const target = e.target.getAttribute('data-modal-trigger');
+  if (target === null) {
+    return false;
+  } else {
+    const modalEl = document.getElementById(`${target}`);
+    if (modalEl) {
+      const modal = Modal.getInstance(modalEl);
+      if (modal) {
+        modal.show();
+      } else {
+        new Modal(modalEl).show();
+      }
+    }
+  }
+});
 
 export default Modal;

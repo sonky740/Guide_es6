@@ -4,21 +4,32 @@ import Modal from './ui/modal.js';
 
 /**
  * @author 손기연
- * @memberof UI_Control
- * @namespace UI_Control
+ * @memberof SKY
+ * @namespace SKY
  *
  * 목차
  * @see lyNav // 레이아웃 네비게이션
+ * @see Modal // 모달
  */
 
-window.addEventListener('DOMContentLoaded', function () {
-  polyfill();
+// const UIInitializer = (target, UI, options = {}) => {
+//   const elements = document.querySelectorAll(target);
+//   elements.forEach(el => {
+//     const isIgnore = !!el.getAttribute('data-ignore');
+//     if (!isIgnore) {
+//       if (!UI.getInstance(el)) {
+//         new UI(el, options);
+//       }
+//     }
+//   });
+// };
 
+polyfill();
+
+window.addEventListener('DOMContentLoaded', function () {
   lyNav();
 
-  document.querySelectorAll('[data-modal]').forEach(el => {
-    if (!Modal.getInstance(el)) new Modal(el);
-  });
+  // UIInitializer('[data-modal]', Modal);
 });
 
 export { Modal };
