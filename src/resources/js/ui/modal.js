@@ -8,7 +8,6 @@ class Modal extends BaseComponent {
   constructor(element) {
     super(element);
 
-    this._element = element; // [data-modal]
     this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-moda-trigger]
     this._close = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
     this._isShow = false; // true일 경우 이벤트 작동 안되게
@@ -41,6 +40,7 @@ class Modal extends BaseComponent {
     if (this._isShow === true) return false;
 
     this._element.classList.add('modal-in');
+    this._element.setAttribute('tabindex', 0);
 
     this._isShow = true;
 
@@ -51,6 +51,8 @@ class Modal extends BaseComponent {
       'animationend',
       () => {
         this._isShow = false;
+        this._element.focus();
+        this._element.removeAttribute('tabindex');
 
         const shown = new CustomEvent(`${EVENT_KEY}.shown`);
         this._element.dispatchEvent(shown);
@@ -77,8 +79,9 @@ class Modal extends BaseComponent {
     this._element.children[0].addEventListener(
       'animationend',
       () => {
-        this._element.classList.remove('modal-out');
         this._isShow = false;
+        this._element.classList.remove('modal-out');
+        this._trigger.focus();
 
         const hidden = new CustomEvent(`${EVENT_KEY}.hidden`);
         this._element.dispatchEvent(hidden);

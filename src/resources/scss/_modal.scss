@@ -1,6 +1,6 @@
 @import 'keyframe';
 
-$modal-delay: .4s;
+$modal-duration: .4s;
 
 .ly-modal {
     display: none;
@@ -115,18 +115,18 @@ $modal-delay: .4s;
         display: block;
 
         &:before {
-            animation: modal-dim-in $modal-delay;
+            animation: modal-dim-in $modal-duration;
         }
 
         // 기본, full 팝업
         .ly-modal-wrap {
-            animation: modal-in $modal-delay cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: modal-in $modal-duration cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         // btm 팝업
         &.btm {
             .ly-modal-wrap {
-                animation: modal-btm-in $modal-delay cubic-bezier(0.34, 1.56, 0.64, 1);
+                animation: modal-btm-in $modal-duration cubic-bezier(0.34, 1.56, 0.64, 1);
             }
         }
     }
@@ -135,18 +135,18 @@ $modal-delay: .4s;
         display: block;
 
         &:before {
-            animation: modal-dim-out $modal-delay;
+            animation: modal-dim-out $modal-duration;
         }
 
         // 기본, full 팝업
         .ly-modal-wrap {
-            animation: modal-out $modal-delay cubic-bezier(0.36, 0, 0.66, -0.56);
+            animation: modal-out $modal-duration cubic-bezier(0.36, 0, 0.66, -0.56);
         }
 
         // btm 팝업
         &.btm {
             .ly-modal-wrap {
-                animation: modal-btm-out $modal-delay cubic-bezier(0.36, 0, 0.66, -0.56);
+                animation: modal-btm-out $modal-duration cubic-bezier(0.36, 0, 0.66, -0.56);
             }
         }
     }

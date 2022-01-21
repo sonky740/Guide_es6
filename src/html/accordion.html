@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../resources/css/common.min.css">
+    <title>Accordion</title>
+</head>
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+
+            </nav>
+            <div class="guide-content">
+                <button id="showAll" type="button" style="padding:1rem;border:1px solid #222;">전체 열기</button>
+                <button id="hideAll" type="button" style="padding:1rem;border:1px solid #222;">전체 닫기</button>
+
+                <ul id="accordion1" class="accordion" data-accr>
+                    <li class="accordion-item on" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button plus" data-accr-trigger><span class="blind">접기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용<br>
+                                내용<br>
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용<br>
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul id="accordion2" class="accordion" data-accr="only">
+                    <li class="accordion-item on" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button plus" data-accr-trigger><span class="blind">접기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용
+                                <ul class="accordion" data-accr="only">
+                                    <li class="accordion-item on" data-accr-item>
+                                        <div class="accordion-title">
+                                            타이틀
+                                            <button type="button" class="accordion-button plus" data-accr-trigger><span class="blind">접기</span></button>
+                                        </div>
+                                        <div class="accordion-content" data-accr-target>
+                                            <div class="accordion-body">
+                                                내용
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion-item" data-accr-item>
+                                        <div class="accordion-title">
+                                            타이틀
+                                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                        </div>
+                                        <div class="accordion-content" data-accr-target>
+                                            <div class="accordion-body">
+                                                내용<br>
+                                                내용<br>
+                                                내용
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion-item" data-accr-item>
+                                        <div class="accordion-title">
+                                            타이틀
+                                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                        </div>
+                                        <div class="accordion-content" data-accr-target>
+                                            <div class="accordion-body">
+                                                내용<br>
+                                                내용
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion-item" data-accr-item>
+                                        <div class="accordion-title">
+                                            타이틀
+                                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                        </div>
+                                        <div class="accordion-content" data-accr-target>
+                                            <div class="accordion-body">
+                                                내용
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용<br>
+                                내용<br>
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용<br>
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accr-item>
+                        <div class="accordion-title">
+                            타이틀
+                            <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                        </div>
+                        <div class="accordion-content" data-accr-target>
+                            <div class="accordion-body">
+                                내용
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/ui.js"></script>
+    <script>
+        document.querySelectorAll('[data-accr-target]').forEach(function(el) {
+            el.addEventListener('accr.showing', function () {
+                console.log(this, 'showing');
+            })
+            el.addEventListener('accr.shown', function () {
+                console.log(this, 'shown');
+            })
+            el.addEventListener('accr.hiding', function () {
+                console.log(this, 'hiding');
+            })
+            el.addEventListener('accr.hidden', function () {
+                console.log(this, 'hidden');
+            })
+        })
+
+        document.querySelectorAll('[data-accr]').forEach(function(el) {
+            const accr = new SKY.Accordion(el);
+
+            document.getElementById('showAll').addEventListener('click', function() {
+                accr.showAll();
+            })
+            document.getElementById('hideAll').addEventListener('click', function() {
+                accr.hideAll();
+            })
+        })
+    </script>
+</body>
+
+</html>

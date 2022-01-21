@@ -1,0 +1,93 @@
+.accordion {
+    $accr-duration: .3s;
+
+    &+& {
+        margin-top: 1rem;
+    }
+
+    &-title {
+        display: block;
+        position: relative;
+    }
+
+    &-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 3rem;
+            width: 0.9rem;
+            height: 0.2rem;
+            background: #222;
+            border-radius: 0.2rem;
+            transform: translateY(-50%) rotate(45deg);
+            transition: transform $accr-duration;
+        }
+
+        &:after {
+            right: 2.4rem;
+            transform: translateY(-50%) rotate(135deg);
+        }
+
+        &.on {
+            &:before {
+                transform: translateY(-50%) rotate(-45deg);
+            }
+
+            &:after {
+                transform: translateY(-50%) rotate(225deg);
+            }
+        }
+
+        &.plus {
+
+            &:before,
+            &:after {
+                width: 1.2rem;
+                right: 2.5rem;
+                transform: translateY(-50%) rotate(90deg);
+            }
+
+            &:after {
+                transform: translateY(-50%) rotate(0);
+            }
+
+            &.on {
+                &:before {
+                    transform: translateY(-50%) rotate(360deg);
+                }
+            }
+        }
+    }
+
+    [data-accr-target] {
+        display: none;
+        transition: height $accr-duration;
+
+        &.showing,
+        &.hiding {
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }
+
+        &.shown {
+            display: block;
+        }
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &-body {
+        padding: 1rem;
+    }
+}
