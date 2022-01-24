@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../resources/css/common.min.css">
+    <title>Tab</title>
+</head>
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+
+            </nav>
+            <div class="guide-content">
+                <section class="guide-section">
+                    <ul class="nav-tab" data-tab="group1">
+                        <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1">Tab1</button></li>
+                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab2">Tab2</button></li>
+                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab3">Tab3</button></li>
+                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab4">Tab4</button></li>
+                    </ul>
+
+                    <div style="overflow: hidden">
+                        <div id="tab1" data-tab-target="group1">
+                            tab1
+                            <ul class="nav-tab" data-tab="group1_2">
+                                <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1_1">Tab1_1</button></li>
+                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_2">Tab1_2</button></li>
+                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_3">Tab1_3</button></li>
+                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_4">Tab1_4</button></li>
+                            </ul>
+    
+                            <div id="tab1_1" data-tab-target="group1_2">
+                                tab1
+                            </div>
+                            <div id="tab1_2" data-tab-target="group1_2">
+                                tab2
+                            </div>
+                            <div id="tab1_3" data-tab-target="group1_2">
+                                tab3
+                            </div>
+                            <div id="tab1_4" data-tab-target="group1_2">
+                                tab4
+                            </div>
+                        </div>
+                        <div id="tab2" data-tab-target="group1">
+                            tab2
+                        </div>
+                        <div id="tab3" data-tab-target="group1">
+                            tab3
+                        </div>
+                        <div id="tab4" data-tab-target="group1">
+                            tab4
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/ui.js"></script>
+    <script>
+        document.querySelectorAll('[data-tab-target="group1"]').forEach(function (el) {
+            el.addEventListener('tab.showing', function () {
+                console.log(this, 'showing');
+            })
+            el.addEventListener('tab.shown', function () {
+                console.log(this, 'shown');
+            })
+            el.addEventListener('tab.hiding', function () {
+                console.log(this, 'hiding');
+            })
+            el.addEventListener('tab.hidden', function () {
+                console.log(this, 'hidden');
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 import Data from '../util/data.js';
+import EventHandler from '../util/eventHandler';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'modal';
@@ -14,19 +15,17 @@ class Modal extends BaseComponent {
 
     // 모달 트리거 클릭 시 모달 show
     if (this._trigger) {
-      this._trigger.addEventListener('click', e => this.show(e));
+      EventHandler.on(this._trigger, 'click', e => this.show(e));
     }
 
     // 모달 딤 클릭 시 닫기
-    this._element.addEventListener('click', e => {
+    EventHandler.on(this._element, 'click', e => {
       if (e.target === this._element && this._element.dataset.modalBackdrop !== 'false') this.hide(e);
     });
 
     // 모달 닫기 버튼 클릭 시 닫기
     this._close.forEach(el => {
-      el.addEventListener('click', () => {
-        this.hide();
-      });
+      EventHandler.on(el, 'click', () => this.hide());
     });
 
     Data.setData(element, NAME, this);
@@ -44,21 +43,15 @@ class Modal extends BaseComponent {
 
     this._isShow = true;
 
-    const showing = new CustomEvent(`${EVENT_KEY}.showing`);
-    this._element.dispatchEvent(showing);
+    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
 
-    this._element.children[0].addEventListener(
-      'animationend',
-      () => {
-        this._isShow = false;
-        this._element.focus();
-        this._element.removeAttribute('tabindex');
+    EventHandler.one(this._element, 'animationend', () => {
+      this._isShow = false;
+      this._element.focus();
+      this._element.removeAttribute('tabindex');
 
-        const shown = new CustomEvent(`${EVENT_KEY}.shown`);
-        this._element.dispatchEvent(shown);
-      },
-      { once: true }
-    );
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`);
+    });
   }
 
   hide(e) {
@@ -73,21 +66,15 @@ class Modal extends BaseComponent {
 
     this._isShow = true;
 
-    const hiding = new CustomEvent(`${EVENT_KEY}.hiding`);
-    this._element.dispatchEvent(hiding);
+    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`);
 
-    this._element.children[0].addEventListener(
-      'animationend',
-      () => {
-        this._isShow = false;
-        this._element.classList.remove('modal-out');
-        this._trigger.focus();
+    EventHandler.one(this._element, 'animationend', () => {
+      this._isShow = false;
+      this._element.classList.remove('modal-out');
+      this._trigger.focus();
 
-        const hidden = new CustomEvent(`${EVENT_KEY}.hidden`);
-        this._element.dispatchEvent(hidden);
-      },
-      { once: true }
-    );
+      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);
+    });
   }
 
   static getInstance(element) {
@@ -95,7 +82,7 @@ class Modal extends BaseComponent {
   }
 }
 
-document.addEventListener('click', e => {
+EventHandler.on(document, 'click', e => {
   const target = e.target.getAttribute('data-modal-trigger');
   if (target === null) {
     return false;

@@ -1,0 +1,37 @@
+.nav-tab {
+    display: flex;
+    margin: -0.8rem 0 0 -0.8rem;
+    overflow: auto;
+
+    &-item {
+        margin: 0.8rem 0 0 0.8rem;
+        
+        [data-tab-trigger] {
+            padding: 0.8rem;
+            border: 0.1rem solid #222;
+            color: #222;
+            transition: all .3s;
+        }
+    }
+}
+
+[data-tab-trigger] {
+    .nav-tab-item.on & {
+        background: #222;
+        color: #fff;
+    }
+}
+
+[data-tab-target] {
+    display: none;
+
+    &.tab-in {
+        display: block;
+        animation: tab-in .3s;
+    }
+
+    &.tab-out {
+        display: block;
+        animation: tab-out .3s;
+    }
+}

@@ -1,3 +1,4 @@
+// 모달 딤 show
 @keyframes modal-dim-in {
     0% {
         opacity: 0;
@@ -8,6 +9,7 @@
     }
 }
 
+// 모달 딤 hide
 @keyframes modal-dim-out {
     0% {
         opacity: 1;
@@ -18,6 +20,7 @@
     }
 }
 
+// 모달 기본 show
 @keyframes modal-in {
     0% {
         transform: translate(-50%, -65%);
@@ -30,6 +33,7 @@
     }
 }
 
+// 모달 기본 hide
 @keyframes modal-out {
     0% {
         transform: translate(-50%, -50%);
@@ -42,6 +46,33 @@
     }
 }
 
+// 모달 full show
+@keyframes modal-full-in {
+    0% {
+        transform: translate(0, -15%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0, 0%);
+        opacity: 1;
+    }
+}
+
+// 모달 full hide
+@keyframes modal-full-out {
+    0% {
+        transform: translate(0, 0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0, -15%);
+        opacity: 0;
+    }
+}
+
+// 모달 btm show
 @keyframes modal-btm-in {
     0% {
         transform: translate(-50%, 30%);
@@ -54,6 +85,7 @@
     }
 }
 
+// 모달 btm hide
 @keyframes modal-btm-out {
     0% {
         transform: translate(-50%, 0%);
@@ -63,5 +95,31 @@
     100% {
         transform: translate(-50%, 30%);
         opacity: 0;
+    }
+}
+
+// tab show
+@keyframes tab-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-15%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// tab hide
+@keyframes tab-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-15%);
     }
 }

@@ -123,6 +123,10 @@
             >li {
                 font-size: 2.4rem;
 
+                +li {
+                    margin-top: 0.4rem;
+                }
+
                 a {
                     display: inline-block;
                     position: relative;
@@ -133,10 +137,10 @@
                         bottom: 0;
                         left: 50%;
                         width: 0;
-                        height: 1px;
+                        height: 2px;
                         background: #fff;
                         transform: translateX(-50%);
-                        transition: width .3s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                        transition: width .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
                     }
 
                     &:hover {

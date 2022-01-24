@@ -125,6 +125,10 @@ export default function polyfill() {
       };
     })();
   }
+  // IE startWith 대응
+  String.prototype.startsWith = function (search, pos) {
+    return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+  };
   // ios scroll smooth polyfill
   !(function () {
     'use strict';
