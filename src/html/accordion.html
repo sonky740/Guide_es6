@@ -93,7 +93,55 @@
                                             </div>
                                             <div class="accordion-content" data-accr-target>
                                                 <div class="accordion-body">
-                                                    내용
+                                                    <ul id="accordion2_1_1" class="accordion" data-accr>
+                                                        <li class="accordion-item on" data-accr-item>
+                                                            <div class="accordion-title">
+                                                                타이틀
+                                                                <button type="button" class="accordion-button plus" data-accr-trigger><span class="blind">접기</span></button>
+                                                            </div>
+                                                            <div class="accordion-content" data-accr-target>
+                                                                <div class="accordion-body">
+                                                                    내용
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="accordion-item" data-accr-item>
+                                                            <div class="accordion-title">
+                                                                타이틀
+                                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                            </div>
+                                                            <div class="accordion-content" data-accr-target>
+                                                                <div class="accordion-body">
+                                                                    내용<br>
+                                                                    내용<br>
+                                                                    내용
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="accordion-item" data-accr-item>
+                                                            <div class="accordion-title">
+                                                                타이틀
+                                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                            </div>
+                                                            <div class="accordion-content" data-accr-target>
+                                                                <div class="accordion-body">
+                                                                    내용<br>
+                                                                    내용
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="accordion-item" data-accr-item>
+                                                            <div class="accordion-title">
+                                                                타이틀
+                                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                            </div>
+                                                            <div class="accordion-content" data-accr-target>
+                                                                <div class="accordion-body">
+                                                                    내용
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </li>
@@ -235,7 +283,7 @@
 
     <script src="../resources/js/ui.js"></script>
     <script>
-        document.querySelectorAll('[data-accr-target]').forEach(function (el) {
+        document.querySelectorAll('[data-accr-item]').forEach(function (el) {
             el.addEventListener('accr.showing', function () {
                 console.log(this, 'showing');
             })

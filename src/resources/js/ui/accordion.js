@@ -69,7 +69,7 @@ class Accordion extends BaseComponent {
     target.classList.add('showing');
     target.style.height = `${target.scrollHeight}px`;
 
-    EventHandler.trigger(target, `${EVENT_KEY}.showing`);
+    EventHandler.trigger(item, `${EVENT_KEY}.showing`);
 
     const complete = () => {
       target.classList.remove('showing');
@@ -77,7 +77,7 @@ class Accordion extends BaseComponent {
       target.removeAttribute('style');
       this._isMoving = false;
 
-      EventHandler.trigger(target, `${EVENT_KEY}.shown`);
+      EventHandler.trigger(item, `${EVENT_KEY}.shown`);
     };
 
     // data-accr = "only" 하나만 열릴 때
@@ -116,7 +116,7 @@ class Accordion extends BaseComponent {
     target.classList.add('hiding');
     target.removeAttribute('style');
 
-    EventHandler.trigger(target, `${EVENT_KEY}.hiding`);
+    EventHandler.trigger(item, `${EVENT_KEY}.hiding`);
 
     const complete = () => {
       target.classList.remove('hiding');
@@ -124,7 +124,7 @@ class Accordion extends BaseComponent {
       item.classList.remove('on');
       this._isMoving = false;
 
-      EventHandler.trigger(target, `${EVENT_KEY}.hidden`);
+      EventHandler.trigger(item, `${EVENT_KEY}.hidden`);
     };
 
     // transition
