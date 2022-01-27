@@ -6,6 +6,10 @@
     text-align: center;
     text-decoration: underline;
 
+    &:first-child {
+        padding-top: 2rem;
+    }
+
     @media (max-width: 720px) {
         font-size: 4rem;
     }

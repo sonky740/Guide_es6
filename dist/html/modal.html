@@ -29,12 +29,58 @@
 
         <div class="ly-content">
             <nav class="guide-nav">
-
+                <div class="guide-nav-content">
+                    <h2 class="guide-nav-title">Modal</h2>
+                </div>
             </nav>
             <div class="guide-content">
-                <button type="button" data-modal-trigger="modal1">모달 트리거1 (full)</button>
-                <br>
-                <button type="button" data-modal-trigger="modal3">모달 트리거1 (btm)</button>
+                <section class="guide-section">
+                    <header>
+                        <div>
+                            <h3 class="guide-section-title">Full Modal</h3>
+                            <p class="sub">.ly-modal.full[data-modal]</p>
+                        </div>
+                        <p class="description">
+                            높이 값 100% 모달
+                        </p>
+                    </header>
+
+                    <button type="button" data-modal-trigger="modal1">모달 호출(button)</button>
+                    <br>
+                    <a href="#none" data-modal-trigger="modal1">모달 호출(a)</a>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <div>
+                            <h3 class="guide-section-title">Center Modal</h3>
+                            <p class="sub">.ly-modal[data-modal]</p>
+                        </div>
+                        <p class="description">
+                            중앙 정렬 모달
+                        </p>
+                    </header>
+
+                    <button type="button" data-modal-trigger="modal2">모달 호출(button)</button>
+                    <br>
+                    <a href="#none" data-modal-trigger="modal2">모달 호출(a)</a>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <div>
+                            <h3 class="guide-section-title">Bottom Modal</h3>
+                            <p class="sub">.ly-modal.btm[data-modal]</p>
+                        </div>
+                        <p class="description">
+                            Bottom 모달
+                        </p>
+                    </header>
+
+                    <button type="button" data-modal-trigger="modal3">모달 호출(button)</button>
+                    <br>
+                    <a href="#none" data-modal-trigger="modal3">모달 호출(a)</a>
+                </section>
             </div>
         </div>
     </div>
@@ -53,7 +99,7 @@
         </div>
     </div>
 
-    <!-- 모달 - 중앙 -->
+    <!-- 모달 - 기본 -->
     <div id="modal2" class="ly-modal" data-modal>
         <div class="ly-modal-wrap">
             <header class="ly-modal-header">

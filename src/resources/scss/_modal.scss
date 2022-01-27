@@ -50,7 +50,7 @@ $modal-duration: .4s;
         top: 50%;
         left: 50%;
         width: 100%;
-        max-width: 76.8rem;
+        max-width: 62rem;
         min-height: 20rem;
         background: #fff;
         transform: translate(-50%, -50%);
@@ -168,10 +168,8 @@ $modal-duration: .4s;
     &.full {
         .ly-modal-wrap {
             top: 0;
-            left: 0;
-            max-width: 100%;
             height: 100%;
-            transform: translate(0, 0);
+            transform: translate(-50%, 0);
 
             // ios15 이슈
             &:after {
@@ -196,7 +194,6 @@ $modal-duration: .4s;
         .ly-modal-wrap {
             top: auto;
             bottom: 0;
-            max-width: 100%;
             max-height: calc(100% - 6rem);
             border-radius: 2.8rem 2.8rem 0 0;
             box-shadow: 0 -0.6rem 2rem rgba(0, 0, 0, .16);

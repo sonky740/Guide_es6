@@ -5,6 +5,7 @@
 
     &-item {
         margin: 0.8rem 0 0 0.8rem;
+        white-space: nowrap;
         
         [data-tab-trigger] {
             padding: 0.8rem;

@@ -1,6 +1,6 @@
-.ly-nav {
-    $ly-nav-width: 6.4rem;
+$ly-nav-width: 6.4rem;
 
+.ly-nav {
     position: fixed;
     top: 0;
     right: 0;
@@ -210,10 +210,28 @@
             }
         }
     }
+}
 
+.ly-wrap {
+    position: relative;
+    min-width: 320px;
+    min-height: 100vh;
+}
 
-    // 모바일에서
-    @media (max-width: 640px) {
+.about-wrap {
+    .txt-p {
+        font-size: 2.4rem;
+        text-align: center;
+
+        +.txt-p {
+            margin-top: 1.2rem;
+        }
+    }
+}
+
+// 모바일에서
+@media (max-width: 640px) {
+    .ly-nav {
         width: 100%;
 
         &-header {
@@ -257,22 +275,8 @@
             margin-top: $ly-nav-width;
         }
     }
-}
 
-.ly-wrap {
-    position: relative;
-    min-width: 320px;
-    min-height: 100vh;
-    padding: 4rem 2rem;
-}
-
-.about-wrap {
-    .txt-p {
-        font-size: 2.4rem;
-        text-align: center;
-
-        +.txt-p {
-            margin-top: 1.2rem;
-        }
+    .ly-wrap {
+        min-height: calc(100vh - 6.4rem);
     }
 }

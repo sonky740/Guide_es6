@@ -2,11 +2,69 @@
     $root: '.guide';
 
     &-section {
+        position: relative;
+        margin: 1.5rem 0 2rem;
+        padding: 1rem 0.8rem;
+        border: 0.1rem solid #e7e4e2;
+        border-radius: 0.6rem;
+        background: #fff;
+        box-shadow: 0 0.3rem 0.6rem rgbㅁ(0 0 0, 0.1);
+
+        >header {
+            position: relative;
+            margin: -1rem -0.8rem 1.5rem;
+            padding: 1rem 0.8rem;
+            border-radius: 0.6rem 0.6rem 0 0;
+            border-bottom: 0.2rem solid #a09d98;
+            background: #fff;
+
+            >div {
+                display: flex;
+                align-items: center;
+                padding-bottom: 0.4rem;
+            }
+
+            .sub {
+                margin-left: 0.4rem;
+                font-size: 1.4rem;
+                color: #666;
+
+                &:before,
+                &:after {
+                    content: "[";
+                    display: inline-block;
+                    color: #da2030;
+                }
+
+                &:after {
+                    content: "]"
+                }
+            }
+
+            .description {
+                position: relative;
+                margin: 0 -0.8rem -1rem;
+                padding: 0.8rem 0.8rem;
+                border: none;
+                border-radius: 0;
+                background: #f5f5f5;
+                font-size: 1.3rem;
+                line-height: 2rem;
+                color: #888;
+                word-break: break-all;
+            }
+        }
+
+        &-title {
+            display: inline-block;
+            font-size: 1.8rem;
+        }
+
         &+& {
             margin-top: 2rem;
         }
     }
-    
+
     &-text {
         position: relative;
         margin: 2rem 0 1rem;
@@ -29,5 +87,37 @@
         display: inline-block;
         padding: 0.8rem;
         border: 1px solid #222;
+    }
+
+    &-nav {
+        padding: 8rem 0;
+        background: #fafafa;
+
+        &-title {
+            margin: 0 auto;
+            max-width: 112rem;
+            font-size: 5rem;
+        }
+    }
+
+    &-content {
+        margin: 0 auto;
+        max-width: 112rem;
+        padding: 4rem 0;
+    }
+
+    // 1180이하
+    @media screen and (max-width: 1180px) {
+        &-nav {
+            padding: 6rem 0;
+
+            &-title {
+                padding: 0 2rem;
+            }
+        }
+
+        &-content {
+            padding: 2rem;
+        }
     }
 }

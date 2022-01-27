@@ -49,12 +49,12 @@
 // 모달 full show
 @keyframes modal-full-in {
     0% {
-        transform: translate(0, -15%);
+        transform: translate(-50%, -15%);
         opacity: 0;
     }
 
     100% {
-        transform: translate(0, 0%);
+        transform: translate(-50%, 0%);
         opacity: 1;
     }
 }
@@ -62,12 +62,12 @@
 // 모달 full hide
 @keyframes modal-full-out {
     0% {
-        transform: translate(0, 0%);
+        transform: translate(-50%, 0%);
         opacity: 1;
     }
 
     100% {
-        transform: translate(0, -15%);
+        transform: translate(-50%, -15%);
         opacity: 0;
     }
 }
@@ -102,12 +102,10 @@
 @keyframes tab-in {
     0% {
         opacity: 0;
-        transform: translateY(-15%);
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -115,11 +113,9 @@
 @keyframes tab-out {
     0% {
         opacity: 1;
-        transform: translateY(0);
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-15%);
     }
 }

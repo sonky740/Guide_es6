@@ -1,10 +1,10 @@
 import Data from '../util/data.js';
 import BaseComponent from '../util/baseComponent.js';
 
-const NAME = 'sample';
+const NAME = 'tooltip';
 // const EVENT_KEY = `${NAME}`;
 
-class Sample extends BaseComponent {
+class Tooltip extends BaseComponent {
   constructor(element) {
     super(element);
 
@@ -16,4 +16,4 @@ class Sample extends BaseComponent {
   }
 }
 
-export default Sample;
+export default Tooltip;
