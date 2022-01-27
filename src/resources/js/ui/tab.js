@@ -11,7 +11,7 @@ class Tab extends BaseComponent {
     super(element);
 
     this._trigger = this._element.querySelectorAll('[data-tab-trigger]');
-    this._isShow = false;
+    this._isMoving = false;
 
     this._trigger.forEach(trigger => {
       const item = trigger.closest('[data-tab-item]');
@@ -39,8 +39,8 @@ class Tab extends BaseComponent {
     const target = document.getElementById(trigger.dataset.tabTrigger);
     const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
 
-    if (this._isShow) return false;
-    this._isShow = true;
+    if (this._isMoving) return false;
+    this._isMoving = true;
 
     if (item.classList.contains('on')) return false;
 
@@ -63,7 +63,7 @@ class Tab extends BaseComponent {
             EventHandler.trigger(group, `${EVENT_KEY}.hidden`);
 
             target.classList.add('tab-in');
-            this._isShow = false;
+            this._isMoving = false;
 
             EventHandler.trigger(target, `${EVENT_KEY}.showing`);
           }

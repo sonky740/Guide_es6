@@ -11,8 +11,14 @@ class Accordion extends BaseComponent {
     super(element);
 
     this._item = this._element.children;
-    this._isShow = false;
+    this._isMoving = false;
 
+    this.init();
+
+    Data.setData(element, NAME, this);
+  }
+
+  init() {
     Array.from(this._item).forEach(item => {
       const target = item.querySelector('[data-accr-target]');
       const trigger = item.querySelector('[data-accr-trigger]');
@@ -22,11 +28,16 @@ class Accordion extends BaseComponent {
         trigger.classList.add('on');
         trigger.querySelector('.blind').innerText = '접기';
         target.classList.add('shown');
+      } else {
+        target.classList.add('hidden');
       }
 
       EventHandler.on(trigger, 'click', e => {
         e.preventDefault();
         e.stopPropagation();
+
+        if (this._isMoving) return false;
+        this._isMoving = true;
 
         if (!item.classList.contains('on')) {
           this.show(item);
@@ -35,8 +46,6 @@ class Accordion extends BaseComponent {
         }
       });
     });
-
-    Data.setData(element, NAME, this);
   }
 
   show(item) {
@@ -48,58 +57,40 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    if (item.classList.contains('on')) return false;
-
     const target = item.querySelector('[data-accr-target]');
     const trigger = item.querySelector('[data-accr-trigger]');
 
-    if (this._isShow) return false;
-    this._isShow = true;
+    if (item.classList.contains('on')) return false;
 
     item.classList.add('on');
     trigger.classList.add('on');
     trigger.querySelector('.blind').innerText = '접기';
+    target.classList.remove('hidden');
+    target.classList.add('showing');
+    target.style.height = `${target.scrollHeight}px`;
 
-    const showing = new CustomEvent(`${EVENT_KEY}.showing`);
-    target.dispatchEvent(showing);
+    EventHandler.trigger(target, `${EVENT_KEY}.showing`);
 
-    if (this._element.dataset.accrAniamtion === 'false') {
+    const complete = () => {
+      target.classList.remove('showing');
       target.classList.add('shown');
-      this._isShow = false;
+      target.removeAttribute('style');
+      this._isMoving = false;
 
-      const shown = new CustomEvent(`${EVENT_KEY}.shown`);
-      target.dispatchEvent(shown);
-    } else {
-      // transition
-      this.showTransition(target);
-    }
+      EventHandler.trigger(target, `${EVENT_KEY}.shown`);
+    };
 
     // data-accr = "only" 하나만 열릴 때
     if (this._element.dataset.accr === 'only') {
       siblings(item).forEach(items => {
-        const targets = items.querySelector('[data-accr-target]');
-        const triggers = items.querySelector('[data-accr-trigger]');
-
-        if (targets.classList.contains('shown')) {
-          triggers.classList.remove('on');
-          triggers.querySelector('.blind').innerText = '펼치기';
-
-          const hiding = new CustomEvent(`${EVENT_KEY}.hiding`);
-          targets.dispatchEvent(hiding);
-
-          if (this._element.dataset.accrAniamtion === 'false') {
-            items.classList.remove('on');
-            targets.classList.remove('shown');
-            this._isShow = false;
-
-            const hidden = new CustomEvent(`${EVENT_KEY}.hidden`);
-            target.dispatchEvent(hidden);
-          } else {
-            // transition
-            this.hideTransition(items, targets);
-          }
-        }
+        if (item.classList.contains('on')) this.hide(items);
       });
+    }
+
+    if (this._element.dataset.accrAnimation === 'false') {
+      complete();
+    } else {
+      EventHandler.one(target, 'transitionend', () => complete());
     }
   }
 
@@ -112,104 +103,49 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    if (!item.classList.contains('on')) return false;
-
     const target = item.querySelector('[data-accr-target]');
     const trigger = item.querySelector('[data-accr-trigger]');
 
-    if (this._isShow) return false;
-    this._isShow = true;
+    if (!item.classList.contains('on')) return false;
 
     trigger.classList.remove('on');
     trigger.querySelector('.blind').innerText = '펼치기';
-
-    const hiding = new CustomEvent(`${EVENT_KEY}.hiding`);
-    target.dispatchEvent(hiding);
-
-    // transition
-    if (this._element.dataset.accrAniamtion === 'false') {
-      item.classList.remove('on');
-      target.classList.remove('shown');
-      this._isShow = false;
-
-      const hidden = new CustomEvent(`${EVENT_KEY}.hidden`);
-      target.dispatchEvent(hidden);
-    } else {
-      // transition
-      this.hideTransition(item, target);
-    }
-  }
-
-  showTransition(target) {
-    target.classList.add('showing');
-    target.style.height = `${target.scrollHeight}px`;
-
-    EventHandler.one(target, 'transitionend', () => {
-      if (target.classList.contains('showing')) {
-        target.classList.remove('showing');
-        target.removeAttribute('style');
-        target.classList.add('shown');
-        this._isShow = false;
-
-        const shown = new CustomEvent(`${EVENT_KEY}.shown`);
-        target.dispatchEvent(shown);
-      }
-    });
-  }
-
-  hideTransition(item, target) {
     target.style.height = `${target.scrollHeight}px`;
     target.heightCache = target.scrollHeight;
-    target.classList.add('hiding');
     target.classList.remove('shown');
+    target.classList.add('hiding');
     target.removeAttribute('style');
-    item.querySelector('[data-accr-trigger] .blind').innerText = '펼치기';
 
-    EventHandler.one(target, 'transitionend', () => {
-      if (target.classList.contains('hiding')) {
-        item.classList.remove('on');
-        target.classList.remove('hiding');
-        this._isShow = false;
+    EventHandler.trigger(target, `${EVENT_KEY}.hiding`);
 
-        const hidden = new CustomEvent(`${EVENT_KEY}.hidden`);
-        target.dispatchEvent(hidden);
-      }
-    });
+    const complete = () => {
+      target.classList.remove('hiding');
+      target.classList.add('hidden');
+      item.classList.remove('on');
+      this._isMoving = false;
+
+      EventHandler.trigger(target, `${EVENT_KEY}.hidden`);
+    };
+
+    // transition
+    if (this._element.dataset.accrAnimation === 'false') {
+      complete();
+    } else {
+      EventHandler.one(target, 'transitionend', () => complete());
+    }
   }
 
   showAll() {
     Array.from(this._item).forEach(item => {
-      const target = item.querySelector('[data-accr-target]');
-      const trigger = item.querySelector('[data-accr-trigger]');
-
-      if (this._element.dataset.accr !== 'only') {
-        if (target.classList.contains('shown')) return false;
-        item.classList.add('on');
-        trigger.classList.add('on');
-        trigger.querySelector('.blind').innerText = '접기';
-
-        const showing = new CustomEvent(`${EVENT_KEY}.showing`);
-        target.dispatchEvent(showing);
-
-        this.showTransition(target);
-      } else if (this._element.dataset.accr === 'only') {
-        console.error('하나만 열릴 때는 동작하지 않습니다.');
-      }
+      if (this._element.dataset.accr === 'only') super._throwError('하나만 열릴 때는 동작하지 않습니다.');
+      if (item.classList.contains('on')) return false;
+      this.show(item);
     });
   }
 
   hideAll() {
     Array.from(this._item).forEach(item => {
-      const target = item.querySelector('[data-accr-target]');
-      const trigger = item.querySelector('[data-accr-trigger]');
-
-      trigger.classList.remove('on');
-      trigger.querySelector('.blind').innerText = '펼치기';
-
-      const hiding = new CustomEvent(`${EVENT_KEY}.hiding`);
-      target.dispatchEvent(hiding);
-
-      this.hideTransition(item, target);
+      this.hide(item);
     });
   }
 

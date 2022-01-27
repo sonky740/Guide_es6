@@ -11,7 +11,7 @@ class Modal extends BaseComponent {
 
     this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-moda-trigger]
     this._close = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
-    this._isShow = false; // true일 경우 이벤트 작동 안되게
+    this._isMoving = false; // true일 경우 이벤트 작동 안되게
 
     // 모달 트리거 클릭 시 모달 show
     if (this._trigger) {
@@ -36,17 +36,17 @@ class Modal extends BaseComponent {
       e.preventDefault();
     }
 
-    if (this._isShow === true) return false;
+    if (this._isMoving === true) return false;
 
     this._element.classList.add('modal-in');
     this._element.setAttribute('tabindex', 0);
 
-    this._isShow = true;
+    this._isMoving = true;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
 
     EventHandler.one(this._element, 'animationend', () => {
-      this._isShow = false;
+      this._isMoving = false;
       this._element.focus();
       this._element.removeAttribute('tabindex');
 
@@ -59,17 +59,17 @@ class Modal extends BaseComponent {
       e.preventDefault();
     }
 
-    if (this._isShow === true) return false;
+    if (this._isMoving === true) return false;
 
     this._element.classList.remove('modal-in');
     this._element.classList.add('modal-out');
 
-    this._isShow = true;
+    this._isMoving = true;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`);
 
     EventHandler.one(this._element, 'animationend', () => {
-      this._isShow = false;
+      this._isMoving = false;
       this._element.classList.remove('modal-out');
       this._trigger.focus();
 

@@ -247,7 +247,7 @@ const EventHandler = {
     const isNative = nativeEvents.has(typeEvent);
 
     let jQueryEvent;
-    let bubbles = true;
+    let bubbles = false; // SKY: 기존 true였음.
     let nativeDispatch = true;
     let defaultPrevented = false;
     let evt = null;

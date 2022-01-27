@@ -10,7 +10,7 @@ export function numberComma(x) {
 /**
  * 형제요소
  * @param {Element} node
- * @returns {Element[]}
+ * @returns {Element[]} // 본인을 제외한 형제요소
  */
 export function siblings(node) {
   const children = node.parentElement.children;
