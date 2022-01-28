@@ -4,25 +4,16 @@
     &-section {
         position: relative;
         margin: 1.5rem 0 2rem;
-        padding: 1rem 0.8rem;
-        border: 0.1rem solid #e7e4e2;
-        border-radius: 0.6rem;
         background: #fff;
-        box-shadow: 0 0.3rem 0.6rem rgbㅁ(0 0 0, 0.1);
 
         >header {
             position: relative;
-            margin: -1rem -0.8rem 1.5rem;
-            padding: 1rem 0.8rem;
-            border-radius: 0.6rem 0.6rem 0 0;
+            display: flex;
+            align-items: center;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
             border-bottom: 0.2rem solid #a09d98;
             background: #fff;
-
-            >div {
-                display: flex;
-                align-items: center;
-                padding-bottom: 0.4rem;
-            }
 
             .sub {
                 margin-left: 0.4rem;
@@ -40,19 +31,6 @@
                     content: "]"
                 }
             }
-
-            .description {
-                position: relative;
-                margin: 0 -0.8rem -1rem;
-                padding: 0.8rem 0.8rem;
-                border: none;
-                border-radius: 0;
-                background: #f5f5f5;
-                font-size: 1.3rem;
-                line-height: 2rem;
-                color: #888;
-                word-break: break-all;
-            }
         }
 
         &-title {
@@ -67,7 +45,7 @@
 
     &-text {
         position: relative;
-        margin: 2rem 0 1rem;
+        margin: 1rem 0;
         padding-left: 0.6rem;
         color: #da2030;
 
