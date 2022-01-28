@@ -35,38 +35,36 @@
                         <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab4">Tab4</button></li>
                     </ul>
 
-                    <div style="overflow: hidden">
-                        <div id="tab1" data-tab-target="group1">
+                    <div id="tab1" data-tab-target="group1">
+                        tab1
+                        <ul class="nav-tab" data-tab="group1_2">
+                            <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1_1">Tab in Tab1_1</button></li>
+                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_2">Tab in Tab1_2</button></li>
+                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_3">Tab in Tab1_3</button></li>
+                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_4">Tab in Tab1_4</button></li>
+                        </ul>
+
+                        <div id="tab1_1" data-tab-target="group1_2">
                             tab1
-                            <ul class="nav-tab" data-tab="group1_2">
-                                <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1_1">Tab in Tab1_1</button></li>
-                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_2">Tab in Tab1_2</button></li>
-                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_3">Tab in Tab1_3</button></li>
-                                <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_4">Tab in Tab1_4</button></li>
-                            </ul>
-    
-                            <div id="tab1_1" data-tab-target="group1_2">
-                                tab1
-                            </div>
-                            <div id="tab1_2" data-tab-target="group1_2">
-                                tab2
-                            </div>
-                            <div id="tab1_3" data-tab-target="group1_2">
-                                tab3
-                            </div>
-                            <div id="tab1_4" data-tab-target="group1_2">
-                                tab4
-                            </div>
                         </div>
-                        <div id="tab2" data-tab-target="group1">
+                        <div id="tab1_2" data-tab-target="group1_2">
                             tab2
                         </div>
-                        <div id="tab3" data-tab-target="group1">
+                        <div id="tab1_3" data-tab-target="group1_2">
                             tab3
                         </div>
-                        <div id="tab4" data-tab-target="group1">
+                        <div id="tab1_4" data-tab-target="group1_2">
                             tab4
                         </div>
+                    </div>
+                    <div id="tab2" data-tab-target="group1">
+                        tab2
+                    </div>
+                    <div id="tab3" data-tab-target="group1">
+                        tab3
+                    </div>
+                    <div id="tab4" data-tab-target="group1">
+                        tab4
                     </div>
                 </section>
 
@@ -102,6 +100,10 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
+        // const tabEl = document.querySelector('#tab4');
+        // const tab = new SKY.Tab(tabEl);
+        // console.log(tab)
+
         document.querySelectorAll('[data-tab-target]').forEach(function (el) {
             el.addEventListener('tab.showing', function () {
                 console.log(this, 'showing');

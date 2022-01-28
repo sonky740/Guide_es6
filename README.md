@@ -31,9 +31,9 @@ npm run build
 │
 ├─ .vscode                         // vscode 설정파일입니다.
 │
-├─ dist                            // gulp, webpack 빌드된 폴더 - 개발자님은 이 폴더만 보시면 됩니다.
+├─ dist                            // gulp, webpack 빌드된 폴더
 │
-├─ src                             // 퍼블리셔 - 실작업
+├─ src                             // 실제 작업
 │  ├─ _includes                    // html templates
 │  │
 │  ├─ guide                        // 요소 가이드

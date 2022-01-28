@@ -26,7 +26,7 @@ class Tab extends BaseComponent {
         e.stopPropagation();
 
         if (!item.classList.contains('on')) {
-          this.show(trigger);
+          this.show(item);
         }
       });
     });
@@ -34,9 +34,8 @@ class Tab extends BaseComponent {
     Data.setData(element, NAME, this);
   }
 
-  show(trigger) {
-    const item = trigger.closest('[data-tab-item]');
-    const target = document.getElementById(trigger.dataset.tabTrigger);
+  show(item) {
+    const target = document.getElementById(item.querySelector('[data-tab-trigger]').dataset.tabTrigger);
     const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
 
     if (this._isMoving) return false;
