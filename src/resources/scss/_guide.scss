@@ -1,3 +1,5 @@
+@import 'prism';
+
 .guide {
     $root: '.guide';
 
@@ -8,17 +10,16 @@
 
         >header {
             position: relative;
-            display: flex;
-            align-items: center;
             padding-bottom: 0.4rem;
             margin-bottom: 1rem;
             border-bottom: 0.2rem solid #a09d98;
             background: #fff;
 
             .sub {
-                margin-left: 0.4rem;
+                display: inline-block;
                 font-size: 1.4rem;
                 color: #666;
+                vertical-align: middle;
 
                 &:before,
                 &:after {
@@ -36,6 +37,7 @@
         &-title {
             display: inline-block;
             font-size: 1.8rem;
+            vertical-align: middle;
         }
 
         &+& {
@@ -87,7 +89,7 @@
     // 1180이하
     @media screen and (max-width: 1180px) {
         &-nav {
-            padding: 6rem 0;
+            padding: 4rem 0;
 
             &-title {
                 padding: 0 2rem;

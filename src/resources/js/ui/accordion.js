@@ -1,5 +1,5 @@
 import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler';
+import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 import { siblings } from '../util/util.js';
 

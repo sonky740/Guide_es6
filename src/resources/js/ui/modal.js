@@ -1,5 +1,5 @@
 import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler';
+import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'modal';
@@ -36,7 +36,7 @@ class Modal extends BaseComponent {
       e.preventDefault();
     }
 
-    if (this._isMoving === true) return false;
+    if (this._isMoving === true || this._element.classList.contains('modal-in')) return false;
 
     this._element.classList.add('modal-in');
     this._element.setAttribute('tabindex', 0);

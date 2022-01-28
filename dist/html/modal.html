@@ -72,6 +72,52 @@
                     <br>
                     <a href="#none" data-modal-trigger="modal3">모달 호출(a)</a>
                 </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트 기능</p>
+
+                    <pre><code class="language-js">document.querySelectorAll('[data-modal]').forEach(function (el) {
+    // 열릴 때
+    el.addEventListener('modal.showing', function () {
+        console.log(this, 'showing');
+    })
+    // 열린 후
+    el.addEventListener('modal.shown', function () {
+        console.log(this, 'shown');
+    })
+    // 닫힐 때
+    el.addEventListener('modal.hiding', function () {
+        console.log(this, 'hiding');
+    })
+    // 닫힌 후
+    el.addEventListener('modal.hidden', function () {
+        console.log(this, 'hidden');
+    })
+})</code></pre>
+
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출</p>
+                    <pre><code class="language-js">// 특정 모달이 아니라 여러개의 모달을 다 호출하고 싶다면 querySelectorAll로 [data-modal]을 잡으면 됨.
+const modalEl = document.querySelector('#modal3');
+const modal = new SKY.Modal(modalEl);
+</code></pre>
+
+                    <p class="guide-text">show 호출</p>
+                    <pre><code class="language-js">modal.show(modalEl);</code></pre>
+
+                    <p class="guide-text">hide 호출</p>
+                    <pre><code class="language-js">modal.hide(modalEl);</code></pre>
+                </section>
             </div>
         </div>
     </div>
@@ -116,11 +162,12 @@
         </div>
     </div>
 
+    <script src="../resources/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        // const modalEl = document.querySelector('#modal3');
-        // const modal = new SKY.Modal(modalEl);
-        // modal.show();
+        const modalEl = document.querySelector('#modal3');
+        const modal = new SKY.Modal(modalEl);
 
         document.querySelectorAll('[data-modal]').forEach(function (el) {
           el.addEventListener('modal.showing', function () {

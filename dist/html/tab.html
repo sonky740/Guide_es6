@@ -83,13 +83,40 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트 기능</p>
+                    <pre><code class="language-js">document.querySelectorAll('[data-tab-target]').forEach(function (el) {
+    // 열릴 때
+    el.addEventListener('tab.showing', function () {
+        console.log(this, 'showing');
+    })
+    // 열린 후
+    el.addEventListener('tab.shown', function () {
+        console.log(this, 'shown');
+    })
+    // 닫힐 때
+    el.addEventListener('tab.hiding', function () {
+        console.log(this, 'hiding');
+    })
+    // 닫힌 후
+    el.addEventListener('tab.hidden', function () {
+        console.log(this, 'hidden');
+    })
+})</code></pre>
+                </section>
             </div>
         </div>
     </div>
 
+    <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        document.querySelectorAll('[data-tab-target="group1"]').forEach(function (el) {
+        document.querySelectorAll('[data-tab-target]').forEach(function (el) {
           el.addEventListener('tab.showing', function () {
             console.log(this, 'showing');
           })
