@@ -4,6 +4,10 @@ import BaseComponent from '../util/baseComponent.js';
 import { siblings } from '../util/util.js';
 
 const NAME = 'accr';
+const SHOWING = 'showing';
+const SHOWN = 'shown';
+const HIDING = 'hiding';
+const HIDDEN = 'hidden';
 const EVENT_KEY = `${NAME}`;
 
 class Accordion extends BaseComponent {
@@ -27,9 +31,9 @@ class Accordion extends BaseComponent {
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
         trigger.querySelector('.blind').innerText = '접기';
-        target.classList.add('shown');
+        target.classList.add(SHOWN);
       } else {
-        target.classList.add('hidden');
+        target.classList.add(HIDDEN);
       }
 
       EventHandler.on(trigger, 'click', e => {
@@ -65,15 +69,15 @@ class Accordion extends BaseComponent {
     item.classList.add('on');
     trigger.classList.add('on');
     trigger.querySelector('.blind').innerText = '접기';
-    target.classList.remove('hidden');
-    target.classList.add('showing');
+    target.classList.remove(HIDDEN);
+    target.classList.add(SHOWING);
     target.style.height = `${target.scrollHeight}px`;
 
     EventHandler.trigger(item, `${EVENT_KEY}.showing`);
 
     const complete = () => {
-      target.classList.remove('showing');
-      target.classList.add('shown');
+      target.classList.remove(SHOWING);
+      target.classList.add(SHOWN);
       target.removeAttribute('style');
       this._isMoving = false;
 
@@ -112,15 +116,15 @@ class Accordion extends BaseComponent {
     trigger.querySelector('.blind').innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
     target.heightCache = target.scrollHeight;
-    target.classList.remove('shown');
-    target.classList.add('hiding');
+    target.classList.remove(SHOWN);
+    target.classList.add(HIDING);
     target.removeAttribute('style');
 
     EventHandler.trigger(item, `${EVENT_KEY}.hiding`);
 
     const complete = () => {
-      target.classList.remove('hiding');
-      target.classList.add('hidden');
+      target.classList.remove(HIDING);
+      target.classList.add(HIDDEN);
       item.classList.remove('on');
       this._isMoving = false;
 

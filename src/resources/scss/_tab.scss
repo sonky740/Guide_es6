@@ -3,21 +3,18 @@
     margin: -0.8rem 0 0 -0.8rem;
     overflow: auto;
 
-    &-item {
+    [data-tab-trigger] {
         margin: 0.8rem 0 0 0.8rem;
         white-space: nowrap;
-        
-        [data-tab-trigger] {
-            padding: 0.8rem;
-            border: 0.1rem solid #222;
-            color: #222;
-            transition: all .3s;
-        }
+        padding: 0.8rem;
+        border: 0.1rem solid #222;
+        color: #222;
+        transition: all .3s;
     }
 }
 
 [data-tab-trigger] {
-    .nav-tab-item.on & {
+    &.on {
         background: #222;
         color: #fff;
     }

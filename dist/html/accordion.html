@@ -46,7 +46,7 @@
                     <button id="hideAll" type="button" class="guide-btn">전체 닫기</button>
 
                     <ul id="accordion1" class="accordion" data-accr>
-                        <li class="accordion-item on" data-accr-item>
+                        <li id="accordion1_1" class="accordion-item on" data-accr-item>
                             <div class="accordion-title">
                                 타이틀
                                 <button type="button" class="accordion-button plus" data-accr-trigger><span class="blind">접기</span></button>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="accordion-item" data-accr-item>
+                        <li id="accordion1_2" class="accordion-item" data-accr-item>
                             <div class="accordion-title">
                                 타이틀
                                 <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="accordion-item" data-accr-item>
+                        <li id="accordion1_3" class="accordion-item" data-accr-item>
                             <div class="accordion-title">
                                 타이틀
                                 <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="accordion-item" data-accr-item>
+                        <li id="accordion1_4" class="accordion-item" data-accr-item>
                             <div class="accordion-title">
                                 타이틀
                                 <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
@@ -270,7 +270,7 @@
                         <h3 class="guide-section-title">Events</h3>
                     </header>
 
-                    <p class="guide-text">시점에 따른 이벤트 기능</p>
+                    <p class="guide-text">시점에 따른 이벤트</p>
                     <pre><code class="language-js">document.querySelectorAll('[data-accr-item]').forEach(function (el) {
     // 열릴 때
     el.addEventListener('modal.showing', function () {
@@ -307,17 +307,15 @@ const accr = new SKY.Accordion(accrEl);
                     <p class="guide-text">전체 닫기</p>
                     <pre><code class="language-js">accr.showAll();</code></pre>
 
-                    <p class="guide-text">첫번째 아코디언 열기</p>
-                    <pre><code class="language-js">accr.show(0);</code></pre>
-
-                    <p class="guide-text">첫번째 아코디언 닫기</p>
-                    <pre><code class="language-js">accr.hide(0);</code></pre>
-
                     <p class="guide-text">특정 아코디언 열기</p>
-                    <pre><code class="language-js">accr.show(document.querySelector('#accordion2_3'));</code></pre>
+                    <pre><code class="language-js">accr.show(2); // number
+accr.show('#accordion1_3'); // string
+accr.show(document.querySelector('#accordion1_3')); // object</code></pre>
 
                     <p class="guide-text">특정 아코디언 닫기</p>
-                    <pre><code class="language-js">accr.show(document.querySelector('#accordion2_3'));</code></pre>
+                    <pre><code class="language-js">accr.show(2); // number
+accr.hide('#accordion1_3'); // string
+accr.hide(document.querySelector('#accordion1_3')); // object</code></pre>
                 </section>
             </div>
         </div>

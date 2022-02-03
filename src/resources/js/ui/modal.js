@@ -3,6 +3,8 @@ import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'modal';
+const SHOWN = 'modal-in';
+const HIDDEN = 'modal-out';
 const EVENT_KEY = `${NAME}`;
 
 class Modal extends BaseComponent {
@@ -36,9 +38,9 @@ class Modal extends BaseComponent {
       e.preventDefault();
     }
 
-    if (this._isMoving === true || this._element.classList.contains('modal-in')) return false;
+    if (this._isMoving === true || this._element.classList.contains(SHOWN)) return false;
 
-    this._element.classList.add('modal-in');
+    this._element.classList.add(SHOWN);
     this._element.setAttribute('tabindex', 0);
 
     this._isMoving = true;
@@ -61,8 +63,8 @@ class Modal extends BaseComponent {
 
     if (this._isMoving === true) return false;
 
-    this._element.classList.remove('modal-in');
-    this._element.classList.add('modal-out');
+    this._element.classList.remove(SHOWN);
+    this._element.classList.add(HIDDEN);
 
     this._isMoving = true;
 
@@ -70,7 +72,7 @@ class Modal extends BaseComponent {
 
     EventHandler.one(this._element, 'animationend', () => {
       this._isMoving = false;
-      this._element.classList.remove('modal-out');
+      this._element.classList.remove(HIDDEN);
       this._trigger.focus();
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);

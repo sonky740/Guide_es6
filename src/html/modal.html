@@ -64,7 +64,7 @@
                         <h3 class="guide-section-title">Events</h3>
                     </header>
 
-                    <p class="guide-text">시점에 따른 이벤트 기능</p>
+                    <p class="guide-text">시점에 따른 이벤트</p>
 
                     <pre><code class="language-js">document.querySelectorAll('[data-modal]').forEach(function (el) {
     // 열릴 때
@@ -93,16 +93,15 @@
                     </header>
 
                     <p class="guide-text">Component 호출</p>
-                    <pre><code class="language-js">// 특정 모달이 아니라 여러개의 모달을 다 호출하고 싶다면 querySelectorAll로 [data-modal]을 잡으면 됨.
-const modalEl = document.querySelector('#modal3');
+                    <pre><code class="language-js">const modalEl = document.querySelector('#modal3');
 const modal = new SKY.Modal(modalEl);
 </code></pre>
 
                     <p class="guide-text">show 호출</p>
-                    <pre><code class="language-js">modal.show(modalEl);</code></pre>
+                    <pre><code class="language-js">modal.show();</code></pre>
 
                     <p class="guide-text">hide 호출</p>
-                    <pre><code class="language-js">modal.hide(modalEl);</code></pre>
+                    <pre><code class="language-js">modal.hide();</code></pre>
                 </section>
             </div>
         </div>

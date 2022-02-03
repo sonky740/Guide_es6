@@ -42,21 +42,21 @@
 
                     <p class="guide-text">기본 탭</p>
 
-                    <ul class="nav-tab" data-tab="group1">
-                        <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1">Tab1</button></li>
-                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab2">Tab2</button></li>
-                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab3">Tab3</button></li>
-                        <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab4">Tab4</button></li>
-                    </ul>
+                    <div class="nav-tab" data-tab="group1">
+                        <button type="button" class="on" data-tab-trigger="#tab1">Tab1</button>
+                        <button type="button" data-tab-trigger="#tab2">Tab2</button>
+                        <button type="button" data-tab-trigger="#tab3">Tab3</button>
+                        <button type="button" data-tab-trigger="#tab4">Tab4</button>
+                    </div>
 
                     <div id="tab1" data-tab-target="group1">
                         tab1
-                        <ul class="nav-tab" data-tab="group1_2">
-                            <li class="nav-tab-item on" data-tab-item><button type="button" data-tab-trigger="tab1_1">Tab in Tab1_1</button></li>
-                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_2">Tab in Tab1_2</button></li>
-                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_3">Tab in Tab1_3</button></li>
-                            <li class="nav-tab-item" data-tab-item><button type="button" data-tab-trigger="tab1_4">Tab in Tab1_4</button></li>
-                        </ul>
+                        <div class="nav-tab" data-tab="group1_2" data-tab-animation="false">
+                            <button type="button" class="on" data-tab-trigger="#tab1_1">Tab in Tab1_1</button>
+                            <button type="button" data-tab-trigger="#tab1_2">Tab in Tab1_2</button>
+                            <button type="button" data-tab-trigger="#tab1_3">Tab in Tab1_3</button>
+                            <button type="button" data-tab-trigger="#tab1_4">Tab in Tab1_4</button>
+                        </div>
 
                         <div id="tab1_1" data-tab-target="group1_2">
                             tab1
@@ -87,7 +87,7 @@
                         <h3 class="guide-section-title">Events</h3>
                     </header>
 
-                    <p class="guide-text">시점에 따른 이벤트 기능</p>
+                    <p class="guide-text">시점에 따른 이벤트</p>
                     <pre><code class="language-js">document.querySelectorAll('[data-tab-target]').forEach(function (el) {
     // 열릴 때
     el.addEventListener('tab.showing', function () {
@@ -107,6 +107,22 @@
     })
 })</code></pre>
                 </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출</p>
+                    <pre><code class="language-js">const tabEl = document.querySelector('[data-tab="group1"]');
+const tab = new SKY.Tab(tabEl);
+</code></pre>
+
+                    <p class="guide-text">특정 탭 열기</p>
+                    <pre><code class="language-js">tab.show(1); // number
+tab.show('#tab2'); // string
+tab.show(document.querySelector('#tab2')); // object</code></pre>
+                </section>
             </div>
         </div>
     </div>
@@ -114,9 +130,8 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        // const tabEl = document.querySelector('[data-tab="group1"]');
-        // const tab = new SKY.Tab(tabEl);
-        // console.log(tab.show(document.querySelector('[data-tab-trigger="tab2"]')));
+        const tabEl = document.querySelector('[data-tab="group1"]');
+        const tab = new SKY.Tab(tabEl);
 
         document.querySelectorAll('[data-tab-target]').forEach(function (el) {
           el.addEventListener('tab.showing', function () {

@@ -29,15 +29,19 @@ const UIInitializer = (target, UI, options = {}) => {
   });
 };
 
+const init = () => {
+  UIInitializer('[data-accr]', Accordion);
+  UIInitializer('[data-tab]', Tab);
+
+  // Common();
+};
+
 polyfill();
 
 window.addEventListener('DOMContentLoaded', function () {
   lyNav();
 
-  UIInitializer('[data-accr]', Accordion);
-  UIInitializer('[data-tab]', Tab);
-
-  // Common();
+  init();
 });
 
-export { Modal, Accordion, Tab, Common };
+export { init, Modal, Accordion, Tab, Common };
