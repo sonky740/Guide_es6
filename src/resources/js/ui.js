@@ -20,11 +20,8 @@ import Common from './ui/common.js';
 const UIInitializer = (target, UI, options = {}) => {
   const elements = document.querySelectorAll(target);
   elements.forEach(el => {
-    const isIgnore = !!el.getAttribute('data-ignore');
-    if (!isIgnore) {
-      if (!UI.getInstance(el)) {
-        new UI(el, options);
-      }
+    if (!UI.getInstance(el)) {
+      new UI(el, options);
     }
   });
 };

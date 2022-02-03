@@ -3,8 +3,9 @@ import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'modal';
-const SHOWN = 'modal-in';
-const HIDDEN = 'modal-out';
+const SHOWING = 'showing';
+const SHOWN = 'shown';
+const HIDING = 'hiding';
 const EVENT_KEY = `${NAME}`;
 
 class Modal extends BaseComponent {
@@ -40,20 +41,28 @@ class Modal extends BaseComponent {
 
     if (this._isMoving === true || this._element.classList.contains(SHOWN)) return false;
 
-    this._element.classList.add(SHOWN);
+    this._element.classList.add(SHOWING);
     this._element.setAttribute('tabindex', 0);
 
     this._isMoving = true;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
 
-    EventHandler.one(this._element, 'animationend', () => {
-      this._isMoving = false;
+    const complete = () => {
+      this._element.classList.remove(SHOWING);
+      this._element.classList.add(SHOWN);
       this._element.focus();
       this._element.removeAttribute('tabindex');
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.shown`);
-    });
+      this._isMoving = false;
+    };
+
+    if (this._element.dataset.animation === 'false') {
+      complete();
+    } else {
+      EventHandler.one(this._element, 'animationend', () => complete());
+    }
   }
 
   hide(e) {
@@ -64,19 +73,25 @@ class Modal extends BaseComponent {
     if (this._isMoving === true) return false;
 
     this._element.classList.remove(SHOWN);
-    this._element.classList.add(HIDDEN);
+    this._element.classList.add(HIDING);
 
     this._isMoving = true;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`);
 
-    EventHandler.one(this._element, 'animationend', () => {
+    const complete = () => {
       this._isMoving = false;
-      this._element.classList.remove(HIDDEN);
+      this._element.classList.remove(HIDING);
       this._trigger.focus();
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);
-    });
+    };
+
+    if (this._element.dataset.animation === 'false') {
+      complete();
+    } else {
+      EventHandler.one(this._element, 'animationend', () => complete());
+    }
   }
 
   static getInstance(element) {

@@ -91,7 +91,7 @@ class Accordion extends BaseComponent {
       });
     }
 
-    if (this._element.dataset.accrAnimation === 'false') {
+    if (this._element.dataset.animation === 'false') {
       complete();
     } else {
       EventHandler.one(target, 'transitionend', () => complete());
@@ -132,7 +132,7 @@ class Accordion extends BaseComponent {
     };
 
     // transition
-    if (this._element.dataset.accrAnimation === 'false') {
+    if (this._element.dataset.animation === 'false') {
       complete();
     } else {
       EventHandler.one(target, 'transitionend', () => complete());

@@ -75,18 +75,20 @@ class Tab extends BaseComponent {
 
         EventHandler.trigger(group, `${EVENT_KEY}.hiding`);
 
-        EventHandler.one(group, 'animationend', () => {
+        const complete = () => {
           if (group.classList.contains(HIDDEN)) {
             group.classList.remove(HIDDEN);
 
             EventHandler.trigger(group, `${EVENT_KEY}.hidden`);
 
+            EventHandler.trigger(target, `${EVENT_KEY}.showing`);
+
             target.classList.add(SHOWN);
             this._isMoving = false;
-
-            EventHandler.trigger(target, `${EVENT_KEY}.showing`);
           }
-        });
+        };
+
+        EventHandler.one(group, 'animationend', () => complete());
       }
     });
 

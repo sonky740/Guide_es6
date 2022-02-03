@@ -75,6 +75,32 @@
 
                 <section class="guide-section">
                     <header>
+                        <h3 class="guide-section-title">No Animation Modal</h3>
+                        <p class="sub">.ly-modal[data-modal][data-animation="false"]</p>
+                    </header>
+
+                    <p class="guide-text">애니메이션 효과 없는 모달</p>
+
+                    <button type="button" data-modal-trigger="modal4">모달 호출(button)</button>
+                    <br>
+                    <a href="#none" data-modal-trigger="modal4">모달 호출(a)</a>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Dim Click False Modal</h3>
+                        <p class="sub">.ly-modal[data-modal][data-modal-backdrop="false"]</p>
+                    </header>
+
+                    <p class="guide-text">dim 영역 클릭해도 닫히지 않는 모달</p>
+
+                    <button type="button" data-modal-trigger="modal5">모달 호출(button)</button>
+                    <br>
+                    <a href="#none" data-modal-trigger="modal5">모달 호출(a)</a>
+                </section>
+
+                <section class="guide-section">
+                    <header>
                         <h3 class="guide-section-title">Events</h3>
                     </header>
 
@@ -150,6 +176,32 @@ const modal = new SKY.Modal(modalEl);
 
     <!-- 모달 - 바텀 -->
     <div id="modal3" class="ly-modal btm" data-modal>
+        <div class="ly-modal-wrap">
+            <header class="ly-modal-header">
+                <h1 class="ly-modal-title">모달 타이틀</h1>
+                <button type="button" class="ly-modal-close" data-modal-close><span class="blind">닫기</span></button>
+            </header>
+            <div class="ly-modal-content">
+                내용
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 - 기본 - 애니메이션 없을 때 -->
+    <div id="modal4" class="ly-modal" data-modal data-animation="false">
+        <div class="ly-modal-wrap">
+            <header class="ly-modal-header">
+                <h1 class="ly-modal-title">모달 타이틀</h1>
+                <button type="button" class="ly-modal-close" data-modal-close><span class="blind">닫기</span></button>
+            </header>
+            <div class="ly-modal-content">
+                내용
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 - 기본 - dim 클릭해도 닫히지 않는 모달 -->
+    <div id="modal5" class="ly-modal" data-modal data-modal-backdrop="false">
         <div class="ly-modal-wrap">
             <header class="ly-modal-header">
                 <h1 class="ly-modal-title">모달 타이틀</h1>

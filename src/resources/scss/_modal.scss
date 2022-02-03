@@ -27,6 +27,10 @@ $modal-duration: .4s;
         user-select: none;
     }
 
+    &.shown {
+        display: block;
+    }
+
     &-header {
         position: relative;
     }
@@ -111,7 +115,7 @@ $modal-duration: .4s;
         }
     }
 
-    &.modal-in {
+    &.showing {
         display: block;
 
         &:before {
@@ -138,7 +142,7 @@ $modal-duration: .4s;
         }
     }
 
-    &.modal-out {
+    &.hiding {
         display: block;
 
         &:before {

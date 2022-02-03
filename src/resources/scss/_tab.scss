@@ -23,13 +23,21 @@
 [data-tab-target] {
     display: none;
 
-    &.tab-in {
+    &.showing {
         display: block;
-        animation: tab-in .3s;
+        animation: tab-in .15s;
     }
 
-    &.tab-out {
+    &.shown {
         display: block;
-        animation: tab-out .3s;
+    }
+
+    &.hiding {
+        display: block;
+        animation: tab-out .15s;
+    }
+
+    &.hidden {
+        display: none;
     }
 }

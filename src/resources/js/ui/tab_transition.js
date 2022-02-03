@@ -6,6 +6,7 @@ import { siblings } from '../util/util.js';
 const NAME = 'tab';
 const SHOWING = 'showing';
 const SHOWN = 'shown';
+const FADE = 'fade';
 const HIDING = 'hiding';
 const HIDDEN = 'hidden';
 const EVENT_KEY = `${NAME}`;
@@ -24,6 +25,7 @@ class Tab extends BaseComponent {
 
       if (trigger.classList.contains('on')) {
         target.classList.add(SHOWN);
+        target.classList.add(FADE);
       } else {
         target.classList.add(HIDDEN);
       }
@@ -65,16 +67,18 @@ class Tab extends BaseComponent {
     if (this._isMoving || trigger.classList.contains('on')) return false;
     this._isMoving = true;
 
+    const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
+
     siblings(trigger).forEach(trs => {
       trs.classList.remove('on');
     });
     trigger.classList.add('on');
 
-    // const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
-    siblings(target).forEach(group => {
+    groups.forEach(group => {
       if (group.classList.contains(SHOWN)) {
         group.classList.add(HIDING);
         group.classList.remove(SHOWN);
+        group.classList.remove(FADE);
 
         EventHandler.trigger(group, `${EVENT_KEY}.hiding`);
 
@@ -88,13 +92,15 @@ class Tab extends BaseComponent {
           target.classList.add(SHOWING);
           EventHandler.trigger(target, `${EVENT_KEY}.showing`);
 
-          target.classList.add(SHOWN);
+          setTimeout(() => {
+            target.classList.add(FADE);
+          });
         };
 
-        if (this._element.dataset.animation === 'false') {
+        if (this._element.dataset.tabAnimation === 'false') {
           groupComplete();
         } else {
-          EventHandler.one(group, 'animationend', () => groupComplete());
+          EventHandler.one(group, 'transitionend', () => groupComplete());
         }
       }
     });
@@ -107,10 +113,10 @@ class Tab extends BaseComponent {
       this._isMoving = false;
     };
 
-    if (this._element.dataset.animation === 'false') {
+    if (this._element.dataset.tabAnimation === 'false') {
       targetComplete();
     } else {
-      EventHandler.one(target, 'animationend', () => targetComplete());
+      EventHandler.one(target, 'transitionend', () => targetComplete());
     }
   }
 

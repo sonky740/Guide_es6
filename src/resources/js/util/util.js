@@ -27,7 +27,7 @@ export function siblings(node) {
 
 /**
  * version check
- * @returns {Number}
+ * @returns {Object} name, version
  */
 export function getClientInfo() {
   var userAgent = navigator.userAgent;
