@@ -1,6 +1,8 @@
-<a href="https://code.visualstudio.com/" target="_blank">visual studio code</a>, <a href="https://nodejs.org/ko/" target="_blank">nodejs(14이상)</a>, <a href="https://www.npmjs.com/" target="_blank">npm(6이상)</a>, <a href="https://gulpjs.com/" target="_blank">gulp</a>, <a href="https://webpack.js.org/" target="_blank">webpack</a>을 기반으로 작업되어 있습니다.
+<a href="https://code.visualstudio.com/" target="_blank">visual studio code</a>, <a href="https://nodejs.org/ko/" target="_blank">nodejs(14이상)</a>, <a href="https://www.npmjs.com/" target="_blank">npm(6이상)</a>, <a href="https://gulpjs.com/" target="_blank">gulp</a>, <a href="https://webpack.js.org/" target="_blank">webpack</a>으로 작업되어 있습니다.
 
 에디터는 아무거나 써도 무방하지만, nodejs는 필수입니다.
+
+<a href="https://sonky740.github.io/Guide_es6/dist/html/"><u>클릭</u></a>하시면 산출물을 볼 수 있습니다.
 
 ## 1. 설치
 

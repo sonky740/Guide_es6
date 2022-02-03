@@ -9,7 +9,7 @@
         padding: 0.8rem;
         border: 0.1rem solid #222;
         color: #222;
-        transition: all .3s;
+        transition: all .4s;
     }
 }
 
@@ -25,7 +25,7 @@
 
     &.showing {
         display: block;
-        animation: tab-in .15s;
+        animation: tab-in .2s;
     }
 
     &.shown {
@@ -34,7 +34,7 @@
 
     &.hiding {
         display: block;
-        animation: tab-out .15s;
+        animation: tab-out .2s;
     }
 
     &.hidden {
