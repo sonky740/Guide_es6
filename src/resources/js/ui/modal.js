@@ -84,10 +84,16 @@ class Modal extends BaseComponent {
       this._element.classList.remove(HIDING);
       this._trigger.focus();
 
+      // 모달이 하나라도 열려있지 않으면 body.modal-open 제거
+      let arr = [];
       document.querySelectorAll('[data-modal]').forEach(modals => {
-        if (!modals.classList.contains('shown')) {
+        arr.push(modals.classList.contains('shown'));
+      });
+      arr.some(isOpen => {
+        if (!isOpen) {
           document.body.classList.remove('modal-open');
         }
+        return isOpen === true;
       });
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);
