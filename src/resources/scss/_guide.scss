@@ -3,6 +3,26 @@
 .guide {
     $root: '.guide';
 
+    &-nav {
+        padding: 8rem 0;
+        background: #fafafa;
+
+        &-content {
+            margin: 0 auto;
+            max-width: 112rem;
+        }
+
+        &-title {
+            font-size: 5rem;
+        }
+    }
+
+    &-content {
+        margin: 0 auto;
+        max-width: 112rem;
+        padding: 4rem 0;
+    }
+
     &-section {
         position: relative;
         margin: 1.5rem 0 2rem;
@@ -69,29 +89,12 @@
         border: 1px solid #222;
     }
 
-    &-nav {
-        padding: 8rem 0;
-        background: #fafafa;
-
-        &-title {
-            margin: 0 auto;
-            max-width: 112rem;
-            font-size: 5rem;
-        }
-    }
-
-    &-content {
-        margin: 0 auto;
-        max-width: 112rem;
-        padding: 4rem 0;
-    }
-
     // 1180이하
     @media screen and (max-width: 1180px) {
         &-nav {
             padding: 4rem 0;
 
-            &-title {
+            &-content {
                 padding: 0 2rem;
             }
         }

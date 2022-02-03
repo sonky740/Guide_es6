@@ -1,0 +1,197 @@
+.range {
+    padding-top: 1rem;
+
+    &+& {
+        margin-top: 1.6rem;
+    }
+
+    &-area {
+        position: relative;
+        padding-top: 1.5rem;
+
+        input[type="range"] {
+            appearance: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 1.5rem;
+            background: transparent;
+            cursor: pointer;
+            z-index: 1;
+
+            &::-webkit-slider-thumb {
+                pointer-events: all;
+                appearance: none;
+                width: 1.8rem;
+                height: 1.8rem;
+                border: none;
+                border-radius: 50%;
+                background: #222;
+                box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, .16);
+                cursor: grab;
+            }
+
+            &[data-range-multi] {
+                pointer-events: none;
+            }
+        }
+    }
+
+    &-label {
+        display: inline-block;
+        position: absolute;
+        top: -36px;
+        left: 0;
+        min-width: 7.2rem;
+        padding: 0.2rem 0.7rem;
+        background-color: #222;
+        border-radius: 0.8rem;
+        text-align: center;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        z-index: 1;
+        transform: translateX(-50%);
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            border-left: 0.3rem solid transparent;
+            border-right: 0.3rem solid transparent;
+            border-top: 0.3rem solid #222;
+            transform: translate(-50%, 100%);
+        }
+
+        &.left,
+        &.right {
+            transform: translateX(0) !important;
+
+            &:after {
+                content: none;
+            }
+        }
+
+        &.left {
+            right: auto !important;
+            left: -0.8rem !important;
+        }
+
+        &.right {
+            right: -0.6rem !important;
+            left: auto !important;
+        }
+    }
+
+    &-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: -0.5rem 0;
+        font-size: 0;
+    }
+
+    &-bar,
+    &-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0.4rem;
+        background: #F1F1F5;
+        border-radius: 0.2rem;
+    }
+
+    &-bar {
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0.2rem;
+            height: 0.8rem;
+            background: #F1F1F5;
+            transform: translate(-50%, 100%);
+        }
+    }
+
+    &-fill {
+        top: 0;
+        left: 0;
+        background: #222;
+
+        &-spacing {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+
+            >li {
+                flex: 1;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: -0.2rem;
+                    width: 0.2rem;
+                    height: 100%;
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+    &-bottom {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        margin-top: 0.2rem;
+
+        >span {
+            flex: 1;
+            color: #222;
+            font-weight: 400;
+
+            &:nth-child(2) {
+                text-align: center;
+            }
+
+            &:last-child {
+                text-align: right;
+            }
+
+            &.on {
+                color: #222;
+            }
+        }
+    }
+
+    &-figure {
+        font-weight: 700;
+        text-align: right;
+
+        >span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .unit {
+            margin: 0 0.4rem 0.2rem;
+        }
+
+        .range + & {
+            margin-top: 2rem;
+        }
+    }
+}

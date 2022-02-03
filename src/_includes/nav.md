@@ -10,6 +10,7 @@
             <li><a href="./modal.html">Modal</a></li>
             <li><a href="./accordion.html">Accordion</a></li>
             <li><a href="./tab.html">Tab</a></li>
+            <li><a href="./range.html">Range</a></li>
         </ul>
     </div>
 </nav>

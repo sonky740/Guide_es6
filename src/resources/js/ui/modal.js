@@ -40,11 +40,12 @@ class Modal extends BaseComponent {
     }
 
     if (this._isMoving === true || this._element.classList.contains(SHOWN)) return false;
+    this._isMoving = true;
 
     this._element.classList.add(SHOWING);
     this._element.setAttribute('tabindex', 0);
 
-    this._isMoving = true;
+    document.body.classList.add('modal-open');
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
 
@@ -71,11 +72,10 @@ class Modal extends BaseComponent {
     }
 
     if (this._isMoving === true) return false;
+    this._isMoving = true;
 
     this._element.classList.remove(SHOWN);
     this._element.classList.add(HIDING);
-
-    this._isMoving = true;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`);
 
@@ -83,6 +83,12 @@ class Modal extends BaseComponent {
       this._isMoving = false;
       this._element.classList.remove(HIDING);
       this._trigger.focus();
+
+      document.querySelectorAll('[data-modal]').forEach(modals => {
+        if (!modals.classList.contains('shown')) {
+          document.body.classList.remove('modal-open');
+        }
+      });
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);
     };
