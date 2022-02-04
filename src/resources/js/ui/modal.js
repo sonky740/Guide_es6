@@ -45,6 +45,7 @@ class Modal extends BaseComponent {
     this._element.classList.add(SHOWING);
     this._element.setAttribute('tabindex', 0);
 
+    // window scroll 방지
     document.body.classList.add('modal-open');
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
@@ -84,8 +85,8 @@ class Modal extends BaseComponent {
       this._element.classList.remove(HIDING);
       this._trigger.focus();
 
-      // 모달이 하나라도 열려있지 않으면 body.modal-open 제거
-      let arr = [];
+      // 마지막 모달을 닫을 때 window scroll 복구
+      const arr = [];
       document.querySelectorAll('[data-modal]').forEach(modals => {
         arr.push(modals.classList.contains('shown'));
       });

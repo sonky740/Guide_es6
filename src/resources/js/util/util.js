@@ -30,12 +30,33 @@ export function siblings(node) {
  * @returns {Object} name, version
  */
 export function getClientInfo() {
-  var userAgent = navigator.userAgent;
-  var reg = null;
-  var browser = {
+  let userAgent = navigator.userAgent;
+  let reg = null;
+  const browser = {
+    mo: null,
+    iosVer: null,
+    aosVer: null,
     name: null,
     version: null
   };
+
+  // 모바일 OS 체크
+  const mobileArr = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
+  for (let txt in mobileArr) {
+    if (userAgent.match(mobileArr[txt]) != null) {
+      browser.mo = mobileArr[txt];
+    }
+  }
+
+  // ios 버전 체크
+  if ((userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPad') > -1) && userAgent.indexOf('OS') > -1) {
+    browser.iosVer = window.Number(userAgent.substring(userAgent.indexOf('OS') + 3, userAgent.indexOf('OS') + 5));
+  }
+
+  // aos 버전 체크
+  if (userAgent.indexOf('Android') > -1) {
+    browser.aosVer = window.Number(userAgent.substring(userAgent.indexOf('Android') + 8, userAgent.indexOf('Android') + 9));
+  }
 
   userAgent = userAgent.toLowerCase();
 

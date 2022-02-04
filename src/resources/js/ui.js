@@ -3,6 +3,7 @@ import lyNav from './layout/ly_nav.js';
 import Modal from './ui/modal.js';
 import Accordion from './ui/accordion.js';
 import Tab from './ui/tab.js';
+import Range from './ui/range.js';
 import Common from './ui/common.js';
 
 /**
@@ -29,8 +30,7 @@ const UIInitializer = (target, UI, options = {}) => {
 const init = () => {
   UIInitializer('[data-accr]', Accordion);
   UIInitializer('[data-tab]', Tab);
-
-  // Common();
+  UIInitializer('[data-range]', Range);
 };
 
 polyfill();
@@ -41,4 +41,4 @@ window.addEventListener('DOMContentLoaded', function () {
   init();
 });
 
-export { init, Modal, Accordion, Tab, Common };
+export { init, Modal, Accordion, Tab, Range, Common };

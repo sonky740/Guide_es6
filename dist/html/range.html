@@ -32,22 +32,24 @@
             <nav class="guide-nav">
                 <div class="guide-nav-content">
                     <h2 class="guide-nav-title">Range</h2>
-                    <p class="guide-nav-p">es5에서 했던걸 그대로 옮겨놓음. 추후 es6로 수정 예정</p>
                 </div>
             </nav>
             <div class="guide-content">
                 <section class="guide-section">
                     <header>
-                        <h3 class="guide-section-title">Range</h3>
-                        <p class="sub">.range[data-range]</p>
+                        <h3 class="guide-section-title">Single Range</h3>
+                        <p class="sub">[data-range]</p>
                     </header>
 
+                    <div class="range-figure">
+                        <span data-range-value="rangeSingle"></span>
+                    </div>
                     <div class="range" data-range>
                         <div class="range-area">
                             <!-- 자동입력 -->
                             <div class="range-wrap">
                                 <!-- value, min, max, step, data-range-unit만 설정해두면 됩니다. -->
-                                <input type="range" value="20" min="0" max="100" step="1" data-range-unit="개">
+                                <input type="range" id="rangeSingle" value="20" min="0" max="100" step="10" data-range-unit="개">
                             </div>
                             <div class="range-bar" aria-hidden="true">
                                 <div class="range-fill"></div>
@@ -59,17 +61,28 @@
                             <span>+100</span>
                         </div>
                     </div>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Multi Range</h3>
+                        <p class="sub">[data-range] [data-range-multi]</p>
+                    </header>
+
+                    <p class="guide-text">data-range-multi="start || end" : 둘 다 존재해야함.</p>
+                    <p class="guide-text">data-range-minstep="number" : 최소 간격</p>
+                    <p class="guide-text">data-range-max="string" : 마지막에 표기할 단위</p>
 
                     <div class="range-figure">
-                        <span data-range-startvalue="startA"></span><span class="unit">~</span><span data-range-endvalue="endA"></span>
+                        <span data-range-startvalue="start"></span><span class="unit">~</span><span data-range-endvalue="end"></span>
                     </div>
-                    <div class="range" data-range>
+                    <div id="multiRange" class="range" data-range>
                         <div class="range-area">
                             <!-- 자동입력 -->
                             <div class="range-wrap">
                                 <!-- value, min, max, step, data-range-unit만 설정해두면 됩니다. -->
-                                <input type="range" id="startA" data-range-multi="start" value="0" min="0" max="100000" step="1000" data-range-minstep="5000" data-range-unit="만">
-                                <input type="range" id="endA" data-range-multi="end" value="50000" min="0" max="100000" step="1000" data-range-minstep="5000" data-range-unit="만" data-range-max="+">
+                                <input type="range" id="start" data-range-multi="start" value="0" min="0" max="100000" step="1000" data-range-minstep="5000">
+                                <input type="range" id="end" data-range-multi="end" value="50000" min="0" max="100000" step="1000" data-range-minstep="5000" data-range-max="+">
                             </div>
                             <div class="range-bar" aria-hidden="true">
                                 <div class="range-fill"></div>
@@ -82,6 +95,36 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트</p>
+                    <pre><code class="language-js">document.querySelectorAll('[data-range] input[type="range"]').forEach(function(el) {
+    // 싱글
+    el.addEventListener('range.input', function(e) {
+        console.log('single: ' + e.value);
+    })
+    // 멀티
+    el.addEventListener('range.multi', function(e) {
+        console.log(e.value);
+    })
+})</code></pre>
+
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출</p>
+                    <pre><code class="language-js">const multiRangeEl = document.querySelector('[data-range]#multiRange');
+const multiRange = new SKY.Range(multiRangeEl);</code></pre>
+
+                </section>
             </div>
         </div>
     </div>
@@ -89,7 +132,17 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
+        const multiRangeEl = document.querySelector('[data-range]#multiRange');
+        const multiRange = new SKY.Range(multiRangeEl);
 
+        document.querySelectorAll('[data-range] input[type="range"]').forEach(function (el) {
+          el.addEventListener('range.input', function (e) {
+            console.log('single: ' + e.value);
+          })
+          el.addEventListener('range.multi', function (e) {
+            console.log(e.value);
+          })
+        })
     </script>
 </body>
 

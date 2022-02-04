@@ -2,6 +2,14 @@
 
 $modal-duration: .4s;
 
+.modal-open {
+    overflow: hidden;
+
+    &:not(.mo) {
+        padding-right: 17px;
+    }
+}
+
 .ly-modal {
     display: none;
     position: fixed;
