@@ -72,21 +72,22 @@ class Tab extends BaseComponent {
 
     // const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
     siblings(target).forEach(group => {
+      const hideTrigger = document.querySelector(`[data-tab-trigger="#${group.getAttribute('id')}"]`);
       if (group.classList.contains(SHOWN)) {
         group.classList.add(HIDING);
         group.classList.remove(SHOWN);
 
-        EventHandler.trigger(group, `${EVENT_KEY}.hiding`);
+        EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { target: group, trigger: hideTrigger });
 
         const groupComplete = () => {
           group.classList.remove(HIDING);
           group.classList.add(HIDDEN);
 
-          EventHandler.trigger(group, `${EVENT_KEY}.hidden`);
-
+          EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: group, trigger: hideTrigger });
           target.classList.remove(HIDDEN);
+
+          EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: target, trigger: trigger });
           target.classList.add(SHOWING);
-          EventHandler.trigger(target, `${EVENT_KEY}.showing`);
 
           target.classList.add(SHOWN);
         };
@@ -102,7 +103,7 @@ class Tab extends BaseComponent {
     const targetComplete = () => {
       target.classList.remove(SHOWING);
       target.classList.add(SHOWN);
-      EventHandler.trigger(target, `${EVENT_KEY}.shown`);
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: target, trigger: trigger });
 
       this._isMoving = false;
     };

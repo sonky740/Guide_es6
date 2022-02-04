@@ -61,10 +61,13 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    const target = item.querySelector('[data-accr-target]');
+    const header = item.querySelector('[data-accr-header]');
     const trigger = item.querySelector('[data-accr-trigger]');
+    const target = item.querySelector('[data-accr-target]');
 
     if (item.classList.contains('on')) return false;
+
+    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { item: item, header: header, trigger: trigger, target: target });
 
     item.classList.add('on');
     trigger.classList.add('on');
@@ -73,15 +76,13 @@ class Accordion extends BaseComponent {
     target.classList.add(SHOWING);
     target.style.height = `${target.scrollHeight}px`;
 
-    EventHandler.trigger(item, `${EVENT_KEY}.showing`);
-
     const complete = () => {
       target.classList.remove(SHOWING);
       target.classList.add(SHOWN);
       target.removeAttribute('style');
       this._isMoving = false;
 
-      EventHandler.trigger(item, `${EVENT_KEY}.shown`);
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { item: item, header: header, trigger: trigger, target: target });
     };
 
     // data-accr = "only" 하나만 열릴 때
@@ -107,10 +108,13 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
+    const header = item.querySelector('[data-accr-header]');
     const target = item.querySelector('[data-accr-target]');
     const trigger = item.querySelector('[data-accr-trigger]');
 
     if (!item.classList.contains('on')) return false;
+
+    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { item: item, header: header, trigger: trigger, target: target });
 
     trigger.classList.remove('on');
     trigger.querySelector('.blind').innerText = '펼치기';
@@ -120,15 +124,13 @@ class Accordion extends BaseComponent {
     target.classList.add(HIDING);
     target.removeAttribute('style');
 
-    EventHandler.trigger(item, `${EVENT_KEY}.hiding`);
-
     const complete = () => {
       target.classList.remove(HIDING);
       target.classList.add(HIDDEN);
       item.classList.remove('on');
       this._isMoving = false;
 
-      EventHandler.trigger(item, `${EVENT_KEY}.hidden`);
+      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { item: item, header: header, trigger: trigger, target: target });
     };
 
     // transition

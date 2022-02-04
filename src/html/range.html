@@ -87,7 +87,7 @@
                     </header>
 
                     <p class="guide-text">시점에 따른 이벤트</p>
-                    <pre><code class="language-js">document.querySelectorAll('[data-range] input[type="range"]').forEach(function(el) {
+                    <pre><code class="language-js">document.querySelectorAll('[data-range]').forEach(function(el) {
     // 싱글
     el.addEventListener('range.input', function(e) {
         console.log('single: ' + e.value);
@@ -120,7 +120,7 @@ const multiRange = new SKY.Range(multiRangeEl);</code></pre>
         const multiRangeEl = document.querySelector('[data-range]#multiRange');
         const multiRange = new SKY.Range(multiRangeEl);
 
-        document.querySelectorAll('[data-range] input[type="range"]').forEach(function(el) {
+        document.querySelectorAll('[data-range]').forEach(function(el) {
             el.addEventListener('range.input', function(e) {
                 console.log('single: ' + e.value);
             })

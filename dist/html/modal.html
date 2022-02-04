@@ -43,9 +43,7 @@
 
                     <p class="guide-text">높이값 100% 모달</p>
 
-                    <button type="button" data-modal-trigger="modal1">모달 호출(button)</button>
-                    <br>
-                    <a href="#none" data-modal-trigger="modal1">모달 호출(a)</a>
+                    <button type="button" class="guide-btn" data-modal-trigger="modal1">모달 호출</button>
                 </section>
 
                 <section class="guide-section">
@@ -56,9 +54,7 @@
 
                     <p class="guide-text">중앙 정렬 모달</p>
 
-                    <button type="button" data-modal-trigger="modal2">모달 호출(button)</button>
-                    <br>
-                    <a href="#none" data-modal-trigger="modal2">모달 호출(a)</a>
+                    <button type="button" class="guide-btn" data-modal-trigger="modal2">모달 호출</button>
                 </section>
 
                 <section class="guide-section">
@@ -69,9 +65,7 @@
 
                     <p class="guide-text">bottom 모달</p>
 
-                    <button type="button" data-modal-trigger="modal3">모달 호출(button)</button>
-                    <br>
-                    <a href="#none" data-modal-trigger="modal3">모달 호출(a)</a>
+                    <button type="button" class="guide-btn" data-modal-trigger="modal3">모달 호출</button>
                 </section>
 
                 <section class="guide-section">
@@ -82,9 +76,7 @@
 
                     <p class="guide-text">애니메이션 효과 없는 모달</p>
 
-                    <button type="button" data-modal-trigger="modal4">모달 호출(button)</button>
-                    <br>
-                    <a href="#none" data-modal-trigger="modal4">모달 호출(a)</a>
+                    <button type="button" class="guide-btn" data-modal-trigger="modal4">모달 호출</button>
                 </section>
 
                 <section class="guide-section">
@@ -95,9 +87,7 @@
 
                     <p class="guide-text">dim 영역 클릭해도 닫히지 않는 모달</p>
 
-                    <button type="button" data-modal-trigger="modal5">모달 호출(button)</button>
-                    <br>
-                    <a href="#none" data-modal-trigger="modal5">모달 호출(a)</a>
+                    <button type="button" class="guide-btn" data-modal-trigger="modal5">모달 호출</button>
                 </section>
 
                 <section class="guide-section">
@@ -108,21 +98,24 @@
                     <p class="guide-text">시점에 따른 이벤트</p>
 
                     <pre><code class="language-js">document.querySelectorAll('[data-modal]').forEach(function (el) {
+    /* e.trigger: [data-modal-trigger]
+     * e.target: [data-modal]
+     */
     // 열릴 때
-    el.addEventListener('modal.showing', function () {
-        console.log(this, 'showing');
+    el.addEventListener('modal.showing', function (e) {
+        console.log(e.target, e.trigger, 'showing');
     })
     // 열린 후
-    el.addEventListener('modal.shown', function () {
-        console.log(this, 'shown');
+    el.addEventListener('modal.shown', function (e) {
+        console.log(e.target, e.trigger, 'shown');
     })
     // 닫힐 때
-    el.addEventListener('modal.hiding', function () {
-        console.log(this, 'hiding');
+    el.addEventListener('modal.hiding', function (e) {
+        console.log(e.target, e.trigger, 'hiding');
     })
     // 닫힌 후
-    el.addEventListener('modal.hidden', function () {
-        console.log(this, 'hidden');
+    el.addEventListener('modal.hidden', function (e) {
+        console.log(e.target, e.trigger, 'hidden');
     })
 })</code></pre>
 
@@ -156,7 +149,7 @@ const modal = new SKY.Modal(modalEl);
                 <button type="button" class="ly-modal-close" data-modal-close><span class="blind">닫기</span></button>
             </header>
             <div class="ly-modal-content">
-                <button type="button" data-modal-trigger="modal2">모달 트리거2</button>
+                <button type="button" class="guide-btn" data-modal-trigger="modal2">모달 트리거2</button>
                 내용
             </div>
         </div>
@@ -222,17 +215,17 @@ const modal = new SKY.Modal(modalEl);
         const modal = new SKY.Modal(modalEl);
 
         document.querySelectorAll('[data-modal]').forEach(function (el) {
-          el.addEventListener('modal.showing', function () {
-            console.log(this, 'showing');
+          el.addEventListener('modal.showing', function (e) {
+            console.log(e.target, e.trigger, 'showing');
           })
-          el.addEventListener('modal.shown', function () {
-            console.log(this, 'shown');
+          el.addEventListener('modal.shown', function (e) {
+            console.log(e.target, e.trigger, 'shown');
           })
-          el.addEventListener('modal.hiding', function () {
-            console.log(this, 'hiding');
+          el.addEventListener('modal.hiding', function (e) {
+            console.log(e.target, e.trigger, 'hiding');
           })
-          el.addEventListener('modal.hidden', function () {
-            console.log(this, 'hidden');
+          el.addEventListener('modal.hidden', function (e) {
+            console.log(e.target, e.trigger, 'hidden');
           })
         })
     </script>

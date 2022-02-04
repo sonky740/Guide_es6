@@ -48,7 +48,7 @@ class Modal extends BaseComponent {
     // window scroll 방지
     document.body.classList.add('modal-open');
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`);
+    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: this._element, trigger: this._trigger });
 
     const complete = () => {
       this._element.classList.remove(SHOWING);
@@ -56,7 +56,7 @@ class Modal extends BaseComponent {
       this._element.focus();
       this._element.removeAttribute('tabindex');
 
-      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`);
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element, trigger: this._trigger });
       this._isMoving = false;
     };
 
@@ -78,7 +78,7 @@ class Modal extends BaseComponent {
     this._element.classList.remove(SHOWN);
     this._element.classList.add(HIDING);
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`);
+    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { target: this._element, trigger: this._trigger });
 
     const complete = () => {
       this._isMoving = false;
@@ -97,7 +97,7 @@ class Modal extends BaseComponent {
         return isOpen === true;
       });
 
-      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`);
+      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element, trigger: this._trigger });
     };
 
     if (this._element.dataset.animation === 'false') {
