@@ -51,7 +51,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "gulp build"
+      "pre-commit": "npm run build"
     }
   },
   "dependencies": {
