@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev",
-    "build": "cross-env NODE_ENV=production gulp build"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -49,11 +50,6 @@
   "browserslist": [
     "last 2 version, > 2%"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build"
-    }
-  },
   "dependencies": {
     "core-js": "^3.20.2"
   }
