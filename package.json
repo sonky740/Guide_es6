@@ -40,8 +40,6 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-watch": "^5.0.1",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.3",
     "merge-stream": "^2.0.0",
     "prettier": "^2.5.1",
     "sass": "^1.47.0",
@@ -51,9 +49,6 @@
   "browserslist": [
     "last 2 version, > 2%"
   ],
-  "lint-staged": {
-    "*.js": "npm run build"
-  },
   "dependencies": {
     "core-js": "^3.20.2"
   }
