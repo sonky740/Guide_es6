@@ -5,8 +5,7 @@ class BaseComponent {
     element = typeof element === 'string' ? document.querySelector(element) : element;
 
     if (!element) {
-      console.error(`${this.constructor.NAME}이 없습니다.`);
-      return false;
+      throw new Error(`${this.constructor.NAME}이 없습니다.`);
     }
 
     this._element = element;

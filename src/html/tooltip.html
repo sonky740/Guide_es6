@@ -26,7 +26,140 @@
                         <p class="sub">[data-tooltip]</p>
                     </header>
 
-                    
+                    <div id="tooltip1" class="tooltip" data-tooltip>
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용1
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tooltip" data-tooltip>
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용2
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Window Click False Tooltip</h3>
+                        <p class="sub">[data-tooltip]</p>
+                    </header>
+
+                    <p class="guide-text">Window 클릭해도 닫히지 않는 툴팁 === 다른 툴팁 클릭해도 닫히지 않는 툴팁</p>
+
+                    <div class="tooltip" data-tooltip data-tooltip-backdrop="false">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용2
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tooltip" data-tooltip data-tooltip-backdrop="false">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용2
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">No Animation Tooltip</h3>
+                        <p class="sub">[data-tooltip][data-animation="false"]</p>
+                    </header>
+
+                    <p class="guide-text">애니메이션 효과 없는 툴팁</p>
+
+                    <div class="tooltip" data-tooltip data-animation="false">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용3
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tooltip" data-tooltip data-animation="false">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용3
+                            <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
+                        </div>
+                    </div>
+                </section> -->
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">MouseOver Tooltip</h3>
+                        <p class="sub">[data-tooltip="mouseover"]</p>
+                    </header>
+
+                    <p class="guide-text">마우스오버 툴팁</p>
+
+                    <div class="tooltip" data-tooltip="mouseover">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용3
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tooltip" data-tooltip="mouseover">
+                        <button type="button" class="tooltip-trigger" data-tooltip-trigger>툴팁 호출</button>
+                        <div class="tooltip-content" data-tooltip-target>
+                            툴팁 내용3
+                        </div>
+                    </div>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트</p>
+
+                    <pre><code class="language-js">document.querySelectorAll('[data-tooltip]').forEach(function (el) {
+    /* e.target: [data-tooltip] */
+    // 열릴 때
+    el.addEventListener('tooltip.showing', function (e) {
+        console.log(e.target, 'showing');
+    })
+    // 열린 후
+    el.addEventListener('tooltip.shown', function (e) {
+        console.log(e.target, 'shown');
+    })
+    // 닫힐 때
+    el.addEventListener('tooltip.hiding', function (e) {
+        console.log(e.target, 'hiding');
+    })
+    // 닫힌 후
+    el.addEventListener('tooltip.hidden', function (e) {
+        console.log(e.target, 'hidden');
+    })
+})</code></pre>
+
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출</p>
+                    <pre><code class="language-js">const tooltipEl = document.querySelector('#tooltip1');
+const tooltip = new SKY.Tooltip(tooltipEl);
+</code></pre>
+
+                    <p class="guide-text">show 호출</p>
+                    <pre><code class="language-js">tooltip.show();</code></pre>
+
+                    <p class="guide-text">hide 호출</p>
+                    <pre><code class="language-js">tooltip.hide();</code></pre>
                 </section>
             </div>
         </div>
@@ -35,7 +168,23 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        
+        const tooltipEl = document.querySelector('#tooltip1');
+        const tooltip = new SKY.Tooltip(tooltipEl);
+
+        document.querySelectorAll('[data-tooltip]').forEach(function(el) {
+            el.addEventListener('tooltip.showing', function (e) {
+                console.log(e.target, 'showing');
+            })
+            el.addEventListener('tooltip.shown', function (e) {
+                console.log(e.target, 'shown');
+            })
+            el.addEventListener('tooltip.hiding', function (e) {
+                console.log(e.target, 'hiding');
+            })
+            el.addEventListener('tooltip.hidden', function (e) {
+                console.log(e.target, 'hidden');
+            })
+        })
     </script>
 </body>
 

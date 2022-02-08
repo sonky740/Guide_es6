@@ -12,10 +12,16 @@ class Modal extends BaseComponent {
   constructor(element) {
     super(element);
 
-    this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-moda-trigger]
+    this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
     this._close = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
     this._isMoving = false; // true일 경우 이벤트 작동 안되게
 
+    this.init();
+
+    Data.setData(element, NAME, this);
+  }
+
+  init() {
     // 모달 트리거 클릭 시 모달 show
     if (this._trigger) {
       EventHandler.on(this._trigger, 'click', e => this.show(e));
@@ -30,8 +36,6 @@ class Modal extends BaseComponent {
     this._close.forEach(el => {
       EventHandler.on(el, 'click', () => this.hide());
     });
-
-    Data.setData(element, NAME, this);
   }
 
   show(e) {

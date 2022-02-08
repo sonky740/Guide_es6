@@ -1,6 +1,6 @@
-.accordion {
-    $accr-duration: .3s;
+$accr-duration: .3s;
 
+.accordion {
     &+& {
         margin-top: 1rem;
     }
@@ -67,27 +67,27 @@
         }
     }
 
-    [data-accr-target] {
-        display: none;
-        transition: height $accr-duration;
-
-        &.showing,
-        &.hiding {
-            display: block;
-            height: 0;
-            overflow: hidden;
-        }
-
-        &.shown {
-            display: block;
-        }
-
-        &.hidden {
-            display: none;
-        }
-    }
-
     &-body {
         padding: 1rem;
+    }
+}
+
+[data-accr-target] {
+    display: none;
+    transition: height $accr-duration;
+
+    &.showing,
+    &.hiding {
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+
+    &.shown {
+        display: block;
+    }
+
+    &.hidden {
+        display: none;
     }
 }

@@ -17,6 +17,12 @@ class Tab extends BaseComponent {
     this._trigger = this._element.querySelectorAll('[data-tab-trigger]');
     this._isMoving = false;
 
+    this.init();
+
+    Data.setData(element, NAME, this);
+  }
+
+  init() {
     this.initVars();
 
     this._trigger.forEach(trigger => {
@@ -37,8 +43,6 @@ class Tab extends BaseComponent {
         }
       });
     });
-
-    Data.setData(element, NAME, this);
   }
 
   initVars() {

@@ -1,3 +1,67 @@
+@import 'keyframe';
+
 .tooltip {
-    
+    display: inline-block;
+    position: relative;
+
+    &-content {
+        position: absolute;
+        // 위치는 margin으로 컨트롤
+        min-width: 12rem;
+        padding: 1rem 3.2rem 1rem 1rem;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 0.25rem;
+        z-index: 1;
+    }
+
+    &-close {
+        position: absolute;
+        top: 0.4rem;
+        right: 0.4rem;
+        width: 1.6rem;
+        height: 1.6rem;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1.2rem;
+            height: 0.2rem;
+            background: #222;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+}
+
+[data-tooltip] {
+    [data-tooltip-target] {
+        display: none;
+    }
+
+    &.shown {
+        [data-tooltip-target] {
+            display: block;
+            animation: tooltip-in .4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    }
+
+    &.hiding {
+        [data-tooltip-target] {
+            display: block;
+            animation: tooltip-out .3s cubic-bezier(0.36, 0, 0.66, -0.56);
+        }
+    }
+}
+
+[data-tooltip="mouseover"] {
+    [data-tooltip-trigger] {
+        cursor: default;
+    }
 }

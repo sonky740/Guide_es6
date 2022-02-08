@@ -143,7 +143,15 @@ $ly-nav-width: 6.4rem;
                         transition: width .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
                     }
 
-                    &:hover {
+                    &.on {
+                        color: #ffbd39;
+                        
+                        &:after {
+                            width: 100%;
+                            background: #ffbd39;
+                        }
+                    }
+                    &:hover:not(.on) {
                         &:after {
                             width: 100%;
                         }
@@ -219,15 +227,12 @@ $ly-nav-width: 6.4rem;
 }
 
 .about-wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
     padding: 0 2rem;
-    .txt-p {
-        font-size: 2.4rem;
-        text-align: center;
-
-        +.txt-p {
-            margin-top: 1.2rem;
-        }
-    }
+    font-size: 1.8rem;
 }
 
 // 모바일에서
