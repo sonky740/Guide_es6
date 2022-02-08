@@ -74,11 +74,7 @@ class Tooltip extends BaseComponent {
       EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element });
     };
 
-    if (this._element.dataset.animation === 'false') {
-      complete();
-    } else {
-      EventHandler.one(this._element, 'animationend', () => complete());
-    }
+    EventHandler.one(this._element, 'animationend', () => complete());
   }
 
   hide() {
@@ -95,11 +91,7 @@ class Tooltip extends BaseComponent {
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element });
     };
 
-    if (this._element.dataset.animation === 'false') {
-      complete();
-    } else {
-      EventHandler.one(this._element, 'animationend', () => complete());
-    }
+    EventHandler.one(this._element, 'animationend', () => complete());
     EventHandler.off(window, 'click');
   }
 
