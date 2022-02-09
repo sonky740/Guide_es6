@@ -57,7 +57,7 @@
     &lt;/label&gt;
 &lt;/div&gt;
 
-&lt;div id="checkbox1" class="label-chk-wrap" data-checkbox="checkbox1"&gt;
+&lt;div class="label-chk-wrap" data-checkbox="checkbox1"&gt;
     &lt;label class="label-chk"&gt;
         &lt;input type="checkbox"&gt;
         &lt;span&gt;Checkbox&lt;/span&gt;
@@ -103,7 +103,7 @@ document.querySelector('#checkbox1').addEventListener('checkbox.unchecked', func
                     </header>
 
                     <p class="guide-text">Component 호출(feat. 비동기)</p>
-                    <pre><code class="language-js">const checkboxEl = document.querySelector('#checkbox1');
+                    <pre><code class="language-js">const checkboxEl = document.querySelector('[data-checkbox="checkbox1"]');
 const checkbox = new SKY.Checkbox(checkbox1);</code></pre>
                 </section>
             </div>
@@ -113,8 +113,8 @@ const checkbox = new SKY.Checkbox(checkbox1);</code></pre>
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        // const checkboxEl = document.querySelector('#checkbox1');
-        // const checkbox = new SKY.Checkbox(checkbox1);
+        const checkboxEl = document.querySelector('[data-checkbox="checkbox1"]');
+        const checkbox = new SKY.Checkbox(checkbox1);
 
         // 전부 체크되었을 때
         document.querySelector('#checkbox1').addEventListener('checkbox.checked', function () {
