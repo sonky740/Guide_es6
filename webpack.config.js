@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: '[name].js'
   },
-  devtool: `${mode === 'production' ? 'nosources-cheap-source-map' : 'eval'}`,
+  devtool: mode === 'production' ? 'nosources-cheap-source-map' : 'eval',
   module: {
     rules: [
       {
