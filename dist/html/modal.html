@@ -25,6 +25,7 @@
                     <li><a href="./tab.html">Tab</a></li>
                     <li><a href="./tooltip.html">Tooltip</a></li>
                     <li><a href="./range.html">Range</a></li>
+                    <li><a href="./checkbox.html">Checkbox</a></li>
                 </ul>
             </div>
         </nav>
@@ -45,6 +46,22 @@
                     <p class="guide-text">높이값 100% 모달</p>
 
                     <button type="button" class="guide-btn" data-modal-trigger="modal1">모달 호출</button>
+
+                    <pre><code class="language-html">&lt;button type="button" class="guide-btn" data-modal-trigger="modal1"&gt;모달 호출&lt;/button&gt;
+
+&lt;!-- id는 따로 제어할거 아니면 부여 안해도됨. --&gt;
+&lt;div id="modal1" class="ly-modal full" data-modal&gt;
+    &lt;div class="ly-modal-wrap"&gt;
+        &lt;header class="ly-modal-header"&gt;
+            &lt;h1 class="ly-modal-title"&gt;모달 타이틀&lt;/h1&gt;
+            &lt;button type="button" class="ly-modal-close" data-modal-close&gt;&lt;span class="blind"&gt;닫기&lt;/span&gt;&lt;/button&gt;
+        &lt;/header&gt;
+        &lt;div class="ly-modal-content"&gt;
+            &lt;button type="button" class="guide-btn" data-modal-trigger="modal2"&gt;모달 트리거2&lt;/button&gt;
+            내용
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                 </section>
 
                 <section class="guide-section">
@@ -127,7 +144,7 @@
                         <h3 class="guide-section-title">Method</h3>
                     </header>
 
-                    <p class="guide-text">Component 호출</p>
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
                     <pre><code class="language-js">const modalEl = document.querySelector('#modal3');
 const modal = new SKY.Modal(modalEl);
 </code></pre>

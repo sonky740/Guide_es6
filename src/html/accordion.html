@@ -80,6 +80,22 @@
                             </div>
                         </li>
                     </ul>
+
+                    <pre><code class="language-html">&lt;!-- id는 따로 제어할거 아니면 부여 안해도됨. --&gt;
+&lt;ul id="accordion1" class="accordion" data-accr&gt;
+    &lt;li id="accordion1_1" class="accordion-item on" data-accr-item&gt;
+        &lt;div class="accordion-header" data-accr-header&gt;
+            타이틀
+            &lt;button type="button" class="accordion-button plus" data-accr-trigger&gt;&lt;span class="blind"&gt;접기&lt;/span&gt;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="accordion-content" data-accr-target&gt;
+            &lt;div class="accordion-body"&gt;
+                내용
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    ...
+&lt;/ul&gt;</code></pre>
                 </section>
 
                 <section class="guide-section">
@@ -287,7 +303,7 @@
                         <h3 class="guide-section-title">Method</h3>
                     </header>
 
-                    <p class="guide-text">Component 호출</p>
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
                     <pre><code class="language-js">const accrEl = document.querySelector('#accordion1');
 const accr = new SKY.Accordion(accrEl);
 </code></pre>

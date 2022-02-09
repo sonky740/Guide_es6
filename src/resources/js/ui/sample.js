@@ -1,4 +1,5 @@
 import Data from '../util/data.js';
+// import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'sample';

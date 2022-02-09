@@ -8,14 +8,17 @@ const inputDelete = () => {
   // console.log('a');
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+// 실행 함수
+const init = () => {
   mobileCheck();
-
   inputDelete();
-});
+};
+
+// 내보내기
+const Common = { init };
 
 window.addEventListener('resize', () => {
   mobileCheck();
 });
 
-export default { inputDelete };
+export default Common;

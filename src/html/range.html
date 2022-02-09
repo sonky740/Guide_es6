@@ -27,14 +27,14 @@
                     </header>
 
                     <div class="range-figure">
-                        <span data-range-value="rangeSingle"></span>
+                        <span id="rangeSingle"></span>
                     </div>
                     <div class="range" data-range>
                         <div class="range-area">
                             <!-- 자동입력 -->
                             <div class="range-wrap">
                                 <!-- value, min, max, step, data-range-unit만 설정해두면 됩니다. -->
-                                <input type="range" id="rangeSingle" value="20" min="0" max="100" step="10" data-range-unit="개">
+                                <input type="range" data-range-value="rangeSingle" value="20" min="0" max="100" step="10" data-range-unit="개">
                             </div>
                             <div class="range-bar" aria-hidden="true">
                                 <div class="range-fill"></div>
@@ -46,6 +46,26 @@
                             <span>+100</span>
                         </div>
                     </div>
+
+                    <pre><code class="language-html">&lt;div class="range-figure"&gt;
+    &lt;span id="rangeSingle"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="range" data-range&gt;
+    &lt;div class="range-area"&gt;
+        &lt;!-- 자동입력 --&gt;
+        &lt;div class="range-wrap"&gt;
+            &lt;!-- value, min, max, step, data-range-unit만 설정해두면 됩니다. --&gt;
+            &lt;input type="range" data-range-value="rangeSingle" value="20" min="0" max="100" step="10" data-range-unit="개"&gt;
+        &lt;/div&gt;
+        &lt;div class="range-bar" aria-hidden="true"&gt;
+            &lt;div class="range-fill"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="range-bottom" aria-hidden="true"&gt;
+        &lt;span&gt;0&lt;/span&gt;
+        &lt;span&gt;+100&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                 </section>
 
                 <section class="guide-section">
@@ -59,15 +79,15 @@
                     <p class="guide-text">data-range-max="string" : 마지막에 표기할 단위</p>
 
                     <div class="range-figure">
-                        <span data-range-startvalue="start"></span><span class="unit">~</span><span data-range-endvalue="end"></span>
+                        <span id="start"></span><span class="unit">~</span><span id="end"></span>
                     </div>
                     <div id="multiRange" class="range" data-range>
                         <div class="range-area">
                             <!-- 자동입력 -->
                             <div class="range-wrap">
                                 <!-- value, min, max, step, data-range-unit만 설정해두면 됩니다. -->
-                                <input type="range" id="start" data-range-multi="start" value="0" min="0" max="100000" step="1000" data-range-minstep="5000">
-                                <input type="range" id="end" data-range-multi="end" value="50000" min="0" max="100000" step="1000" data-range-minstep="5000" data-range-max="+">
+                                <input type="range" data-range-startvalue="start" data-range-multi="start" value="0" min="0" max="100000" step="1000" data-range-minstep="5000">
+                                <input type="range" data-range-endvalue="end" data-range-multi="end" value="50000" min="0" max="100000" step="1000" data-range-minstep="5000" data-range-max="+">
                             </div>
                             <div class="range-bar" aria-hidden="true">
                                 <div class="range-fill"></div>
@@ -105,7 +125,7 @@
                         <h3 class="guide-section-title">Method</h3>
                     </header>
 
-                    <p class="guide-text">Component 호출</p>
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
                     <pre><code class="language-js">const multiRangeEl = document.querySelector('[data-range]#multiRange');
 const multiRange = new SKY.Range(multiRangeEl);</code></pre>
 

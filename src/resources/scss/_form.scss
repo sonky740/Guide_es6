@@ -12,3 +12,62 @@
         transform-origin: left;
     }
 }
+
+.label-chk {
+    position: relative;
+
+    input[type="checkbox"] {
+        &:focus {
+            +span {
+                &:before {
+                    outline: 1px dotted #222;
+                }
+            }
+        }
+
+        +span {
+            position: relative;
+            padding-left: 2.4rem;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 2rem;
+                height: 2rem;
+                border: 1px solid #222;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 10px;
+                left: 4px;
+                width: 1.2rem;
+                height: 0.6rem;
+                border-bottom: 2px solid #222;
+                border-left: 2px solid #222;
+                transform: rotate(-45deg);
+                transform-origin: left top;
+                opacity: 0;
+            }
+        }
+
+        &:checked {
+            +span {
+
+                &:after {
+                    opacity: 1;
+                    animation: check-in .3s $timing-in;
+                }
+            }
+        }
+    }
+
+    &-wrap {
+        &+& {
+            margin-top: 1rem;
+        }
+    }
+}

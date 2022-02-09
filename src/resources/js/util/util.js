@@ -27,7 +27,7 @@ export function siblings(node) {
 
 /**
  * version check
- * @returns {Object} name, version
+ * @returns {Object} mo, iosVer, aosVer, name, version
  */
 export function getClientInfo() {
   let userAgent = navigator.userAgent;

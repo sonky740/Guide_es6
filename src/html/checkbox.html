@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../resources/css/common.min.css">
+    <title>Checkbox</title>
+</head>
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+                <div class="guide-nav-content">
+                    <h2 class="guide-nav-title">Checkbox</h2>
+                </div>
+            </nav>
+            <div class="guide-content">
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Checkbox</h3>
+                        <p class="sub">[data-checkbox]</p>
+                    </header>
+
+                    <div class="label-chk-wrap">
+                        <label class="label-chk">
+                            <input type="checkbox" data-checkbox-all="checkbox1">
+                            <span>All Check</span>
+                        </label>
+                    </div>
+
+                    <div id="checkbox1" class="label-chk-wrap" data-checkbox="checkbox1">
+                        <label class="label-chk">
+                            <input type="checkbox">
+                            <span>Checkbox</span>
+                        </label>
+                        <label class="label-chk">
+                            <input type="checkbox">
+                            <span>Checkbox</span>
+                        </label>
+                        <label class="label-chk">
+                            <input type="checkbox">
+                            <span>Checkbox</span>
+                        </label>
+                    </div>
+
+                    <button type="button" id="checkboxBtn" disabled>비활성화</button>
+
+                    <pre><code class="language-html">&lt;div class="label-chk-wrap"&gt;
+    &lt;label class="label-chk"&gt;
+        &lt;input type="checkbox" data-checkbox-all="checkbox1"&gt;
+        &lt;span&gt;All Check&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div id="checkbox1" class="label-chk-wrap" data-checkbox="checkbox1"&gt;
+    &lt;label class="label-chk"&gt;
+        &lt;input type="checkbox"&gt;
+        &lt;span&gt;Checkbox&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="label-chk"&gt;
+        &lt;input type="checkbox"&gt;
+        &lt;span&gt;Checkbox&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="label-chk"&gt;
+        &lt;input type="checkbox"&gt;
+        &lt;span&gt;Checkbox&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;button type="button" id="checkboxBtn" disabled&gt;비활성화&lt;/button&gt;</code></pre>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트</p>
+
+                    <pre><code class="language-js">// 전부 체크되었을 때
+document.querySelector('#checkbox1').addEventListener('checkbox.checked', function () {
+    console.log('checked')
+    document.querySelector('#checkboxBtn').removeAttribute('disabled');
+    document.querySelector('#checkboxBtn').innerText = '활성화';
+})
+// 하나라도 체크해제 되었을 때
+document.querySelector('#checkbox1').addEventListener('checkbox.unchecked', function () {
+    console.log('unchecked')
+    document.querySelector('#checkboxBtn').setAttribute('disabled', '');
+    document.querySelector('#checkboxBtn').innerText = '비활성화';
+})</code></pre>
+
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
+                    <pre><code class="language-js">const checkboxEl = document.querySelector('#checkbox1');
+const checkbox = new SKY.Checkbox(checkbox1);</code></pre>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/vendor/prism.js"></script>
+    <script src="../resources/js/ui.js"></script>
+    <script>
+        // const checkboxEl = document.querySelector('#checkbox1');
+        // const checkbox = new SKY.Checkbox(checkbox1);
+
+        // 전부 체크되었을 때
+        document.querySelector('#checkbox1').addEventListener('checkbox.checked', function () {
+            console.log('checked')
+            document.querySelector('#checkboxBtn').removeAttribute('disabled');
+            document.querySelector('#checkboxBtn').innerText = '활성화';
+        })
+        // 하나라도 체크해제 되었을 때
+        document.querySelector('#checkbox1').addEventListener('checkbox.unchecked', function () {
+            console.log('unchecked')
+            document.querySelector('#checkboxBtn').setAttribute('disabled', '');
+            document.querySelector('#checkboxBtn').innerText = '비활성화';
+        })
+    </script>
+</body>
+
+</html>

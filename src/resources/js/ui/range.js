@@ -52,7 +52,7 @@ class Range extends BaseComponent {
     }
 
     // value값을 나타내야할 때
-    const value = document.querySelector(`[data-range-value="${this._range.getAttribute('id')}"]`);
+    const value = document.getElementById(`${this._range.dataset.rangeValue}`);
     if (value) value.innerText = numberComma(this._range.value);
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.input`, { value: this._value });
@@ -71,7 +71,7 @@ class Range extends BaseComponent {
     }
 
     // value값을 나타내야할 때
-    const value = document.querySelector(`[data-range-startvalue="${this._startRange.getAttribute('id')}"]`);
+    const value = document.getElementById(`${this._startRange.dataset.rangeStartvalue}`);
     if (value) value.innerText = numberComma(this._startRange.value);
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, { value: this._multiValues });
@@ -84,7 +84,7 @@ class Range extends BaseComponent {
     this._fill.style.right = `${100 - this._perEnd}%`;
 
     // value값을 나타내야할 때
-    const value = document.querySelector(`[data-range-endvalue="${this._endRange.getAttribute('id')}"]`);
+    const value = document.getElementById(`${this._endRange.dataset.rangeEndvalue}`);
     if (value) value.innerText = numberComma(this._endRange.value);
 
     // data-range-last가 있을 때

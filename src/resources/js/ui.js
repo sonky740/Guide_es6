@@ -5,18 +5,13 @@ import Accordion from './ui/accordion.js';
 import Tab from './ui/tab.js';
 import Tooltip from './ui/tooltip.js';
 import Range from './ui/range.js';
+import Checkbox from './ui/checkbox.js';
 import Common from './ui/common.js';
 
 /**
  * @author 손기연
  * @memberof SKY
  * @namespace SKY
- *
- * 목차
- * @see lyNav // 레이아웃 네비게이션
- * @see Modal // 모달
- * @see Accordion // 아코디언
- * @see Tab // 탭
  */
 
 const UIInitializer = (target, UI, options = {}) => {
@@ -33,14 +28,16 @@ const init = () => {
   UIInitializer('[data-tab]', Tab);
   UIInitializer('[data-tooltip]', Tooltip);
   UIInitializer('[data-range]', Range);
+  UIInitializer('[data-checkbox]', Checkbox);
+
+  Common.init();
 };
 
 polyfill();
 
 window.addEventListener('DOMContentLoaded', function () {
   lyNav();
-
   init();
 });
 
-export { init, Modal, Accordion, Tab, Tooltip, Range, Common };
+export { init, Modal, Accordion, Tab, Tooltip, Range, Checkbox, Common };

@@ -25,6 +25,7 @@
                     <li><a href="./tab.html">Tab</a></li>
                     <li><a href="./tooltip.html">Tooltip</a></li>
                     <li><a href="./range.html">Range</a></li>
+                    <li><a href="./checkbox.html">Checkbox</a></li>
                 </ul>
             </div>
         </nav>
@@ -82,6 +83,27 @@
                     <div id="tab4" data-tab-target="group1">
                         tab4
                     </div>
+
+                    <pre><code class="language-html">&lt;!-- role은 script 처리. --&gt;
+&lt;div class="nav-tab" data-tab="group1"&gt;
+    &lt;button type="button" class="on" data-tab-trigger="#tab1"&gt;Tab1&lt;/button&gt;
+    &lt;button type="button" data-tab-trigger="#tab2"&gt;Tab2&lt;/button&gt;
+    &lt;button type="button" data-tab-trigger="#tab3"&gt;Tab3&lt;/button&gt;
+    &lt;button type="button" data-tab-trigger="#tab4"&gt;Tab4&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id="tab1" data-tab-target="group1"&gt;
+    tab1
+&lt;/div&gt;
+&lt;div id="tab2" data-tab-target="group1"&gt;
+    tab2
+&lt;/div&gt;
+&lt;div id="tab3" data-tab-target="group1"&gt;
+    tab3
+&lt;/div&gt;
+&lt;div id="tab4" data-tab-target="group1"&gt;
+    tab4
+&lt;/div&gt;</code></pre>
                 </section>
 
                 <section class="guide-section">
@@ -147,7 +169,7 @@
                         <h3 class="guide-section-title">Method</h3>
                     </header>
 
-                    <p class="guide-text">Component 호출</p>
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
                     <pre><code class="language-js">const tabEl = document.querySelector('[data-tab="group1"]');
 const tab = new SKY.Tab(tabEl);
 </code></pre>

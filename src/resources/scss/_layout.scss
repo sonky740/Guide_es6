@@ -140,7 +140,7 @@ $ly-nav-width: 6.4rem;
                         height: 2px;
                         background: #fff;
                         transform: translateX(-50%);
-                        transition: width .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+                        transition: width .3s $timing-in;
                     }
 
                     &.on {

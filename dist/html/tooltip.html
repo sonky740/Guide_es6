@@ -25,6 +25,7 @@
                     <li><a href="./tab.html">Tab</a></li>
                     <li><a href="./tooltip.html">Tooltip</a></li>
                     <li><a href="./range.html">Range</a></li>
+                    <li><a href="./checkbox.html">Checkbox</a></li>
                 </ul>
             </div>
         </nav>
@@ -57,6 +58,15 @@
                             <button type="button" class="tooltip-close" data-tooltip-close><span class="blind">툴팁 닫기</span></button>
                         </div>
                     </div>
+
+                    <pre><code class="language-html">&lt;!-- id는 따로 제어할거 아니면 부여 안해도됨. --&gt;
+&lt;div id="tooltip1" class="tooltip" data-tooltip&gt;
+    &lt;button type="button" class="tooltip-trigger" data-tooltip-trigger&gt;툴팁 호출&lt;/button&gt;
+    &lt;div class="tooltip-content" data-tooltip-target&gt;
+        툴팁 내용1
+        &lt;button type="button" class="tooltip-close" data-tooltip-close&gt;&lt;span class="blind"&gt;툴팁 닫기&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                 </section>
 
                 <section class="guide-section">
@@ -141,7 +151,7 @@
                         <h3 class="guide-section-title">Method</h3>
                     </header>
 
-                    <p class="guide-text">Component 호출</p>
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
                     <pre><code class="language-js">const tooltipEl = document.querySelector('#tooltip1');
 const tooltip = new SKY.Tooltip(tooltipEl);
 </code></pre>
