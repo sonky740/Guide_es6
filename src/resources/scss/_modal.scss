@@ -130,20 +130,20 @@ $modal-duration: .4s;
 
         // 기본
         .ly-modal-wrap {
-            animation: modal-in $modal-duration $timing-in;
+            animation: modal-in $modal-duration $timing-in forwards;
         }
 
         // full 팝업
         &.full {
             .ly-modal-wrap {
-                animation: modal-full-in $modal-duration $timing-in;
+                animation: modal-full-in $modal-duration $timing-in forwards;
             }
         }
 
         // btm 팝업
         &.btm {
             .ly-modal-wrap {
-                animation: modal-btm-in $modal-duration $timing-in;
+                animation: modal-btm-in $modal-duration $timing-in forwards;
             }
         }
     }
@@ -157,20 +157,20 @@ $modal-duration: .4s;
 
         // 기본
         .ly-modal-wrap {
-            animation: modal-out $modal-duration $timing-out;
+            animation: modal-out $modal-duration $timing-out forwards;
         }
 
         // full 팝업
         &.full {
             .ly-modal-wrap {
-                animation: modal-full-out $modal-duration $timing-out;
+                animation: modal-full-out $modal-duration $timing-out forwards;
             }
         }
 
         // btm 팝업
         &.btm {
             .ly-modal-wrap {
-                animation: modal-btm-out $modal-duration $timing-out;
+                animation: modal-btm-out $modal-duration $timing-out forwards;
             }
         }
     }

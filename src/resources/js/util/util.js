@@ -26,6 +26,17 @@ export function siblings(node) {
 }
 
 /**
+ * HTML스트링을 HTML형태로 반환
+ * @param {String} htmlString
+ * @return {Element} 엘리먼트
+ */
+export const toHTML = htmlString => {
+  const div = document.createElement('div');
+  div.innerHTML = htmlString.trim();
+  return div.firstChild;
+};
+
+/**
  * version check
  * @returns {Object} mo, iosVer, aosVer, name, version
  */

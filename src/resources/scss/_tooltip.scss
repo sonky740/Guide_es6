@@ -48,14 +48,14 @@
     &.shown {
         [data-tooltip-target] {
             display: block;
-            animation: tooltip-in .4s $timing-in;
+            animation: tooltip-in .4s $timing-in forwards;
         }
     }
 
     &.hiding {
         [data-tooltip-target] {
             display: block;
-            animation: tooltip-out .3s $timing-out;
+            animation: tooltip-out .3s $timing-out forwards;
         }
     }
 }

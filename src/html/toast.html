@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../resources/css/common.min.css">
+    @@include('./src/_includes/ga.md')
+    <title>Toast</title>
+</head>
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+                <div class="guide-nav-content">
+                    <h2 class="guide-nav-title">Toast</h2>
+                </div>
+            </nav>
+            <div class="guide-content">
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Toast</h3>
+                        <p class="sub">[data-toast]</p>
+                    </header>
+
+                    <button type="button" onclick="new SKY.Toast().show(messageBtn, 1, 'type1')">토스트 호출</button>
+
+                    <pre><code class="language-html">&lt;button type="button" onclick="new SKY.Toast().show(messageBtn, 1)"&gt;토스트 호출&lt;/button&gt;
+&lt;div class="toast"&gt;
+    &lt;div class="toast-content"&gt;
+        스크립트 &lt;span style="color: red;"&gt;생성&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트</p>
+
+                    <pre><code class="language-js">document.addEventListener('toast.shown', function() {
+    console.log(this, 'shown');
+})
+document.addEventListener('toast.hidden', function() {
+    console.log(this, 'hidden');
+})</code></pre>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출</p>
+                    <pre><code class="language-js">// Toast 함수는 인스턴스화 하면 안됨.
+// 첫번쨰 인자: string: html,
+// 두번째 인자: number: 떠있는 시간 (default: 2초),
+// 세번째 인자: string: class명 (.toast-content에 붙음)
+const message = '스크립트 <span style="color: red;">생성</span>';
+const messageBtn = '버튼 클릭 <span style="color: red;">생성</span>';
+new SKY.Toast().show(message);</code></pre>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/vendor/prism.js"></script>
+    <script src="../resources/js/ui.js"></script>
+    <script>
+        const message = '스크립트 <span style="color: red;">생성</span>';
+        const messageBtn = '버튼 클릭 <span style="color: red;">생성</span>';
+        new SKY.Toast().show(message);
+
+        document.addEventListener('toast.shown', function () {
+            console.log(this, 'shown');
+        })
+        document.addEventListener('toast.hidden', function () {
+            console.log(this, 'hidden');
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    width: 100vw;
+    max-width: 640px;
+    padding: 0 1.2rem;
+    transform: translateX(-50%);
+
+    @media (min-width: 640px) {
+        left: calc(50% - 3.2rem);
+    }
+
+    @media (min-width: 640px) and (max-width: 1120px) {
+        max-width: calc(100vw - 6.4rem);
+    }
+
+    @media (min-width: 1120px) {
+        max-width: 1120px;
+    }
+
+    &-content {
+        display: none;
+        width: 100%;
+        padding: 2rem 1.2rem;
+        margin: 5px 0;
+        border-radius: 0.8rem;
+        box-shadow: -0.1rem 1rem 0.6rem 0 rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, .92);
+        font-size: 1.6rem;
+        color: #fff;
+        text-align: center;
+
+        &.showing {
+            display: block;
+            animation: toast-in .4s $timing-in forwards;
+        }
+
+        &.hiding {
+            display: block;
+            animation: toast-out .4s $timing-out forwards;
+        }
+
+        &.type1 {
+            &:after {
+                content: " type1";
+            }
+        }
+    }
+}

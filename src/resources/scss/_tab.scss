@@ -25,7 +25,7 @@
 
     &.showing {
         display: block;
-        animation: tab-in .2s;
+        animation: tab-in .2s forwards;
     }
 
     &.shown {
@@ -34,7 +34,7 @@
 
     &.hiding {
         display: block;
-        animation: tab-out .2s;
+        animation: tab-out .2s forwards;
     }
 
     &.hidden {
