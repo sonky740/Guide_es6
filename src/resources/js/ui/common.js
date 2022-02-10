@@ -8,14 +8,14 @@ const inputDelete = () => {
   // console.log('a');
 };
 
-// 실행 함수
+// 전체 실행 함수
 const init = () => {
   mobileCheck();
   inputDelete();
 };
 
 // 내보내기
-const Common = { init };
+const Common = { init, mobileCheck, inputDelete };
 
 window.addEventListener('resize', () => {
   mobileCheck();
