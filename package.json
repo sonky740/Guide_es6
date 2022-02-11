@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev",
-    "build": "cross-env NODE_ENV=production gulp build",
-    "prepare": "husky install"
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "repository": {
     "type": "git",
