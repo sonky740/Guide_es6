@@ -28,7 +28,6 @@ const init = () => {
   UIInitializer('[data-accr]', Accordion);
   UIInitializer('[data-tab]', Tab);
   UIInitializer('[data-tooltip]', Tooltip);
-  // UIInitializer('[data-toast]', Toast);
   UIInitializer('[data-range]', Range);
   UIInitializer('[data-checkbox]', Checkbox);
 

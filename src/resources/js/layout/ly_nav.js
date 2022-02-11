@@ -1,7 +1,7 @@
 const lyNav = () => {
   const trigger = document.querySelector('.ly-nav-bar');
   const target = document.querySelector('.ly-nav-content');
-  const navList = document.querySelectorAll('.ly-nav-content-list li a');
+  const navList = document.querySelectorAll('.comp-list li a');
   const url = window.location.href.split('/');
   const urlLast = url[url.length - 1].split('.html')[0];
 

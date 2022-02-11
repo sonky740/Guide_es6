@@ -119,42 +119,21 @@ $ly-nav-width: 6.4rem;
             font-size: 3.2rem;
         }
 
-        &-list {
+        .comp-list {
             >li {
                 font-size: 2.4rem;
+
+                &:before {
+                    background: #fff;
+                }
 
                 +li {
                     margin-top: 0.4rem;
                 }
 
                 a {
-                    display: inline-block;
-                    position: relative;
-
                     &:after {
-                        content: "";
-                        position: absolute;
-                        bottom: 0;
-                        left: 50%;
-                        width: 0;
-                        height: 2px;
                         background: #fff;
-                        transform: translateX(-50%);
-                        transition: width .3s $timing-in;
-                    }
-
-                    &.on {
-                        color: #ffbd39;
-                        
-                        &:after {
-                            width: 100%;
-                            background: #ffbd39;
-                        }
-                    }
-                    &:hover:not(.on) {
-                        &:after {
-                            width: 100%;
-                        }
                     }
                 }
             }
@@ -220,15 +199,6 @@ $ly-nav-width: 6.4rem;
     position: relative;
     min-width: 320px;
     min-height: 100vh;
-}
-
-.about-wrap {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    font-size: 1.8rem;
 }
 
 // 모바일에서

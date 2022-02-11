@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="stylesheet" href="../resources/css/common.min.css">
-    @@include('./src/_includes/ga.md')
-    <title>Range</title>
-</head>
+@@include('./src/_includes/head.md', {title: 'SKY | Range'})
 
 <body>
     <div class="ly-wrap">
@@ -141,11 +134,11 @@ const multiRange = new SKY.Range(multiRangeEl);</code></pre>
         const multiRangeEl = document.querySelector('[data-range]#multiRange');
         const multiRange = new SKY.Range(multiRangeEl);
 
-        document.querySelectorAll('[data-range]').forEach(function(el) {
-            el.addEventListener('range.input', function(e) {
+        document.querySelectorAll('[data-range]').forEach(function (el) {
+            el.addEventListener('range.input', function (e) {
                 console.log('single: ' + e.value);
             })
-            el.addEventListener('range.multi', function(e) {
+            el.addEventListener('range.multi', function (e) {
                 console.log(e.value);
             })
         })
