@@ -4,15 +4,22 @@ import BaseComponent from '../util/baseComponent.js';
 import { siblings } from '../util/util.js';
 
 const NAME = 'accr';
-const SHOWING = 'showing';
-const SHOWN = 'shown';
-const HIDING = 'hiding';
-const HIDDEN = 'hidden';
 const EVENT_KEY = `${NAME}`;
 
+const defaultConfig = {
+  showing: 'showing',
+  shown: 'shown',
+  hiding: 'hiding',
+  hidden: 'hidden'
+};
+
 class Accordion extends BaseComponent {
-  constructor(element) {
+  constructor(element, config) {
     super(element);
+    this._config = {
+      ...defaultConfig,
+      ...config
+    };
 
     this._item = this._element.children;
     this._isMoving = false;
@@ -31,9 +38,9 @@ class Accordion extends BaseComponent {
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
         trigger.querySelector('.blind').innerText = '접기';
-        target.classList.add(SHOWN);
+        target.classList.add(this._config.shown);
       } else {
-        target.classList.add(HIDDEN);
+        target.classList.add(this._config.hidden);
       }
 
       EventHandler.on(trigger, 'click', e => {
@@ -72,13 +79,13 @@ class Accordion extends BaseComponent {
     item.classList.add('on');
     trigger.classList.add('on');
     trigger.querySelector('.blind').innerText = '접기';
-    target.classList.remove(HIDDEN);
-    target.classList.add(SHOWING);
+    target.classList.remove(this._config.hidden);
+    target.classList.add(this._config.showing);
     target.style.height = `${target.scrollHeight}px`;
 
     const complete = () => {
-      target.classList.remove(SHOWING);
-      target.classList.add(SHOWN);
+      target.classList.remove(this._config.showing);
+      target.classList.add(this._config.shown);
       target.removeAttribute('style');
       this._isMoving = false;
 
@@ -120,13 +127,13 @@ class Accordion extends BaseComponent {
     trigger.querySelector('.blind').innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
     target.heightCache = target.scrollHeight;
-    target.classList.remove(SHOWN);
-    target.classList.add(HIDING);
+    target.classList.remove(this._config.shown);
+    target.classList.add(this._config.hiding);
     target.removeAttribute('style');
 
     const complete = () => {
-      target.classList.remove(HIDING);
-      target.classList.add(HIDDEN);
+      target.classList.remove(this._config.hiding);
+      target.classList.add(this._config.hidden);
       item.classList.remove('on');
       this._isMoving = false;
 

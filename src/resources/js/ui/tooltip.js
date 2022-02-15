@@ -3,13 +3,20 @@ import BaseComponent from '../util/baseComponent.js';
 import EventHandler from '../util/eventHandler.js';
 
 const NAME = 'tooltip';
-const SHOWN = 'shown';
-const HIDING = 'hiding';
 const EVENT_KEY = `${NAME}`;
 
+const defaultConfig = {
+  shown: 'shown',
+  hiding: 'hiding'
+};
+
 class Tooltip extends BaseComponent {
-  constructor(element) {
+  constructor(element, config) {
     super(element);
+    this._config = {
+      ...defaultConfig,
+      ...config
+    };
 
     this._trigger = this._element.querySelector('[data-tooltip-trigger]');
 
@@ -26,7 +33,7 @@ class Tooltip extends BaseComponent {
 
         // show toggle
         if (e.target.hasAttribute('data-tooltip-trigger')) {
-          if (this._element.classList.contains(SHOWN)) {
+          if (this._element.classList.contains(this._config.shown)) {
             this.hide();
             return false;
           }
@@ -64,11 +71,11 @@ class Tooltip extends BaseComponent {
   }
 
   show() {
-    if (this._element.classList.contains(SHOWN)) return false;
+    if (this._element.classList.contains(this._config.shown)) return false;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: this._element });
 
-    this._element.classList.add(SHOWN);
+    this._element.classList.add(this._config.shown);
 
     const complete = () => {
       EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element });
@@ -78,15 +85,15 @@ class Tooltip extends BaseComponent {
   }
 
   hide() {
-    if (!this._element.classList.contains(SHOWN)) return false;
+    if (!this._element.classList.contains(this._config.shown)) return false;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { target: this._element });
 
-    this._element.classList.remove(SHOWN);
-    this._element.classList.add(HIDING);
+    this._element.classList.remove(this._config.shown);
+    this._element.classList.add(this._config.hiding);
 
     const complete = () => {
-      this._element.classList.remove(HIDING);
+      this._element.classList.remove(this._config.hiding);
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element });
     };

@@ -4,15 +4,22 @@ import BaseComponent from '../util/baseComponent.js';
 import { siblings } from '../util/util.js';
 
 const NAME = 'tab';
-const SHOWING = 'showing';
-const SHOWN = 'shown';
-const HIDING = 'hiding';
-const HIDDEN = 'hidden';
 const EVENT_KEY = `${NAME}`;
 
+const defaultConfig = {
+  showing: 'showing',
+  shown: 'shown',
+  hiding: 'hiding',
+  hidden: 'hidden'
+};
+
 class Tab extends BaseComponent {
-  constructor(element) {
+  constructor(element, config) {
     super(element);
+    this._config = {
+      ...defaultConfig,
+      ...config
+    };
 
     this._trigger = this._element.querySelectorAll('[data-tab-trigger]');
     this._isMoving = false;
@@ -29,9 +36,9 @@ class Tab extends BaseComponent {
       const target = document.querySelector(trigger.dataset.tabTrigger);
 
       if (trigger.classList.contains('on')) {
-        target.classList.add(SHOWN);
+        target.classList.add(this._config.shown);
       } else {
-        target.classList.add(HIDDEN);
+        target.classList.add(this._config.hidden);
       }
 
       EventHandler.on(trigger, 'click', e => {
@@ -77,23 +84,23 @@ class Tab extends BaseComponent {
     // const groups = document.querySelectorAll(`[data-tab-target="${this._element.dataset.tab}"]`);
     siblings(target).forEach(group => {
       const hideTrigger = document.querySelector(`[data-tab-trigger="#${group.getAttribute('id')}"]`);
-      if (group.classList.contains(SHOWN)) {
-        group.classList.add(HIDING);
-        group.classList.remove(SHOWN);
+      if (group.classList.contains(this._config.shown)) {
+        group.classList.add(this._config.hiding);
+        group.classList.remove(this._config.shown);
 
         EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { target: group, trigger: hideTrigger });
 
         const groupComplete = () => {
-          group.classList.remove(HIDING);
-          group.classList.add(HIDDEN);
+          group.classList.remove(this._config.hiding);
+          group.classList.add(this._config.hidden);
 
           EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: group, trigger: hideTrigger });
-          target.classList.remove(HIDDEN);
+          target.classList.remove(this._config.hidden);
 
           EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: target, trigger: trigger });
-          target.classList.add(SHOWING);
+          target.classList.add(this._config.showing);
 
-          target.classList.add(SHOWN);
+          target.classList.add(this._config.shown);
         };
 
         if (this._element.dataset.animation === 'false') {
@@ -105,8 +112,8 @@ class Tab extends BaseComponent {
     });
 
     const targetComplete = () => {
-      target.classList.remove(SHOWING);
-      target.classList.add(SHOWN);
+      target.classList.remove(this._config.showing);
+      target.classList.add(this._config.shown);
       EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: target, trigger: trigger });
 
       this._isMoving = false;

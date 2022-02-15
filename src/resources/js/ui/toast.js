@@ -2,11 +2,11 @@ import EventHandler from '../util/eventHandler.js';
 import { toHTML } from '../util/util.js';
 
 const NAME = 'toast';
-const SHOWING = 'showing';
-const HIDING = 'hiding';
 const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
+  showing: 'showing',
+  hiding: 'hiding',
   container: '<div class="toast"></div>',
   content: '<div class="toast-content">MESSAGE</div>'
 };
@@ -34,7 +34,7 @@ class Toast {
   show(message, time = 2, addClass) {
     this._toastContent = toHTML(this._config.content.replace('MESSAGE', message));
     Toast.getContainer(this._config.container).appendChild(this._toastContent);
-    this._toastContent.classList.add(SHOWING);
+    this._toastContent.classList.add(this._config.showing);
     if (addClass) this._toastContent.classList.add(addClass);
     Toast.TOAST_COUNT++;
 
@@ -48,8 +48,8 @@ class Toast {
   }
 
   hide() {
-    this._toastContent.classList.remove(SHOWING);
-    this._toastContent.classList.add(HIDING);
+    this._toastContent.classList.remove(this._config.showing);
+    this._toastContent.classList.add(this._config.hiding);
     EventHandler.one(this._toastContent, 'animationend', () => {
       Toast.getContainer(this._config.container).removeChild(this._toastContent);
       Toast.TOAST_COUNT--;

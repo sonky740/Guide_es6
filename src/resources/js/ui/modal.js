@@ -3,14 +3,21 @@ import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'modal';
-const SHOWING = 'showing';
-const SHOWN = 'shown';
-const HIDING = 'hiding';
 const EVENT_KEY = `${NAME}`;
 
+const defaultConfig = {
+  showing: 'showing',
+  shown: 'shown',
+  hiding: 'hiding'
+};
+
 class Modal extends BaseComponent {
-  constructor(element) {
+  constructor(element, config) {
     super(element);
+    this._config = {
+      ...defaultConfig,
+      ...config
+    };
 
     this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
     this._close = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
@@ -43,10 +50,10 @@ class Modal extends BaseComponent {
       e.preventDefault();
     }
 
-    if (this._isMoving === true || this._element.classList.contains(SHOWN)) return false;
+    if (this._isMoving === true || this._element.classList.contains(this._config.shown)) return false;
     this._isMoving = true;
 
-    this._element.classList.add(SHOWING);
+    this._element.classList.add(this._config.showing);
     this._element.setAttribute('tabindex', 0);
 
     // window scroll 방지
@@ -55,8 +62,8 @@ class Modal extends BaseComponent {
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: this._element, trigger: this._trigger });
 
     const complete = () => {
-      this._element.classList.remove(SHOWING);
-      this._element.classList.add(SHOWN);
+      this._element.classList.remove(this._config.showing);
+      this._element.classList.add(this._config.shown);
       this._element.focus();
       this._element.removeAttribute('tabindex');
 
@@ -79,14 +86,14 @@ class Modal extends BaseComponent {
     if (this._isMoving === true) return false;
     this._isMoving = true;
 
-    this._element.classList.remove(SHOWN);
-    this._element.classList.add(HIDING);
+    this._element.classList.remove(this._config.shown);
+    this._element.classList.add(this._config.hiding);
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { target: this._element, trigger: this._trigger });
 
     const complete = () => {
       this._isMoving = false;
-      this._element.classList.remove(HIDING);
+      this._element.classList.remove(this._config.hiding);
       this._trigger.focus();
 
       // 마지막 모달을 닫을 때 window scroll 복구
