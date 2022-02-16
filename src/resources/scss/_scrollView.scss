@@ -1,0 +1,92 @@
+.scroll-view {
+    $root: '.scroll-view';
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 1.6rem);
+    height: 200px;
+    min-width: 280px;
+    text-align: center;
+    border-radius: 1.6rem;
+    background: #222;
+    color: #fff;
+
+    &-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -1.6rem 0 0 -1.6rem;
+        padding-bottom: 6rem;
+
+        #{$root} {
+            margin: 1.6rem 0 0 1.6rem;
+        }
+    }
+}
+
+[data-scroll-view] {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+
+    &.on {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.view-up {
+        animation: viewUp .5s forwards;
+
+        @keyframes viewUp {
+            0% {
+                transform: translateY(15%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &.view-down {
+        animation: viewDown .5s forwards;
+
+        @keyframes viewDown {
+            0% {
+                transform: translateY(-15%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &.view-right {
+        animation: viewRight .5s forwards;
+
+        @keyframes viewRight {
+            0% {
+                transform: translateX(-15%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    }
+
+    &.view-left {
+        animation: viewLeft .5s forwards;
+
+        @keyframes viewLeft {
+            0% {
+                transform: translateX(15%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    }
+}

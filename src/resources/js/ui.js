@@ -5,6 +5,7 @@ import Accordion from './ui/accordion.js';
 import Tab from './ui/tab.js';
 import Tooltip from './ui/tooltip.js';
 import Toast from './ui/toast.js';
+import ScrollView from './ui/scrollView.js';
 import Range from './ui/range.js';
 import Checkbox from './ui/checkbox.js';
 import Common from './ui/common.js';
@@ -30,6 +31,7 @@ const init = () => {
   UIInitializer('[data-tooltip]', Tooltip);
   UIInitializer('[data-range]', Range);
   UIInitializer('[data-checkbox]', Checkbox);
+  UIInitializer('[data-scroll-view]', ScrollView);
 
   Common.init();
 };
@@ -41,4 +43,4 @@ window.addEventListener('DOMContentLoaded', function () {
   init();
 });
 
-export { init, Modal, Accordion, Tab, Tooltip, Toast, Range, Checkbox, Common };
+export { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Common, UIInitializer };

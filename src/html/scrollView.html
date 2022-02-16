@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+@@include('./src/_includes/head.md', {title: 'SKY | ScrollView'})
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+                <div class="guide-nav-content">
+                    <h2 class="guide-nav-title">ScrollView</h2>
+                </div>
+            </nav>
+            <div class="guide-content">
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">ScrollView</h3>
+                        <p class="sub">[data-scroll-focus]</p>
+                    </header>
+
+                    <div class="scroll-view-wrap">
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view="view-right">View-Right</div>
+                        <div class="scroll-view" data-scroll-view="view-right">View-Right</div>
+                        <div class="scroll-view" data-scroll-view="view-left">View-Left</div>
+                        <div class="scroll-view" data-scroll-view="view-left">View-Left</div>
+                        <div class="scroll-view" data-scroll-view="view-down">View-Down</div>
+                        <div class="scroll-view" data-scroll-view="view-down">View-Down</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                    </div>
+
+                    <pre><code class="language-html">&lt;div class="scroll-view-wrap"&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-right"&gt;View-Right&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-right"&gt;View-Right&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-left"&gt;View-Left&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-left"&gt;View-Left&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-down"&gt;View-Down&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view="view-down"&gt;View-Down&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">ScrollView 유지</h3>
+                        <p class="sub">[data-scroll-focus][data-scroll-forward]</p>
+                    </header>
+
+                    <p class="guide-text">hide 기능이 없음.</p>
+
+                    <div class="scroll-view-wrap">
+                        <div class="scroll-view" data-scroll-view data-scroll-forward>View-Up</div>
+                        <div class="scroll-view" data-scroll-view data-scroll-forward>View-Up</div>
+                    </div>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Events</h3>
+                    </header>
+
+                    <p class="guide-text">시점에 따른 이벤트</p>
+
+                    <pre><code class="language-js">document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
+    el.addEventListener('scrollView.shown', function (e) {
+        // animationend로 trigger 생성
+        console.log(e.target, 'shown');
+    })
+    el.addEventListener('scrollView.hidden', function (e) {
+        // transitionend로 trigger 생성
+        console.log(e.target, 'hidden');
+    })
+})</code></pre>
+                </section>
+
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Method</h3>
+                    </header>
+
+                    <p class="guide-text">Component 호출(feat. 비동기)</p>
+                    <pre><code class="language-js">// 기존 방식대로 호출하면 이벤트 중복때문에 해당 방식으로 호출 함.
+const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</code></pre>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/vendor/prism.js"></script>
+    <script src="../resources/js/ui.js"></script>
+    <script>
+        const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)
+
+        document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
+            el.addEventListener('scrollView.shown', function (e) {
+                // animationend로 trigger 생성
+                console.log(e.target, 'shown');
+            })
+            el.addEventListener('scrollView.hidden', function (e) {
+                // transitionend로 trigger 생성
+                console.log(e.target, 'hidden');
+            })
+        })
+    </script>
+</body>
+
+</html>
