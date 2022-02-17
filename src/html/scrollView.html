@@ -78,6 +78,7 @@
 
                     <pre><code class="language-js">document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
     el.addEventListener('scrollView.shown', function (e) {
+        /* e.target: [data-scroll-view] */
         // animationend로 trigger 생성
         console.log(e.target, 'shown');
     })
