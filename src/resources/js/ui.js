@@ -43,4 +43,7 @@ window.addEventListener('DOMContentLoaded', function () {
   init();
 });
 
+// 전역객체로 선언
+window.SKY = { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Common, UIInitializer };
+
 export { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Common, UIInitializer };
