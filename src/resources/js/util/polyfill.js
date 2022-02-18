@@ -19,22 +19,20 @@ export default function polyfill() {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
   // IE CustomEvent 대응
-  (function () {
-    if (typeof window.CustomEvent === 'function') return false;
-
-    function CustomEvent(event, params) {
-      params = params || {
-        bubbles: false,
-        cancelable: false,
-        detail: undefined
-      };
-      var evt = document.createEvent('CustomEvent');
-      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-      return evt;
-    }
+  function CustomEvent(event, params) {
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: undefined
+    };
+    var evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
+  if (typeof window.CustomEvent !== 'function') {
     CustomEvent.prototype = window.Event.prototype;
     window.CustomEvent = CustomEvent;
-  })();
+  }
   // IE remove 대응
   if (!('remove' in Element.prototype)) {
     Element.prototype.remove = function () {

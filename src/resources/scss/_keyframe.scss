@@ -26,12 +26,14 @@ $timing-out: cubic-bezier(0.36, 0, 0.66, -0.56);
 // modal default show
 @keyframes modal-in {
     0% {
-        transform: translate(-50%, -70%);
+        transform: translate(-50%, -50%) scale(0.8);
+        // transform: translate(-50%, -70%);
         opacity: 0;
     }
 
     100% {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(1);
+        // transform: translate(-50%, -50%);
         opacity: 1;
     }
 }
@@ -39,12 +41,14 @@ $timing-out: cubic-bezier(0.36, 0, 0.66, -0.56);
 // modal default hide
 @keyframes modal-out {
     0% {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(1);
+        // transform: translate(-50%, -50%);
         opacity: 1;
     }
 
     100% {
-        transform: translate(-50%, -70%);
+        transform: translate(-50%, -50%) scale(0.8);
+        // transform: translate(-50%, -70%);
         opacity: 0;
     }
 }
@@ -52,12 +56,14 @@ $timing-out: cubic-bezier(0.36, 0, 0.66, -0.56);
 // modal full show
 @keyframes modal-full-in {
     0% {
-        transform: translate(-50%, -20%);
+        transform: translate(-50%, 0%) scale(0.8);
+        // transform: translate(-50%, -20%);
         opacity: 0;
     }
 
     100% {
-        transform: translate(-50%, 0%);
+        // transform: translate(-50%, 0%);
+        transform: translate(-50%, 0%) scale(1);
         opacity: 1;
     }
 }
@@ -65,12 +71,14 @@ $timing-out: cubic-bezier(0.36, 0, 0.66, -0.56);
 // modal full hide
 @keyframes modal-full-out {
     0% {
-        transform: translate(-50%, 0%);
+        transform: translate(-50%, 0%) scale(1);
+        // transform: translate(-50%, 0%);
         opacity: 1;
     }
 
     100% {
-        transform: translate(-50%, -20%);
+        transform: translate(-50%, 0%) scale(0.8);
+        // transform: translate(-50%, -20%);
         opacity: 0;
     }
 }
@@ -129,6 +137,7 @@ $timing-out: cubic-bezier(0.36, 0, 0.66, -0.56);
         transform: translateY(-25%);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
