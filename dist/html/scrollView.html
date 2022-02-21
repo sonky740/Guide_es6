@@ -58,20 +58,20 @@
                     </header>
 
                     <div class="scroll-view-wrap">
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View</div>
+                        <div class="scroll-view" data-scroll-view>View</div>
+                        <div class="scroll-view" data-scroll-view>View</div>
+                        <div class="scroll-view" data-scroll-view>View</div>
+                        <div class="scroll-view" data-scroll-view="view-up">View-Up</div>
+                        <div class="scroll-view" data-scroll-view="view-up">View-Up</div>
                         <div class="scroll-view" data-scroll-view="view-right">View-Right</div>
                         <div class="scroll-view" data-scroll-view="view-right">View-Right</div>
                         <div class="scroll-view" data-scroll-view="view-left">View-Left</div>
                         <div class="scroll-view" data-scroll-view="view-left">View-Left</div>
                         <div class="scroll-view" data-scroll-view="view-down">View-Down</div>
                         <div class="scroll-view" data-scroll-view="view-down">View-Down</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div id="scroll-view" class="scroll-view" data-scroll-view>View-Up</div>
+                        <div class="scroll-view" data-scroll-view>View</div>
+                        <div id="scroll-view" class="scroll-view" data-scroll-view>View</div>
                     </div>
 
                     <pre><code class="language-html">&lt;div class="scroll-view-wrap"&gt;
@@ -106,7 +106,7 @@
                     </div>
                 </section>
 
-                <!-- <section class="guide-section">
+                <section class="guide-section">
                     <header>
                         <h3 class="guide-section-title">Events</h3>
                     </header>
@@ -116,15 +116,13 @@
                     <pre><code class="language-js">document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
     el.addEventListener('scrollView.shown', function (e) {
         /* e.target: [data-scroll-view] */
-        // animationend로 trigger 생성
         console.log(e.target, 'shown');
     })
     el.addEventListener('scrollView.hidden', function (e) {
-        // transitionend로 trigger 생성
         console.log(e.target, 'hidden');
     })
 })</code></pre>
-                </section> -->
+                </section>
 
                 <section class="guide-section">
                     <header>
@@ -147,16 +145,14 @@ const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</
     <script>
         // const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView);
 
-        // document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
-        //     el.addEventListener('scrollView.shown', function (e) {
-        //         // animationend로 trigger 생성
-        //         console.log(e.target, 'shown');
-        //     })
-        //     el.addEventListener('scrollView.hidden', function (e) {
-        //         // transitionend로 trigger 생성
-        //         console.log(e.target, 'hidden');
-        //     })
-        // })
+        document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
+          el.addEventListener('scrollView.shown', function (e) {
+            console.log(e.target, 'shown');
+          })
+          el.addEventListener('scrollView.hidden', function (e) {
+            console.log(e.target, 'hidden');
+          })
+        })
     </script>
 </body>
 

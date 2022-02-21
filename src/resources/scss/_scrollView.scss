@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(50% - 1.6rem);
+    width: calc(50% - 2rem);
     height: 200px;
     min-width: 280px;
     text-align: center;
@@ -15,11 +15,13 @@
     &-wrap {
         display: flex;
         flex-wrap: wrap;
-        margin: -1.6rem 0 0 -1.6rem;
+        margin: -2rem -2rem 0 -2rem;
+        padding: 2rem 2rem 0 0;
         padding-bottom: 6rem;
+        overflow: hidden;
 
         #{$root} {
-            margin: 1.6rem 0 0 1.6rem;
+            margin: 2rem 0 0 2rem;
         }
     }
 }
@@ -33,60 +35,36 @@
         opacity: 1;
         visibility: visible;
     }
+}
+
+[data-scroll-view="view-up"] {
+    transform: translateY(15%);
 
     &.view-up {
-        animation: viewUp .5s forwards;
-
-        @keyframes viewUp {
-            0% {
-                transform: translateY(15%);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
+        transform: translateY(0);
     }
+}
+
+[data-scroll-view="view-down"] {
+    transform: translateY(-15%);
 
     &.view-down {
-        animation: viewDown .5s forwards;
-
-        @keyframes viewDown {
-            0% {
-                transform: translateY(-15%);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
+        transform: translateY(0);
     }
+}
+
+[data-scroll-view="view-right"] {
+    transform: translateX(-15%);
 
     &.view-right {
-        animation: viewRight .5s forwards;
-
-        @keyframes viewRight {
-            0% {
-                transform: translateX(-15%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
+        transform: translateX(0);
     }
+}
+
+[data-scroll-view="view-left"] {
+    transform: translateX(15%);
 
     &.view-left {
-        animation: viewLeft .5s forwards;
-
-        @keyframes viewLeft {
-            0% {
-                transform: translateX(15%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
+        transform: translateX(0);
     }
 }
