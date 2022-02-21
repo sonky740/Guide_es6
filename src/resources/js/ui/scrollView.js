@@ -3,7 +3,7 @@ import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 
 const NAME = 'scrollView';
-const EVENT_KEY = `${NAME}`;
+// const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
   onClass: 'on',
@@ -19,7 +19,7 @@ class ScrollView extends BaseComponent {
     };
 
     this._top = this._element.getBoundingClientRect().top;
-    this._viewH = window.innerHeight;
+    this._viewH = document.documentElement.clientHeight;
     this._multiple = Number(this._element.dataset.multiple) || 7 / 10;
     this._effectClass = this._element.dataset.scrollView || 'view-up';
 
@@ -38,7 +38,7 @@ class ScrollView extends BaseComponent {
     ['scroll', 'resize'].forEach(events => {
       EventHandler.on(window, events, () => {
         this._top = this._element.getBoundingClientRect().top;
-        this._viewH = window.innerHeight;
+        this._viewH = document.documentElement.clientHeight;
 
         if (this._top < this._viewH * this._multiple) {
           this._show();
@@ -54,9 +54,9 @@ class ScrollView extends BaseComponent {
     this._element.classList.add(this._config.onClass);
     this._element.classList.add(this._effectClass);
 
-    EventHandler.one(this._element, 'animationend', () => {
-      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element });
-    });
+    // EventHandler.one(this._element, 'animationend', () => {
+    //   EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element });
+    // });
   }
 
   _hide() {
@@ -64,9 +64,9 @@ class ScrollView extends BaseComponent {
     this._element.classList.remove(this._config.onClass);
     this._element.classList.remove(this._effectClass);
 
-    EventHandler.one(this._element, 'transitionend', () => {
-      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element });
-    });
+    // EventHandler.one(this._element, 'transitionend', () => {
+    //   EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element });
+    // });
   }
 
   static getInstance(element) {

@@ -34,7 +34,7 @@
                         <div class="scroll-view" data-scroll-view>View-Up</div>
                         <div class="scroll-view" data-scroll-view>View-Up</div>
                         <div class="scroll-view" data-scroll-view>View-Up</div>
-                        <div class="scroll-view" data-scroll-view>View-Up</div>
+                        <div id="scroll-view" class="scroll-view" data-scroll-view>View-Up</div>
                     </div>
 
                     <pre><code class="language-html">&lt;div class="scroll-view-wrap"&gt;
@@ -51,7 +51,7 @@
     &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
     &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
     &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
-    &lt;div class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
+    &lt;div id="scroll-view" class="scroll-view" data-scroll-view&gt;View-Up&lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </section>
 
@@ -69,7 +69,7 @@
                     </div>
                 </section>
 
-                <section class="guide-section">
+                <!-- <section class="guide-section">
                     <header>
                         <h3 class="guide-section-title">Events</h3>
                     </header>
@@ -87,7 +87,7 @@
         console.log(e.target, 'hidden');
     })
 })</code></pre>
-                </section>
+                </section> -->
 
                 <section class="guide-section">
                     <header>
@@ -95,7 +95,10 @@
                     </header>
 
                     <p class="guide-text">Component 호출(feat. 비동기)</p>
-                    <pre><code class="language-js">// 기존 방식대로 호출하면 이벤트 중복때문에 해당 방식으로 호출 함.
+                    <pre><code class="language-js">const scEl = document.querySelector('#scroll-view');
+const sc = new SKY.ScrollView(scEl);
+
+// data-scroll-view가 많을 경우
 const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</code></pre>
                 </section>
             </div>
@@ -105,18 +108,18 @@ const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)
+        // const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView);
 
-        document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
-            el.addEventListener('scrollView.shown', function (e) {
-                // animationend로 trigger 생성
-                console.log(e.target, 'shown');
-            })
-            el.addEventListener('scrollView.hidden', function (e) {
-                // transitionend로 trigger 생성
-                console.log(e.target, 'hidden');
-            })
-        })
+        // document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
+        //     el.addEventListener('scrollView.shown', function (e) {
+        //         // animationend로 trigger 생성
+        //         console.log(e.target, 'shown');
+        //     })
+        //     el.addEventListener('scrollView.hidden', function (e) {
+        //         // transitionend로 trigger 생성
+        //         console.log(e.target, 'hidden');
+        //     })
+        // })
     </script>
 </body>
 
