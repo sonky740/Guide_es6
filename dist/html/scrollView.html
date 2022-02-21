@@ -142,16 +142,16 @@ const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)
+        // const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)
 
         document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
           el.addEventListener('scrollView.shown', function (e) {
             // animationend로 trigger 생성
-            console.log(e.target, 'shown');
+            alert(e.target, 'shown');
           })
           el.addEventListener('scrollView.hidden', function (e) {
             // transitionend로 trigger 생성
-            console.log(e.target, 'hidden');
+            alert(e.target, 'hidden');
           })
         })
     </script>
