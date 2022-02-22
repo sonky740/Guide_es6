@@ -152,23 +152,11 @@ $ly-nav-width: 6.4rem;
                 height: 100%;
                 background: rgba(0, 0, 0, .9);
             }
-
-            @keyframes ly-nav-content-on {
-                0% {
-                    transform: translateX(75%);
-                    opacity: 0;
-                }
-
-                100% {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
         }
 
         &.off {
             display: flex;
-            animation: ly-nav-content-off .4s $timing-out forwards;
+            animation: ly-nav-content-on .4s $timing-in reverse;
 
             &:after {
                 content: "";
@@ -179,17 +167,17 @@ $ly-nav-width: 6.4rem;
                 height: 100%;
                 background: rgba(0, 0, 0, .9);
             }
+        }
 
-            @keyframes ly-nav-content-off {
-                0% {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
+        @keyframes ly-nav-content-on {
+            0% {
+                transform: translateX(75%);
+                opacity: 0;
+            }
 
-                100% {
-                    transform: translateX(75%);
-                    opacity: 0;
-                }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
     }

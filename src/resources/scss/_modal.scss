@@ -152,25 +152,25 @@ $modal-duration: .4s;
         display: block;
 
         &:before {
-            animation: modal-dim-out $modal-duration;
+            animation: modal-dim-in $modal-duration reverse;
         }
 
         // 기본
         .ly-modal-wrap {
-            animation: modal-out $modal-duration $timing-out forwards;
+            animation: modal-in $modal-duration $timing-in reverse;
         }
 
         // full 팝업
         &.full {
             .ly-modal-wrap {
-                animation: modal-full-out $modal-duration $timing-out forwards;
+                animation: modal-full-in $modal-duration $timing-in reverse;
             }
         }
 
         // btm 팝업
         &.btm {
             .ly-modal-wrap {
-                animation: modal-btm-out $modal-duration $timing-out forwards;
+                animation: modal-btm-in $modal-duration $timing-in reverse;
             }
         }
     }

@@ -34,7 +34,7 @@
 
     &.hiding {
         display: block;
-        animation: tab-out .2s forwards;
+        animation: tab-in .2s reverse;
     }
 
     &.hidden {
