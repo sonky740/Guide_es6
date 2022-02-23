@@ -1,6 +1,11 @@
 import EventHandler from '../util/eventHandler';
 import { getClientInfo, numberComma } from '../util/util.js';
 
+const windowHeight = () => {
+  let vh = window.innerHeight;
+  return document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
 const mobileCheck = () => {
   getClientInfo().mo !== null ? document.body.classList.add('mo') : document.body.classList.remove('mo');
 };
@@ -44,6 +49,7 @@ const counter = () => {
 
 // 전체 실행 함수
 const init = () => {
+  windowHeight();
   mobileCheck();
   inputDelete();
   if (document.querySelectorAll('[data-counter]').length) counter();
@@ -52,6 +58,7 @@ const init = () => {
 // 내보내기
 const Common = {
   init,
+  windowHeight,
   mobileCheck,
   inputDelete,
   counter
