@@ -65,6 +65,7 @@ const Common = {
 };
 
 window.addEventListener('resize', () => {
+  windowHeight();
   mobileCheck();
 });
 
