@@ -67,6 +67,11 @@ class Modal extends BaseComponent {
 
     // window scroll 방지
     document.body.classList.add('modal-open');
+    let x = window.scrollX;
+    let y = window.scrollY;
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, {
       target: this._element,
@@ -122,6 +127,7 @@ class Modal extends BaseComponent {
       arr.some(isOpen => {
         if (!isOpen) {
           document.body.classList.remove('modal-open');
+          window.onscroll = function () {};
         }
         return isOpen === true;
       });
