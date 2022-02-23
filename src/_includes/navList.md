@@ -1,3 +1,4 @@
+<h2 class="content-title">Component List</h2>
 <ul class="comp-list">
     <li><a href="./modal.html">Modal</a></li>
     <li><a href="./accordion.html">Accordion</a></li>

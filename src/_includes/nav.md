@@ -5,7 +5,8 @@
         <p class="ly-nav-port"><a href="https://sonkypf.vercel.app/" target="_blank">P<span>ortfolio</span></a></p>
     </header>
     <div class="ly-nav-content">
-        <h2 class="ly-nav-content-title">Component List</h2>
-        @@include('./src/_includes/navList.md')
+        <div>
+            @@include('./src/_includes/navList.md')
+        </div>
     </div>
 </nav>
