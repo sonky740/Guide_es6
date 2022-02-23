@@ -49,9 +49,7 @@ class Modal extends BaseComponent {
     });
 
     // 바텀 모달이고, data-modal-touch가 true일 때
-    if (this._element.classList.contains('btm') && this._element.dataset.modalTouch === 'true') {
-      this._touchMove();
-    }
+    this._touchMove();
   }
 
   show(e) {
@@ -146,31 +144,27 @@ class Modal extends BaseComponent {
   }
 
   _touchMove() {
-    EventHandler.on(this._header, 'touchstart', e => {
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      this._touchStart = e.touches[0].screenY;
-    });
-    EventHandler.on(this._header, 'touchmove', e => {
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      this._distance = e.touches[0].screenY - this._touchStart;
-      if (this._distance > 0) {
-        this._wrap.style.bottom = `${-this._distance}px`;
-      }
-    });
-    EventHandler.on(this._header, 'touchend', e => {
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      if (this._distance < 80) {
-        this._wrap.removeAttribute('style');
-      } else if (this._distance > 80) {
-        this.hide();
-        EventHandler.one(this._element, `${EVENT_KEY}.hidden`, () => {
+    if (this._element.classList.contains('btm') && this._element.dataset.modalTouch === 'true') {
+      EventHandler.on(this._header, 'touchstart', e => {
+        this._touchStart = e.touches[0].screenY;
+      });
+      EventHandler.on(this._header, 'touchmove', e => {
+        this._distance = e.touches[0].screenY - this._touchStart;
+        if (this._distance > 0) {
+          this._wrap.style.bottom = `${-this._distance}px`;
+        }
+      });
+      EventHandler.on(this._header, 'touchend', () => {
+        if (this._distance < 80) {
           this._wrap.removeAttribute('style');
-        });
-      }
-    });
+        } else if (this._distance > 80) {
+          this.hide();
+          EventHandler.one(this._element, `${EVENT_KEY}.hidden`, () => {
+            this._wrap.removeAttribute('style');
+          });
+        }
+      });
+    }
   }
 
   static getInstance(element) {
