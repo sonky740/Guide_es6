@@ -9,3 +9,7 @@
     <li><a href="./range.html">Range</a></li>
     <li><a href="./checkbox.html">Checkbox</a></li>
 </ul>
+<h2 class="content-title">ETC</h2>
+<ul class="comp-list">
+    <li><a href="./counter.html">Counter</a></li>
+</ul>
