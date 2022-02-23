@@ -14,7 +14,7 @@ $modal-duration: .4s;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--vh, 100vh);
+    height: 100%;
     z-index: 1001;
 
     &:focus {
