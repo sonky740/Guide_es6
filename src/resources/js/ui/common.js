@@ -32,7 +32,9 @@ const counter = () => {
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        EventHandler.trigger(el, 'counter.end', { target: el });
+        EventHandler.trigger(el, 'counter.end', {
+          target: el
+        });
       }
     };
 

@@ -55,7 +55,9 @@ class ScrollView extends BaseComponent {
     this._element.classList.add(this._effectClass);
 
     EventHandler.one(this._element, 'transitionend', () => {
-      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: this._element });
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, {
+        target: this._element
+      });
     });
   }
 
@@ -65,7 +67,9 @@ class ScrollView extends BaseComponent {
     this._element.classList.remove(this._effectClass);
 
     EventHandler.one(this._element, 'transitionend', () => {
-      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: this._element });
+      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, {
+        target: this._element
+      });
     });
   }
 

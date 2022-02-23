@@ -74,7 +74,12 @@ class Accordion extends BaseComponent {
 
     if (item.classList.contains('on')) return false;
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { item: item, header: header, trigger: trigger, target: target });
+    EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, {
+      item: item,
+      header: header,
+      trigger: trigger,
+      target: target
+    });
 
     item.classList.add('on');
     trigger.classList.add('on');
@@ -89,7 +94,12 @@ class Accordion extends BaseComponent {
       target.removeAttribute('style');
       this._isMoving = false;
 
-      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { item: item, header: header, trigger: trigger, target: target });
+      EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, {
+        item: item,
+        header: header,
+        trigger: trigger,
+        target: target
+      });
     };
 
     // data-accr = "only" 하나만 열릴 때
@@ -121,7 +131,12 @@ class Accordion extends BaseComponent {
 
     if (!item.classList.contains('on')) return false;
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, { item: item, header: header, trigger: trigger, target: target });
+    EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, {
+      item: item,
+      header: header,
+      trigger: trigger,
+      target: target
+    });
 
     trigger.classList.remove('on');
     trigger.querySelector('.blind').innerText = '펼치기';
@@ -137,7 +152,12 @@ class Accordion extends BaseComponent {
       item.classList.remove('on');
       this._isMoving = false;
 
-      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { item: item, header: header, trigger: trigger, target: target });
+      EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, {
+        item: item,
+        header: header,
+        trigger: trigger,
+        target: target
+      });
     };
 
     // transition

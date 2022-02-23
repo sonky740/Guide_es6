@@ -55,7 +55,9 @@ class Range extends BaseComponent {
     const value = document.getElementById(`${this._range.dataset.rangeValue}`);
     if (value) value.innerText = numberComma(this._range.value);
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.input`, { value: this._value });
+    EventHandler.trigger(this._element, `${EVENT_KEY}.input`, {
+      value: this._value
+    });
   }
 
   startInput() {
@@ -74,7 +76,9 @@ class Range extends BaseComponent {
     const value = document.getElementById(`${this._startRange.dataset.rangeStartvalue}`);
     if (value) value.innerText = numberComma(this._startRange.value);
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, { value: this._multiValues });
+    EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, {
+      value: this._multiValues
+    });
   }
 
   endInput() {
@@ -92,7 +96,9 @@ class Range extends BaseComponent {
       value.innerText = numberComma(this._endRange.value) + this._endRange.dataset.rangeMax;
     }
 
-    EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, { value: this._multiValues });
+    EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, {
+      value: this._multiValues
+    });
   }
 
   static getInstance(element) {

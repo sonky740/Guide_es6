@@ -65,6 +65,17 @@
 
                 <section class="guide-section">
                     <header>
+                        <h3 class="guide-section-title">Bottom Modal Touch Enabled</h3>
+                        <p class="sub">.ly-modal.btm[data-modal][data-modal-touch="true"]</p>
+                    </header>
+
+                    <p class="guide-text">헤더 부분을 일정 수치만큼(80px) 내리면 닫히는 bottom 모달</p>
+
+                    <button type="button" class="guide-btn" data-modal-trigger="modal3_1">모달 호출</button>
+                </section>
+
+                <section class="guide-section">
+                    <header>
                         <h3 class="guide-section-title">No Animation Modal</h3>
                         <p class="sub">.ly-modal[data-modal][data-animation="false"]</p>
                     </header>
@@ -172,6 +183,19 @@ const modal = new SKY.Modal(modalEl);
             </header>
             <div class="ly-modal-content">
                 내용
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 - 바텀 - 터치 가능 -->
+    <div id="modal3_1" class="ly-modal btm" data-modal data-modal-touch="true">
+        <div class="ly-modal-wrap">
+            <header class="ly-modal-header">
+                <h1 class="ly-modal-title">모달 타이틀</h1>
+                <button type="button" class="ly-modal-close" data-modal-close><span class="blind">닫기</span></button>
+            </header>
+            <div class="ly-modal-content">
+                80px 내리면 닫혀요.
             </div>
         </div>
     </div>
