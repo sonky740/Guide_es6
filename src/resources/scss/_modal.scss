@@ -1,7 +1,7 @@
 $modal-duration: .4s;
 
 .modal-open {
-    overflow: hidden;
+    overflow: hidden !important;
 
     &:not(.mo) {
         padding-right: 17px;

@@ -141,15 +141,21 @@ class Modal extends BaseComponent {
 
   _touchMove() {
     EventHandler.on(this._header, 'touchstart', e => {
+      e.stopPropagation();
+      e.stopImmediatePropagation();
       this._touchStart = e.touches[0].screenY;
     });
     EventHandler.on(this._header, 'touchmove', e => {
+      e.stopPropagation();
+      e.stopImmediatePropagation();
       this._distance = e.touches[0].screenY - this._touchStart;
       if (this._distance > 0) {
         this._wrap.style.bottom = `${-this._distance}px`;
       }
     });
-    EventHandler.on(this._header, 'touchend', () => {
+    EventHandler.on(this._header, 'touchend', e => {
+      e.stopPropagation();
+      e.stopImmediatePropagation();
       if (this._distance < 80) {
         this._wrap.removeAttribute('style');
       } else if (this._distance > 80) {
