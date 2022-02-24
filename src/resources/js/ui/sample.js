@@ -11,6 +11,7 @@ const defaultConfig = {
   hiding: 'hiding',
   hidden: 'hidden'
 };
+
 class Sample extends BaseComponent {
   constructor(element, config) {
     super(element);

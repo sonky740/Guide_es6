@@ -12,4 +12,5 @@
 <h2 class="content-title">ETC</h2>
 <ul class="comp-list">
     <li><a href="./counter.html">Counter</a></li>
+    <li><a href="./wordle.html">Wordle</a></li>
 </ul>

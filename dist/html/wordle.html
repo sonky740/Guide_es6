@@ -18,7 +18,7 @@
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
     </script>
-    <title>SKY | Counter</title>
+    <title>SKY | Wordle</title>
 </head>
 
 <body>
@@ -54,48 +54,19 @@
         <div class="ly-content">
             <nav class="guide-nav">
                 <div class="guide-nav-content">
-                    <h2 class="guide-nav-title">Counter</h2>
+                    <h2 class="guide-nav-title">Wordle</h2>
                 </div>
             </nav>
             <div class="guide-content">
                 <section class="guide-section">
                     <header>
-                        <h3 class="guide-section-title">Counter</h3>
-                        <p class="sub">[data-counter]</p>
+                        <h3 class="guide-section-title">Wordle</h3>
                     </header>
 
-                    <p data-counter="4014" data-init-number="200" data-duration="2000" data-comma="true">0</p>
-                    <p data-counter="4014" data-init-number="20000" data-duration="2000">0</p>
+                    <p class="guide-text">5글자 영어, 총 24단어 중에 랜덤하게 나옴.</p>
+                    <p class="guide-text">초록색: 위치까지 정답,<br>노란색: 자리는 맞지 않지만 정답에 포함됨,<br>회색: 답에 없는 글자</p>
 
-                    <pre><code class="language-html">&lt;!-- data-counter: 도착 수치 --&gt;
-&lt;!-- data-init-number: 시작 수치 --&gt;
-&lt;!-- data-duration: 걸리는 시간 --&gt;
-&lt;!-- data-comma: 세자릿수 comma 표기 여부 --&gt;
-&lt;p data-counter="4014" data-init-number="200" data-duration="2000" data-comma="true"&gt;0&lt;/p&gt;
-&lt;p data-counter="4014" data-init-number="20000" data-duration="2000"&gt;0&lt;/p&gt;</code></pre>
-                </section>
-
-                <section class="guide-section">
-                    <header>
-                        <h3 class="guide-section-title">Events</h3>
-                    </header>
-
-                    <p class="guide-text">시점에 따른 이벤트</p>
-
-                    <pre><code class="language-js">document.querySelectorAll('[data-counter]').forEach(function (el) {
-    el.addEventListener('counter.end', function (e) {
-    console.log(e.target, 'counter end')
-    })
-})</code></pre>
-                </section>
-
-                <section class="guide-section">
-                    <header>
-                        <h3 class="guide-section-title">Method</h3>
-                    </header>
-
-                    <p class="guide-text">Component 호출(feat. 비동기)</p>
-                    <pre><code class="language-js">new SKY.Common.counter();</code></pre>
+                    <form class="wordle-wrap" data-wordle></form>
                 </section>
             </div>
         </div>
@@ -104,11 +75,7 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-        document.querySelectorAll('[data-counter]').forEach(function (el) {
-          el.addEventListener('counter.end', function (e) {
-            console.log(e.target, 'counter end')
-          })
-        })
+
     </script>
 </body>
 

@@ -9,6 +9,7 @@ import ScrollView from './ui/scrollView.js';
 import Range from './ui/range.js';
 import Checkbox from './ui/checkbox.js';
 import Common from './ui/common.js';
+import Wordle from './ui/wordle.js';
 
 /**
  * @author 손기연
@@ -33,6 +34,7 @@ const init = () => {
   UIInitializer('[data-checkbox]', Checkbox);
   UIInitializer('[data-scroll-view]', ScrollView);
 
+  UIInitializer('[data-wordle]', Wordle);
   Common.init();
 };
 

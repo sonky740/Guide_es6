@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+@@include('./src/_includes/head.md', {title: 'SKY | Wordle'})
+
+<body>
+    <div class="ly-wrap">
+        @@include('./src/_includes/nav.md')
+
+        <div class="ly-content">
+            <nav class="guide-nav">
+                <div class="guide-nav-content">
+                    <h2 class="guide-nav-title">Wordle</h2>
+                </div>
+            </nav>
+            <div class="guide-content">
+                <section class="guide-section">
+                    <header>
+                        <h3 class="guide-section-title">Wordle</h3>
+                    </header>
+
+                    <p class="guide-text">5글자 영어, 총 24단어 중에 랜덤하게 나옴.</p>
+                    <p class="guide-text">초록색: 위치까지 정답,<br>노란색: 자리는 맞지 않지만 정답에 포함됨,<br>회색: 답에 없는 글자</p>
+
+                    <form class="wordle-wrap" data-wordle></form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../resources/js/vendor/prism.js"></script>
+    <script src="../resources/js/ui.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
