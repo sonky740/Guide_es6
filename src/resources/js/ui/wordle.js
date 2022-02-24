@@ -14,7 +14,7 @@ const defaultConfig = {
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
   </div>`,
   btn: `<button type="button" class="wordle-btn" data-wordle-btn>확인</button>`,
-  answer: ['apple', 'black', 'candy', 'dream', 'every', 'floor', 'ghost', 'happy', 'inner', 'juice', 'korea', 'light', 'money', 'norse', 'pizza', 'queen', 'river', 'sleep', 'today', 'under', 'white', 'zeals']
+  answer: ['APPLE', 'BLACK', 'CANDY', 'DREAM', 'EVERY', 'FLOOR', 'GHOST', 'HAPPY', 'INNER', 'JUICE', 'KOREA', 'LIGHT', 'MONEY', 'NURSE', 'PIZZA', 'QUEEN', 'RIVER', 'SLEEP', 'TODAY', 'UNDER', 'WHITE', 'ZEALS']
 };
 
 class Wordle extends BaseComponent {
@@ -59,9 +59,9 @@ class Wordle extends BaseComponent {
     for (let i = 0; i < this._input.length; i++) {
       missionText += this._input[i].value;
 
-      if (this._input[i].value === this._answer[i]) {
+      if (this._input[i].value.toUpperCase() === this._answer[i].toUpperCase()) {
         this._input[i].classList.add('wordle-answer');
-      } else if (this._answer.includes(this._input[i].value) && this._input[i].value !== '') {
+      } else if (this._answer.includes(this._input[i].value.toUpperCase()) && this._input[i].value !== '') {
         this._input[i].classList.add('wordle-half');
       } else {
         this._input[i].classList.add('wordle-wrong');
@@ -71,7 +71,7 @@ class Wordle extends BaseComponent {
       this._input[i].removeAttribute('data-wordle-input');
     }
 
-    if (missionText === this._answer) {
+    if (missionText.toUpperCase() === this._answer.toUpperCase()) {
       this._input[0].parentNode.classList.add('wordle-complete');
       // this._btn.innerText = '다시하기';
       this._btn.setAttribute('data-wordle-retry', '');
