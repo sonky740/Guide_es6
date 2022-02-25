@@ -25,6 +25,22 @@
                 }
             }
         }
+
+        &#{$root}-fail {
+            #{$root}-input {
+                animation: wordle-fail 0.1s alternate-reverse;
+                animation-iteration-count: 8;
+
+                @keyframes wordle-fail {
+                    0% {
+                        transform: translateX(2px);
+                    }
+                    100% {
+                        transform: translateX(-2px);
+                    }
+                }
+            }
+        }
     }
 
     &-input {
@@ -33,6 +49,7 @@
         text-align: center;
         border: 1px solid #222;
         border-radius: 0.4rem;
+        font-size: 1.6rem;
         text-transform: uppercase;
 
         &#{$root} {
@@ -54,5 +71,14 @@
         padding: 0.8rem;
         border: 1px solid #666;
         border-radius: 0.8rem;
+    }
+
+    &-number {
+        display: flex;
+        justify-content: flex-end;
+
+        >span {
+            margin-right: 0.4rem;
+        }
     }
 }
