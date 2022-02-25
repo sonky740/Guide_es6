@@ -67,10 +67,6 @@ class Wordle extends BaseComponent {
     for (let i = 0; i < inputs.length; i++) {
       missionText += inputs[i].value;
 
-      if (missionText === '') {
-        return false;
-      }
-
       if (inputs[i].value.toUpperCase() === this._answer[i].toUpperCase()) {
         inputs[i].classList.add('wordle-answer');
       } else if (this._answer.includes(inputs[i].value.toUpperCase()) && inputs[i].value !== '') {
