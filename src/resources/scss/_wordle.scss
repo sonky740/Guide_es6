@@ -54,13 +54,13 @@
 
         &#{$root} {
             &-answer {
-                background: #35a535;
+                background: #35a535 !important;
             }
             &-half {
-                background: #d7bf4a;
+                background: #d7bf4a !important;
             }
             &-wrong {
-                background: #737373;
+                background: #737373 !important;
             }
         }
     }
