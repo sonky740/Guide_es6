@@ -6,7 +6,10 @@ const NAME = 'wordle';
 // const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
-  number: `<p class="wordle-number"><span>실패 횟수: </span><strong data-wordle-number>0</strong></p>`,
+  info: `<div class="wordle-info">
+    <div><span>성공 횟수: </span><strong data-wordle-success>0</strong></div>
+    <div><span>실패 횟수: </span><strong data-wordle-number>0</strong></div>
+  </div>`,
   template: `<div class="wordle-row">
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
@@ -35,13 +38,17 @@ class Wordle extends BaseComponent {
 
   init() {
     this._element.insertAdjacentHTML('afterbegin', this._config.template);
-    this._element.insertAdjacentHTML('afterbegin', this._config.number);
+    this._element.insertAdjacentHTML('afterbegin', this._config.info);
     this._element.insertAdjacentHTML('beforeend', this._config.btn);
 
     this._number = 0;
+    this._success = localStorage.getItem('wordle-success') || 0;
     this._numberText = this._element.querySelector('[data-wordle-number]');
+    this._successText = this._element.querySelector('[data-wordle-success]');
     this._btn = this._element.querySelector('[data-wordle-btn]');
     this._answer = this._config.answer[Math.floor(Math.random() * this._config.answer.length)];
+
+    this._successText.innerText = this._success;
 
     EventHandler.on(this._btn, 'click', () => {
       if (!this._btn.hasAttribute('data-wordle-retry')) {
@@ -76,10 +83,15 @@ class Wordle extends BaseComponent {
       inputs[i].removeAttribute('data-wordle-input');
     }
 
+    // 성공 시
     if (missionText.toUpperCase() === this._answer.toUpperCase()) {
       inputs[0].parentNode.classList.add('wordle-complete');
       this._btn.innerText = '다시하기';
       this._btn.setAttribute('data-wordle-retry', '');
+
+      this._success++;
+      localStorage.setItem('wordle-success', this._success);
+      this._successText.innerText = this._success;
       return false;
     } else {
       inputs[0].parentNode.classList.add('wordle-fail');

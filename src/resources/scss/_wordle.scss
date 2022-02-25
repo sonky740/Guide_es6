@@ -52,15 +52,20 @@
         font-size: 1.6rem;
         text-transform: uppercase;
 
+        &:disabled {
+            opacity: 1;
+            -webkit-text-fill-color: inherit;
+        }
+
         &#{$root} {
             &-answer {
-                background: #35a535 !important;
+                background: #35a535;
             }
             &-half {
-                background: #d7bf4a !important;
+                background: #d7bf4a;
             }
             &-wrong {
-                background: #737373 !important;
+                background: #737373;
             }
         }
     }
@@ -73,9 +78,9 @@
         border-radius: 0.8rem;
     }
 
-    &-number {
+    &-info {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
 
         >span {
             margin-right: 0.4rem;
