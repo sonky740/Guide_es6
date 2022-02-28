@@ -8,6 +8,7 @@ import Toast from './ui/toast.js';
 import ScrollView from './ui/scrollView.js';
 import Range from './ui/range.js';
 import Checkbox from './ui/checkbox.js';
+import Counter from './ui/counter.js';
 import Common from './ui/common.js';
 import Wordle from './ui/wordle.js';
 
@@ -33,6 +34,7 @@ const init = () => {
   UIInitializer('[data-range]', Range);
   UIInitializer('[data-checkbox]', Checkbox);
   UIInitializer('[data-scroll-view]', ScrollView);
+  UIInitializer('[data-counter]', Counter);
 
   UIInitializer('[data-wordle]', Wordle);
   Common.init();
@@ -46,6 +48,6 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 // 전역객체로 선언
-window.SKY = { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Common, UIInitializer };
+window.SKY = { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Counter, Common, UIInitializer };
 
-export { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Common, UIInitializer };
+export { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Counter, Common, UIInitializer };

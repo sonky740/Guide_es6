@@ -39,8 +39,9 @@
                     <p class="guide-text">시점에 따른 이벤트</p>
 
                     <pre><code class="language-js">document.querySelectorAll('[data-counter]').forEach(function (el) {
+    /* 카운트 끝났을 때 */
     el.addEventListener('counter.end', function (e) {
-    console.log(e.target, 'counter end')
+        console.log(e.target, 'counter end')
     })
 })</code></pre>
                 </section>
@@ -51,7 +52,11 @@
                     </header>
 
                     <p class="guide-text">Component 호출(feat. 비동기)</p>
-                    <pre><code class="language-js">new SKY.Common.counter();</code></pre>
+                    <pre><code class="language-js">const counterEl = document.querySelector('[data-counter]');
+const counter = new SKY.Counter(counterEl);</code></pre>
+
+                    <p class="guide-text">카운트 시작</p>
+                    <pre><code class="language-js">counter.init();</code></pre>
                 </section>
             </div>
         </div>
@@ -60,9 +65,12 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
+        const counterEl = document.querySelector('[data-counter]');
+        const counter = new SKY.Counter(counterEl);
+
         document.querySelectorAll('[data-counter]').forEach(function (el) {
             el.addEventListener('counter.end', function (e) {
-            console.log(e.target, 'counter end')
+                console.log(e.target, 'counter end')
             })
         })
     </script>
