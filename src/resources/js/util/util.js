@@ -3,7 +3,7 @@
  * @param {Number} x
  * @returns {Number}
  */
-export function numberComma(x) {
+function numberComma(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
@@ -12,7 +12,7 @@ export function numberComma(x) {
  * @param {Element} node
  * @returns {Element[]} // 본인을 제외한 형제요소
  */
-export function siblings(node) {
+function siblings(node) {
   const children = node.parentElement.children;
   const tempArr = [];
 
@@ -30,7 +30,7 @@ export function siblings(node) {
  * @param {String} htmlString
  * @return {Element} 엘리먼트
  */
-export const toHTML = htmlString => {
+const toHTML = htmlString => {
   const div = document.createElement('div');
   div.innerHTML = htmlString.trim();
   return div.firstChild;
@@ -40,7 +40,7 @@ export const toHTML = htmlString => {
  * version check
  * @returns {Object} mo, iosVer, aosVer, name, version
  */
-export function getClientInfo() {
+function getClientInfo() {
   let userAgent = navigator.userAgent;
   let reg = null;
   const browser = {
@@ -106,3 +106,5 @@ export function getClientInfo() {
 
   return browser;
 }
+
+export { numberComma, siblings, toHTML, getClientInfo };

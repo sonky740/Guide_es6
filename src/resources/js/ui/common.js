@@ -1,5 +1,5 @@
-import EventHandler from '../util/eventHandler';
-import { getClientInfo, numberComma } from '../util/util.js';
+// import EventHandler from '../util/eventHandler';
+import { getClientInfo } from '../util/util.js';
 
 const windowHeight = () => {
   let vh = window.innerHeight;
