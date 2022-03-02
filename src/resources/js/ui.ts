@@ -1,7 +1,7 @@
 import polyfill from './util/polyfill.js';
 import lyNav from './layout/ly_nav.js';
 import Modal from './ui/modal.js';
-import Accordion from './ui/accordion.js';
+import Accordion from './ui/accordion';
 import Tab from './ui/tab.js';
 import Tooltip from './ui/tooltip.js';
 import Toast from './ui/toast.js';
@@ -18,7 +18,12 @@ import Wordle from './ui/wordle.js';
  * @namespace SKY
  */
 
-const UIInitializer = (target, UI, options = {}) => {
+interface UiType {
+  getInstance(el: Element): (el: Element) => object;
+  new (el: Element, options?: object): void;
+}
+
+const UIInitializer = (target: string, UI: UiType, options = {}) => {
   const elements = document.querySelectorAll(target);
   elements.forEach(el => {
     if (!UI.getInstance(el)) {
@@ -46,6 +51,12 @@ window.addEventListener('DOMContentLoaded', function () {
   lyNav();
   init();
 });
+
+declare global {
+  interface Window {
+    SKY: object;
+  }
+}
 
 // 전역객체로 선언
 window.SKY = { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Counter, Common, UIInitializer };
