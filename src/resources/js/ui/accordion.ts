@@ -22,9 +22,10 @@ interface ConfigType {
 
 class Accordion extends BaseComponent {
   private _config: ConfigType;
-  private _item: ArrayLike<HTMLElement>;
+  private _item: ArrayLike<Element>;
   private _isMoving: boolean;
   static NAME: string;
+
   constructor(element: HTMLElement, config: ConfigType) {
     super(element);
     this._config = {
@@ -41,14 +42,14 @@ class Accordion extends BaseComponent {
   }
 
   init() {
-    Array.from(this._item).forEach(item => {
-      const target: HTMLElement = item.querySelector('[data-accr-target]');
-      const trigger: HTMLElement = item.querySelector('[data-accr-trigger]');
+    Array.from(this._item).forEach((item: Element) => {
+      const target = item.querySelector('[data-accr-target]') as HTMLElement;
+      const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
 
       // 처음에 열려있다면...
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
-        trigger.querySelector('.blind').innerText = '접기';
+        trigger.querySelector<HTMLElement>('.blind').innerText = '접기';
         target.classList.add(this._config.shown);
       } else {
         target.classList.add(this._config.hidden);
@@ -70,7 +71,7 @@ class Accordion extends BaseComponent {
     });
   }
 
-  show(item: HTMLElement) {
+  show(item: Element) {
     if (typeof item === 'number') {
       const number = this._element.children[item];
       item = number;
@@ -79,9 +80,9 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    const header = item.querySelector('[data-accr-header]');
-    const trigger = item.querySelector('[data-accr-trigger]');
-    const target = item.querySelector('[data-accr-target]');
+    const header = item.querySelector('[data-accr-header]') as HTMLElement;
+    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+    const target = item.querySelector('[data-accr-target]') as HTMLElement;
 
     if (item.classList.contains('on')) return false;
 
@@ -94,7 +95,7 @@ class Accordion extends BaseComponent {
 
     item.classList.add('on');
     trigger.classList.add('on');
-    trigger.querySelector('.blind').innerText = '접기';
+    trigger.querySelector<HTMLElement>('.blind').innerText = '접기';
     target.classList.remove(this._config.hidden);
     target.classList.add(this._config.showing);
     target.style.height = `${target.scrollHeight}px`;
@@ -115,7 +116,7 @@ class Accordion extends BaseComponent {
 
     // data-accr = "only" 하나만 열릴 때
     if (this._element.dataset.accr === 'only') {
-      siblings(item).forEach(items => {
+      siblings(item).forEach((items: Element) => {
         if (item.classList.contains('on')) this.hide(items);
       });
     }
@@ -127,7 +128,7 @@ class Accordion extends BaseComponent {
     }
   }
 
-  hide(item: HTMLElement) {
+  hide(item: Element) {
     if (typeof item === 'number') {
       const number = this._element.children[item];
       item = number;
@@ -136,9 +137,9 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    const header = item.querySelector('[data-accr-header]');
-    const target = item.querySelector('[data-accr-target]');
-    const trigger = item.querySelector('[data-accr-trigger]');
+    const header = item.querySelector('[data-accr-header]') as HTMLElement;
+    const target = item.querySelector('[data-accr-target]') as HTMLElement;
+    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
 
     if (!item.classList.contains('on')) return false;
 
@@ -150,9 +151,9 @@ class Accordion extends BaseComponent {
     });
 
     trigger.classList.remove('on');
-    trigger.querySelector('.blind').innerText = '펼치기';
+    trigger.querySelector<HTMLElement>('.blind').innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
-    target.heightCache = target.scrollHeight;
+    target.style.height = `${target.scrollHeight}px`;
     target.classList.remove(this._config.shown);
     target.classList.add(this._config.hiding);
     target.removeAttribute('style');
@@ -193,7 +194,7 @@ class Accordion extends BaseComponent {
     });
   }
 
-  static getInstance(element: HTMLElement) {
+  static getInstance(element: Element) {
     return Data.getData(element, this.NAME);
   }
 }
