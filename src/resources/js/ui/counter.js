@@ -13,30 +13,37 @@ class Counter extends BaseComponent {
       ...config
     };
 
+    this._counter = 0;
+    this._initNumber = 0;
+    this._duration = 0;
+    this._comma = false;
+    this._startTime = 0;
+
     this.init();
 
     Data.setData(element, NAME, this);
   }
 
   init() {
-    this._initNumber = this._element.getAttribute('data-init-number');
-    this._duration = this._element.getAttribute('data-duration');
-    this._comma = this._element.getAttribute('data-comma');
-    this._startTime = null;
+    this._counter = Number(this._element.getAttribute('data-counter'));
+    this._initNumber = Number(this._element.getAttribute('data-init-number'));
+    this._duration = Number(this._element.getAttribute('data-duration'));
+    this._comma = Boolean(this._element.getAttribute('data-comma'));
+    this._startTime = 0;
 
     this._step();
   }
 
   _step() {
     const step = currentTime => {
-      if (!this._startTime) {
+      if (this._startTime === 0) {
         this._startTime = currentTime;
       }
       const progress = Math.min((currentTime - this._startTime) / this._duration, 1);
       if (this._comma) {
-        this._element.innerHTML = numberComma(Math.floor(progress * (this._element.getAttribute('data-counter') - Number(this._initNumber)) + Number(this._initNumber)));
+        this._element.innerHTML = numberComma(Math.floor(progress * (this._counter - this._initNumber) + this._initNumber));
       } else {
-        this._element.innerHTML = Math.floor(progress * (this._element.getAttribute('data-counter') - Number(this._initNumber)) + Number(this._initNumber));
+        this._element.innerHTML = Math.floor(progress * (this._counter - this._initNumber) + this._initNumber).toString();
       }
       if (progress < 1) {
         window.requestAnimationFrame(step);
