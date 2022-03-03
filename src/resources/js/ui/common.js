@@ -2,7 +2,7 @@
 import { getClientInfo } from '../util/util.js';
 
 const windowHeight = () => {
-  let vh = window.innerHeight;
+  const vh = window.innerHeight;
   return document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
 
