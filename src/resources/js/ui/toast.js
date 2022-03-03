@@ -1,5 +1,5 @@
-import EventHandler from '../util/eventHandler.js';
-import { toHTML } from '../util/util.js';
+import EventHandler from '../util/eventHandler';
+import { toHTML } from '../util/util';
 
 const NAME = 'toast';
 const EVENT_KEY = `${NAME}`;

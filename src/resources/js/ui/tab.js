@@ -1,7 +1,7 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { siblings } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { siblings } from '../util/util';
 
 const NAME = 'tab';
 const EVENT_KEY = `${NAME}`;
@@ -124,6 +124,10 @@ class Tab extends BaseComponent {
     } else {
       EventHandler.one(target, 'animationend', () => targetComplete());
     }
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

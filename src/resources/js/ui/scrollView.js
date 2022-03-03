@@ -1,6 +1,6 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
 
 const NAME = 'scrollView';
 const EVENT_KEY = `${NAME}`;
@@ -71,6 +71,10 @@ class ScrollView extends BaseComponent {
         target: this._element
       });
     });
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

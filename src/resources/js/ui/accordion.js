@@ -1,9 +1,9 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { siblings } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { siblings } from '../util/util';
 
-const NAME = 'accr';
+const NAME = 'accordion';
 const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
@@ -13,20 +13,8 @@ const defaultConfig = {
   hidden: 'hidden'
 };
 
-interface ConfigType {
-  showing: string;
-  shown: string;
-  hiding: string;
-  hidden: string;
-}
-
 class Accordion extends BaseComponent {
-  private _config: ConfigType;
-  private _item: ArrayLike<Element>;
-  private _isMoving: boolean;
-  static NAME: string;
-
-  constructor(element: HTMLElement, config: ConfigType) {
+  constructor(element, config) {
     super(element);
     this._config = {
       ...defaultConfig,
@@ -42,20 +30,20 @@ class Accordion extends BaseComponent {
   }
 
   init() {
-    Array.from(this._item).forEach((item: Element) => {
-      const target = item.querySelector('[data-accr-target]') as HTMLElement;
-      const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+    Array.from(this._item).forEach(item => {
+      const target = item.querySelector('[data-accr-target]');
+      const trigger = item.querySelector('[data-accr-trigger]');
 
       // 처음에 열려있다면...
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
-        trigger.querySelector<HTMLElement>('.blind').innerText = '접기';
+        trigger.querySelector('.blind').innerText = '접기';
         target.classList.add(this._config.shown);
       } else {
         target.classList.add(this._config.hidden);
       }
 
-      EventHandler.on(trigger, 'click', (e: MouseEvent) => {
+      EventHandler.on(trigger, 'click', e => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -71,7 +59,7 @@ class Accordion extends BaseComponent {
     });
   }
 
-  show(item: Element) {
+  show(item) {
     if (typeof item === 'number') {
       const number = this._element.children[item];
       item = number;
@@ -80,9 +68,9 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    const header = item.querySelector('[data-accr-header]') as HTMLElement;
-    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
-    const target = item.querySelector('[data-accr-target]') as HTMLElement;
+    const header = item.querySelector('[data-accr-header]');
+    const trigger = item.querySelector('[data-accr-trigger]');
+    const target = item.querySelector('[data-accr-target]');
 
     if (item.classList.contains('on')) return false;
 
@@ -95,7 +83,7 @@ class Accordion extends BaseComponent {
 
     item.classList.add('on');
     trigger.classList.add('on');
-    trigger.querySelector<HTMLElement>('.blind').innerText = '접기';
+    trigger.querySelector('.blind').innerText = '접기';
     target.classList.remove(this._config.hidden);
     target.classList.add(this._config.showing);
     target.style.height = `${target.scrollHeight}px`;
@@ -116,7 +104,7 @@ class Accordion extends BaseComponent {
 
     // data-accr = "only" 하나만 열릴 때
     if (this._element.dataset.accr === 'only') {
-      siblings(item).forEach((items: Element) => {
+      siblings(item).forEach(items => {
         if (item.classList.contains('on')) this.hide(items);
       });
     }
@@ -128,7 +116,7 @@ class Accordion extends BaseComponent {
     }
   }
 
-  hide(item: Element) {
+  hide(item) {
     if (typeof item === 'number') {
       const number = this._element.children[item];
       item = number;
@@ -137,9 +125,9 @@ class Accordion extends BaseComponent {
       item = string;
     }
 
-    const header = item.querySelector('[data-accr-header]') as HTMLElement;
-    const target = item.querySelector('[data-accr-target]') as HTMLElement;
-    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+    const header = item.querySelector('[data-accr-header]');
+    const target = item.querySelector('[data-accr-target]');
+    const trigger = item.querySelector('[data-accr-trigger]');
 
     if (!item.classList.contains('on')) return false;
 
@@ -151,9 +139,9 @@ class Accordion extends BaseComponent {
     });
 
     trigger.classList.remove('on');
-    trigger.querySelector<HTMLElement>('.blind').innerText = '펼치기';
+    trigger.querySelector('.blind').innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
-    target.style.height = `${target.scrollHeight}px`;
+    target.heightCache = target.scrollHeight;
     target.classList.remove(this._config.shown);
     target.classList.add(this._config.hiding);
     target.removeAttribute('style');
@@ -194,7 +182,11 @@ class Accordion extends BaseComponent {
     });
   }
 
-  static getInstance(element: Element) {
+  static get NAME() {
+    return NAME;
+  }
+
+  static getInstance(element) {
     return Data.getData(element, this.NAME);
   }
 }

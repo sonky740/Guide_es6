@@ -1,6 +1,6 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
 
 const NAME = 'checkbox';
 const EVENT_KEY = `${NAME}`;
@@ -51,6 +51,10 @@ class Checkbox extends BaseComponent {
         EventHandler.trigger(this._element, `${EVENT_KEY}.unchecked`);
       }
     });
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

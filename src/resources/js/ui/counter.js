@@ -1,7 +1,7 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { numberComma } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { numberComma } from '../util/util';
 
 const NAME = 'counter';
 const EVENT_KEY = `${NAME}`;
@@ -48,6 +48,10 @@ class Counter extends BaseComponent {
     };
 
     window.requestAnimationFrame(step);
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

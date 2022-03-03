@@ -1,19 +1,16 @@
 /**
  * 세자리마다 , 표시
- * @param {Number} x
- * @returns {Number}
  */
-function numberComma(x) {
+function numberComma(x: number): string {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 /**
  * 형제요소
- * @param {Element} node
- * @returns {Element[]} // 본인을 제외한 형제요소
  */
-function siblings(node) {
-  const children = node.parentElement.children;
+function siblings(node: HTMLElement) {
+  const parent = node.parentElement as HTMLElement;
+  const children = parent?.children as HTMLCollection;
   const tempArr = [];
 
   for (let i = 0; i < children.length; i++) {
@@ -30,7 +27,7 @@ function siblings(node) {
  * @param {String} htmlString
  * @return {Element} 엘리먼트
  */
-const toHTML = htmlString => {
+const toHTML = (htmlString: string) => {
   const div = document.createElement('div');
   div.innerHTML = htmlString.trim();
   return div.firstChild;
@@ -42,18 +39,17 @@ const toHTML = htmlString => {
  */
 function getClientInfo() {
   let userAgent = navigator.userAgent;
-  let reg = null;
   const browser = {
-    mo: null,
-    iosVer: null,
-    aosVer: null,
-    name: null,
-    version: null
+    mo: '',
+    iosVer: 0,
+    aosVer: 0,
+    name: '',
+    version: ''
   };
 
   // 모바일 OS 체크
-  const mobileArr = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
-  for (let txt in mobileArr) {
+  const mobileArr = ['iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson'];
+  for (const txt in mobileArr) {
     if (userAgent.match(mobileArr[txt]) != null) {
       browser.mo = mobileArr[txt];
     }
@@ -72,38 +68,44 @@ function getClientInfo() {
   userAgent = userAgent.toLowerCase();
 
   if (userAgent.indexOf('opr') !== -1) {
-    reg = /opr\/(\S+)/;
+    const reg = /opr\/(\S+)/;
+    const regArr = reg.exec(userAgent) as RegExpExecArray;
     browser.name = 'Opera';
-    browser.version = reg.exec(userAgent)[1];
+    browser.version = regArr[1];
   } else if (userAgent.indexOf('edge') !== -1) {
-    reg = /edge\/(\S+)/;
+    const reg = /edge\/(\S+)/;
+    const regArr = reg.exec(userAgent) as RegExpExecArray;
     browser.name = 'Edge';
-    browser.version = reg.exec(userAgent)[1];
+    browser.version = regArr[1];
   } else if (userAgent.indexOf('chrome') !== -1) {
-    reg = /chrome\/(\S+)/;
+    const reg = /chrome\/(\S+)/;
+    const regArr = reg.exec(userAgent) as RegExpExecArray;
     browser.name = 'Chrome';
-    browser.version = reg.exec(userAgent)[1];
+    browser.version = regArr[1];
   } else if (userAgent.indexOf('safari') !== -1) {
-    reg = /safari\/(\S+)/;
+    const reg = /safari\/(\S+)/;
+    const regArr = reg.exec(userAgent) as RegExpExecArray;
     browser.name = 'Safari';
-    browser.version = reg.exec(userAgent)[1];
+    browser.version = regArr[1];
   } else if (userAgent.indexOf('firefox') !== -1) {
-    reg = /firefox\/(\S+)/;
+    const reg = /firefox\/(\S+)/;
+    const regArr = reg.exec(userAgent) as RegExpExecArray;
     browser.name = 'Firefox';
-    browser.version = reg.exec(userAgent)[1];
+    browser.version = regArr[1];
   } else if (userAgent.indexOf('trident') !== -1) {
     browser.name = 'IE';
 
     if (userAgent.indexOf('msie') !== -1) {
-      reg = /msie (\S+)/;
-      browser.version = reg.exec(userAgent)[1];
+      const reg = /msie (\S+)/;
+      const regArr = reg.exec(userAgent) as RegExpExecArray;
+      browser.version = regArr[1];
       browser.version = browser.version.replace(';', '');
     } else {
-      reg = /rv:(\S+)/;
-      browser.version = reg.exec(userAgent)[1];
+      const reg = /rv:(\S+)/;
+      const regArr = reg.exec(userAgent) as RegExpExecArray;
+      browser.version = regArr[1];
     }
   }
-
   return browser;
 }
 

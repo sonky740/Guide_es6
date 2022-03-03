@@ -1,6 +1,6 @@
-import Data from '../util/data.js';
-import BaseComponent from '../util/baseComponent.js';
-import EventHandler from '../util/eventHandler.js';
+import Data from '../util/data';
+import BaseComponent from '../util/baseComponent';
+import EventHandler from '../util/eventHandler';
 
 const NAME = 'tooltip';
 const EVENT_KEY = `${NAME}`;
@@ -100,6 +100,10 @@ class Tooltip extends BaseComponent {
 
     EventHandler.one(this._element, 'animationend', () => complete());
     EventHandler.off(window, 'click');
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

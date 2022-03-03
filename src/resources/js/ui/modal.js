@@ -1,6 +1,6 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
 
 const NAME = 'modal';
 const EVENT_KEY = `${NAME}`;
@@ -125,7 +125,9 @@ class Modal extends BaseComponent {
       arr.some(isOpen => {
         if (!isOpen) {
           document.body.classList.remove('modal-open');
-          window.onscroll = function () {};
+          window.onscroll = function () {
+            return true;
+          };
         }
         return isOpen === true;
       });
@@ -165,6 +167,10 @@ class Modal extends BaseComponent {
         }
       });
     }
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

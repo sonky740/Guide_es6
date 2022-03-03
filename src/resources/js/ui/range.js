@@ -1,7 +1,7 @@
-import Data from '../util/data.js';
-import BaseComponent from '../util/baseComponent.js';
-import EventHandler from '../util/eventHandler.js';
-import { numberComma } from '../util/util.js';
+import Data from '../util/data';
+import BaseComponent from '../util/baseComponent';
+import EventHandler from '../util/eventHandler';
+import { numberComma } from '../util/util';
 
 const NAME = 'range';
 const EVENT_KEY = `${NAME}`;
@@ -99,6 +99,10 @@ class Range extends BaseComponent {
     EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, {
       value: this._multiValues
     });
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

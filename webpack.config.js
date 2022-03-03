@@ -25,16 +25,14 @@ module.exports = {
       //   }
       // },
       {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: 'ts-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.ts']
   },
   optimization: {
     minimizer:

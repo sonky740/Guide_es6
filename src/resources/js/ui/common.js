@@ -1,5 +1,5 @@
 // import EventHandler from '../util/eventHandler';
-import { getClientInfo } from '../util/util.js';
+import { getClientInfo } from '../util/util';
 
 const windowHeight = () => {
   let vh = window.innerHeight;
@@ -7,7 +7,7 @@ const windowHeight = () => {
 };
 
 const mobileCheck = () => {
-  getClientInfo().mo !== null ? document.body.classList.add('mo') : document.body.classList.remove('mo');
+  getClientInfo().mo !== '' ? document.body.classList.add('mo') : document.body.classList.remove('mo');
 };
 
 const inputDelete = () => {
