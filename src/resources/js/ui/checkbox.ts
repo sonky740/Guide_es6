@@ -6,7 +6,9 @@ const NAME = 'checkbox';
 const EVENT_KEY = `${NAME}`;
 
 class Checkbox extends BaseComponent {
-  constructor(element) {
+  private _all: HTMLInputElement | null;
+  private _checkbox: NodeListOf<HTMLInputElement>;
+  constructor(element: HTMLElement) {
     super(element);
 
     this._all = document.querySelector(`[data-checkbox-all="${this._element.dataset.checkbox}"]`);
@@ -26,9 +28,9 @@ class Checkbox extends BaseComponent {
   }
 
   _check() {
-    this._checkbox.forEach(el => {
+    this._checkbox.forEach((el: HTMLInputElement) => {
       EventHandler.on(el, 'click', () => {
-        const checked = this._element.querySelectorAll('input[type="checkbox"]:checked');
+        const checked: NodeListOf<HTMLInputElement> = this._element.querySelectorAll('input[type="checkbox"]:checked');
 
         if (this._checkbox.length === checked.length && this._all && !this._all.checked) {
           this._all.checked = true;
@@ -43,7 +45,7 @@ class Checkbox extends BaseComponent {
 
   _allCheck() {
     EventHandler.on(this._all, 'click', () => {
-      if (this._all.checked) {
+      if (this._all?.checked) {
         this._checkbox.forEach(el => (el.checked = true));
         EventHandler.trigger(this._element, `${EVENT_KEY}.checked`);
       } else {
@@ -57,7 +59,7 @@ class Checkbox extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

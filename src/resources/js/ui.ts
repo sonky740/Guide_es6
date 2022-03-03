@@ -19,15 +19,15 @@ import Wordle from './ui/wordle';
  */
 
 interface UiType {
-  getInstance(el: Element): (el: Element) => object;
-  new (el: Element, options?: object): void;
+  getInstance(el: HTMLElement): (el: HTMLElement) => object;
+  new (el: HTMLElement, options?: object): void;
 }
 
 const UIInitializer = (target: string, UI: UiType, options = {}) => {
   const elements = document.querySelectorAll(target);
   elements.forEach((el: Element) => {
-    if (!UI.getInstance(el)) {
-      new UI(el, options);
+    if (!UI.getInstance(el as HTMLElement)) {
+      new UI(el as HTMLElement, options);
     }
   });
 };

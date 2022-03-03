@@ -6,23 +6,23 @@ class BaseComponent {
     element = typeof element === 'string' ? document.querySelector(element) : element;
 
     if (!element) {
-      throw new Error(`${(<any>this.constructor).NAME}이 없습니다.`);
+      throw new Error(`${(this as any).constructor.NAME}이 없습니다.`);
     }
 
     this._element = element;
-    Data.setData(this._element, (<any>this.constructor).NAME, this);
+    Data.setData(this._element, (this as any).constructor.NAME, this);
   }
 
   _getRandomSerial() {
-    return `${(<any>this.constructor).NAME}_${Math.random().toString(36).slice(2, 11)}`;
+    return `${(this as any).constructor.NAME}_${Math.random().toString(36).slice(2, 11)}`;
   }
 
   _throwError(message: string) {
-    throw new Error(`${(<any>this.constructor).NAME}: ${message}`);
+    throw new Error(`${(this as any).constructor.NAME}: ${message}`);
   }
 
   _warn(message: string) {
-    console.warn(`${(<any>this.constructor).NAME}: ${message}`);
+    console.warn(`${(this as any).constructor.NAME}: ${message}`);
   }
 
   // dispose() {
