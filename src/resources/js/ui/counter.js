@@ -50,6 +50,10 @@ class Counter extends BaseComponent {
     window.requestAnimationFrame(step);
   }
 
+  static get NAME() {
+    return NAME;
+  }
+
   static getInstance(element) {
     return Data.getData(element, this.NAME);
   }

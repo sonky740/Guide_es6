@@ -3,7 +3,7 @@ import EventHandler from '../util/eventHandler.js';
 import BaseComponent from '../util/baseComponent.js';
 import { siblings } from '../util/util.js';
 
-const NAME = 'accr';
+const NAME = 'accordion';
 const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
@@ -180,6 +180,10 @@ class Accordion extends BaseComponent {
     Array.from(this._item).forEach(item => {
       this.hide(item);
     });
+  }
+
+  static get NAME() {
+    return NAME;
   }
 
   static getInstance(element) {

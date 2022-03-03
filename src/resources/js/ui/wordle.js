@@ -125,6 +125,10 @@ class Wordle extends BaseComponent {
     });
   }
 
+  static get NAME() {
+    return NAME;
+  }
+
   static getInstance(element) {
     return Data.getData(element, this.NAME);
   }

@@ -326,16 +326,16 @@ accr.hide(document.querySelector('#accordion1_3')); // object</code></pre>
     <script src="../resources/js/ui.js"></script>
     <script>
         document.querySelectorAll('[data-accr]').forEach(function (el) {
-            el.addEventListener('accr.showing', function (e) {
+            el.addEventListener('accordion.showing', function (e) {
                 console.log(e.item, e.header, e.trigger, e.target, 'showing');
             })
-            el.addEventListener('accr.shown', function (e) {
+            el.addEventListener('accordion.shown', function (e) {
                 console.log(e.item, e.header, e.trigger, e.target, 'shown');
             })
-            el.addEventListener('accr.hiding', function (e) {
+            el.addEventListener('accordion.hiding', function (e) {
                 console.log(e.item, e.header, e.trigger, e.target, 'hiding');
             })
-            el.addEventListener('accr.hidden', function (e) {
+            el.addEventListener('accordion.hidden', function (e) {
                 console.log(e.item, e.header, e.trigger, e.target, 'hidden');
             })
         })

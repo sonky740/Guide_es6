@@ -23,6 +23,10 @@ class Sample extends BaseComponent {
     Data.setData(element, NAME, this);
   }
 
+  static get NAME() {
+    return NAME;
+  }
+
   static getInstance(element) {
     return Data.getData(element, this.NAME);
   }

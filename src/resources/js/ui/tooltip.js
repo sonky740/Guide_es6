@@ -102,6 +102,10 @@ class Tooltip extends BaseComponent {
     EventHandler.off(window, 'click');
   }
 
+  static get NAME() {
+    return NAME;
+  }
+
   static getInstance(element) {
     return Data.getData(element, this.NAME);
   }
