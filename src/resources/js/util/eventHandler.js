@@ -191,14 +191,35 @@ function getTypeEvent(event) {
 }
 
 const EventHandler = {
+  /**
+   * 기존 addEventListener
+   * @param {globalThis | Document | Element | null} element 노드
+   * @param {string} event 이벤트명
+   * @param {Function} handler 함수
+   * @param {Function} [delegationFn] 함수
+   */
   on(element, event, handler, delegationFn) {
     addHandler(element, event, handler, delegationFn, false);
   },
 
+  /**
+   * addEventListener once (한번만)
+   * @param {globalThis | Document | Element | null} element 노드
+   * @param {string} event 이벤트명
+   * @param {Function} handler 함수
+   * @param {Function} [delegationFn] 함수
+   */
   one(element, event, handler, delegationFn) {
     addHandler(element, event, handler, delegationFn, true);
   },
 
+  /**
+   * removeEventListener
+   * @param {globalThis | Document | Element | null} element 노드
+   * @param {string} originalTypeEvent 이벤트명
+   * @param {Function} [handler] 함수
+   * @param {Function} [delegationFn] 함수
+   */
   off(element, originalTypeEvent, handler, delegationFn) {
     if (typeof originalTypeEvent !== 'string' || !element) {
       return;
@@ -236,6 +257,12 @@ const EventHandler = {
     }
   },
 
+  /**
+   * CustomEvent
+   * @param {globalThis | Document | Element | null} element 노드
+   * @param {string} event 이벤트명
+   * @param {object} [args] 커스텀이벤트 옵션
+   */
   trigger(element, event, args) {
     if (typeof event !== 'string' || !element) {
       return null;
