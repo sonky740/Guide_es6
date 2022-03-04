@@ -23,7 +23,7 @@ interface UiType {
   new (el: HTMLElement, options?: object): void;
 }
 
-const UIInitializer = (target: string, UI, options = {}) => {
+const UIInitializer = (target: string, UI: UiType, options = {}) => {
   const elements = document.querySelectorAll(target);
   elements.forEach((el: Element) => {
     if (!UI.getInstance(el as HTMLElement)) {
