@@ -58,9 +58,9 @@ npm run build
 │
 ├─ gulpfile.js                     // gulp 설정
 │
-├─ webpack.config.js               // webpack 설정
+├─ package.json                    // npm package 설정
 │
-└─ package.json                    // npm package 설정
+├─ tsconfig.json                   // typescript config 설정
 │
-└─ tsconfig.json                    // typescript config 설정
+└─ webpack.config.js               // webpack 설정
 ```
