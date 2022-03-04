@@ -3,7 +3,7 @@ import EventHandler from '../util/eventHandler';
 import BaseComponent from '../util/baseComponent';
 import { siblings } from '../util/util';
 
-interface configType {
+interface ConfigType {
   showing: string;
   shown: string;
   hiding: string;
@@ -21,9 +21,9 @@ const defaultConfig = {
 };
 
 class Accordion extends BaseComponent {
-  private _config: configType;
-  private _item: HTMLCollection;
-  private _isMoving: boolean;
+  private _config: ConfigType;
+  private _item: HTMLCollection = this._element.children;
+  private _isMoving = false;
 
   constructor(element: HTMLElement, config: object | undefined) {
     super(element);
@@ -31,9 +31,6 @@ class Accordion extends BaseComponent {
       ...defaultConfig,
       ...config
     };
-
-    this._item = this._element.children;
-    this._isMoving = false;
 
     this.init();
 

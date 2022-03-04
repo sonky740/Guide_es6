@@ -24,10 +24,8 @@ function siblings(node: HTMLElement) {
 
 /**
  * HTML스트링을 HTML형태로 반환
- * @param {String} htmlString
- * @return {Element} 엘리먼트
  */
-const toHTML = (htmlString: string) => {
+const toHTML = (htmlString: string): ChildNode | null => {
   const div = document.createElement('div');
   div.innerHTML = htmlString.trim();
   return div.firstChild;

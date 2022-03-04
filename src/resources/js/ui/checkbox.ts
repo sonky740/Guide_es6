@@ -6,13 +6,11 @@ const NAME = 'checkbox';
 const EVENT_KEY = `${NAME}`;
 
 class Checkbox extends BaseComponent {
-  private _all: HTMLInputElement | null;
-  private _checkbox: NodeListOf<HTMLInputElement>;
+  private _all: HTMLInputElement | null = document.querySelector(`[data-checkbox-all="${this._element.dataset.checkbox}"]`);
+  private _checkbox: NodeListOf<HTMLInputElement> = this._element.querySelectorAll('input[type="checkbox"]');
+
   constructor(element: HTMLElement) {
     super(element);
-
-    this._all = document.querySelector(`[data-checkbox-all="${this._element.dataset.checkbox}"]`);
-    this._checkbox = this._element.querySelectorAll('input[type="checkbox"]');
 
     this.init();
 

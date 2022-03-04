@@ -5,6 +5,13 @@ import BaseComponent from '../util/baseComponent';
 const NAME = 'sample';
 // const EVENT_KEY = `${NAME}`;
 
+interface ConfigType {
+  showing: string;
+  shown: string;
+  hiding: string;
+  hidden: string;
+}
+
 const defaultConfig = {
   showing: 'showing',
   shown: 'shown',
@@ -13,7 +20,8 @@ const defaultConfig = {
 };
 
 class Sample extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
@@ -27,7 +35,7 @@ class Sample extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

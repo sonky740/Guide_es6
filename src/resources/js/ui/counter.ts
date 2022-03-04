@@ -7,19 +7,14 @@ const NAME = 'counter';
 const EVENT_KEY = `${NAME}`;
 
 class Counter extends BaseComponent {
-  private _counter: number;
-  private _initNumber: number;
-  private _duration: number;
-  private _comma: boolean;
-  private _startTime: number;
+  private _counter = 0;
+  private _initNumber = 0;
+  private _duration = 0;
+  private _comma = false;
+  private _startTime = 0;
+
   constructor(element: HTMLElement) {
     super(element);
-
-    this._counter = 0;
-    this._initNumber = 0;
-    this._duration = 0;
-    this._comma = false;
-    this._startTime = 0;
 
     this.init();
 

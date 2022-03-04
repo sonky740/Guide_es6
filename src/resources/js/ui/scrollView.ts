@@ -2,6 +2,12 @@ import Data from '../util/data';
 import EventHandler from '../util/eventHandler';
 import BaseComponent from '../util/baseComponent';
 
+interface ConfigType {
+  onClass: string;
+  shown: string;
+  hidden: string;
+}
+
 const NAME = 'scrollView';
 const EVENT_KEY = `${NAME}`;
 
@@ -11,17 +17,18 @@ const defaultConfig = {
   hidden: 'hidden'
 };
 class ScrollView extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _top: number = this._element.getBoundingClientRect().top;
+  private _viewH: number = document.documentElement.clientHeight;
+  private _multiple: number = Number(this._element.dataset.multiple) || 7 / 10;
+  private _effectClass: string = this._element.dataset.scrollView || 'view-up';
+
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
       ...config
     };
-
-    this._top = this._element.getBoundingClientRect().top;
-    this._viewH = document.documentElement.clientHeight;
-    this._multiple = Number(this._element.dataset.multiple) || 7 / 10;
-    this._effectClass = this._element.dataset.scrollView || 'view-up';
 
     this.init();
 
@@ -77,7 +84,7 @@ class ScrollView extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

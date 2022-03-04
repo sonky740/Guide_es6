@@ -7,18 +7,17 @@ const NAME = 'range';
 const EVENT_KEY = `${NAME}`;
 
 class Range extends BaseComponent {
-  constructor(element) {
+  private _range = this._element.querySelector('input[type="range"]') as HTMLInputElement;
+  private _fill = this._element.querySelector('.range-fill') as HTMLDivElement;
+  private _startRange = this._element.querySelector('input[type="range"][data-range-multi="start"]') as HTMLInputElement;
+  private _endRange = this._element.querySelector('input[type="range"][data-range-multi="end"]') as HTMLInputElement;
+  private _value = 0;
+  private _multiValues = {
+    start: 0,
+    end: 0
+  };
+  constructor(element: HTMLElement) {
     super(element);
-
-    this._range = this._element.querySelector('input[type="range"]');
-    this._fill = this._element.querySelector('.range-fill');
-    this._startRange = this._element.querySelector('input[type="range"][data-range-multi="start"]');
-    this._endRange = this._element.querySelector('input[type="range"][data-range-multi="end"]');
-    this._value = 0;
-    this._multiValues = {
-      start: 0,
-      end: 0
-    };
 
     this.init();
 
@@ -38,22 +37,27 @@ class Range extends BaseComponent {
   }
 
   singleInput() {
-    const per = ((this._range.value - this._range.min) / (this._range.max - this._range.min)) * 100;
+    let inputValue = Number(this._range.value);
+    const inputMin = Number(this._range.min);
+    const inputMax = Number(this._range.max);
+    const inputStep = Number(this._range.step);
+
+    const per = ((inputValue - inputMin) / (inputMax - inputMin)) * 100;
 
     // bar
     this._fill.style.right = `${100 - per}%`;
 
-    this._value = Number(this._range.value);
+    this._value = Number(inputValue);
 
     // min값 선택 안되게
     if (per === 0 && this._element.classList.contains('min-no')) {
-      this._range.value = this._range.step;
-      this._fill.style.right = 100 - `${(this._range.step / this._range.max) * 100}%`;
+      inputValue = inputStep;
+      this._fill.style.right = `100 - ${(inputStep / inputMax) * 100}%`;
     }
 
     // value값을 나타내야할 때
     const value = document.getElementById(`${this._range.dataset.rangeValue}`);
-    if (value) value.innerText = numberComma(this._range.value);
+    if (value) value.innerText = numberComma(inputValue);
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.input`, {
       value: this._value
@@ -61,12 +65,12 @@ class Range extends BaseComponent {
   }
 
   startInput() {
-    this._startRange.value = Math.min(parseInt(this._startRange.value), parseInt(this._endRange.value) - parseInt(this._startRange.dataset.rangeMinstep));
+    this._startRange.value = Math.min(Number(this._startRange.value), Number(this._endRange.value) - Number(this._startRange.dataset.rangeMinstep)).toString();
     this._multiValues.start = Number(this._startRange.value);
-    this._perStart = this._startRange.value / this._startRange.step;
-    this._fill.style.left = `${this._perStart}%`;
+    const perStart = Number(this._startRange.value) / Number(this._startRange.step);
+    this._fill.style.left = `${perStart}%`;
 
-    if (this._startRange.value >= this._endRange.value - 5) {
+    if (Number(this._startRange.value) >= Number(this._endRange.value) - 5) {
       this._startRange.style.zIndex = '2';
     } else {
       this._startRange.removeAttribute('style');
@@ -74,7 +78,7 @@ class Range extends BaseComponent {
 
     // value값을 나타내야할 때
     const value = document.getElementById(`${this._startRange.dataset.rangeStartvalue}`);
-    if (value) value.innerText = numberComma(this._startRange.value);
+    if (value) value.innerText = numberComma(Number(this._startRange.value));
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, {
       value: this._multiValues
@@ -82,18 +86,18 @@ class Range extends BaseComponent {
   }
 
   endInput() {
-    this._endRange.value = Math.max(parseInt(this._endRange.value), parseInt(this._startRange.value) + parseInt(this._endRange.dataset.rangeMinstep));
+    this._endRange.value = Math.max(Number(this._endRange.value), Number(this._startRange.value) + Number(this._endRange.dataset.rangeMinstep)).toString();
     this._multiValues.end = Number(this._endRange.value);
-    this._perEnd = this._endRange.value / this._endRange.step;
-    this._fill.style.right = `${100 - this._perEnd}%`;
+    const perEnd = Number(this._endRange.value) / Number(this._endRange.step);
+    this._fill.style.right = `${100 - perEnd}%`;
 
     // value값을 나타내야할 때
-    const value = document.getElementById(`${this._endRange.dataset.rangeEndvalue}`);
-    if (value) value.innerText = numberComma(this._endRange.value);
+    const value = document.getElementById(`${this._endRange.dataset.rangeEndvalue}`) as HTMLElement;
+    if (value) value.innerText = numberComma(Number(this._endRange.value));
 
     // data-range-last가 있을 때
     if (this._endRange.dataset.rangeMax !== undefined && this._endRange.value === this._endRange.max) {
-      value.innerText = numberComma(this._endRange.value) + this._endRange.dataset.rangeMax;
+      value.innerText = numberComma(Number(this._endRange.value)) + this._endRange.dataset.rangeMax;
     }
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.multi`, {
@@ -105,7 +109,7 @@ class Range extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

@@ -2,6 +2,13 @@ import Data from '../util/data';
 import EventHandler from '../util/eventHandler';
 import BaseComponent from '../util/baseComponent';
 
+interface ConfigType {
+  info: string;
+  template: string;
+  btn: string;
+  answer: string[];
+}
+
 const NAME = 'wordle';
 // const EVENT_KEY = `${NAME}`;
 
@@ -22,7 +29,15 @@ const defaultConfig = {
 };
 
 class Wordle extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _number = 0;
+  private _success = 0;
+  private _numberText: HTMLElement | null = null;
+  private _successText: HTMLElement | null = null;
+  private _btn: HTMLButtonElement | null = null;
+  private _answer = '';
+
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
@@ -42,16 +57,16 @@ class Wordle extends BaseComponent {
     this._element.insertAdjacentHTML('beforeend', this._config.btn);
 
     this._number = 0;
-    this._success = localStorage.getItem('wordle-success') || 0;
+    this._success = Number(localStorage.getItem('wordle-success')) || 0;
     this._numberText = this._element.querySelector('[data-wordle-number]');
-    this._successText = this._element.querySelector('[data-wordle-success]');
+    this._successText = this._element.querySelector('[data-wordle-success]') as HTMLElement;
     this._btn = this._element.querySelector('[data-wordle-btn]');
     this._answer = this._config.answer[Math.floor(Math.random() * this._config.answer.length)];
 
-    this._successText.innerText = this._success;
+    this._successText.innerText = this._success.toString();
 
     EventHandler.on(this._btn, 'click', () => {
-      if (!this._btn.hasAttribute('data-wordle-retry')) {
+      if (!this._btn?.hasAttribute('data-wordle-retry')) {
         this.confirm();
       } else {
         this.reset();
@@ -61,7 +76,8 @@ class Wordle extends BaseComponent {
   }
 
   confirm() {
-    const inputs = this._element.querySelectorAll('[data-wordle-input]');
+    const inputs: NodeListOf<HTMLInputElement> = this._element.querySelectorAll('[data-wordle-input]');
+    const inputParent = inputs[0].parentNode as HTMLDivElement;
     let missionText = '';
 
     for (let i = 0; i < inputs.length; i++) {
@@ -81,22 +97,22 @@ class Wordle extends BaseComponent {
 
     // 성공 시
     if (missionText.toUpperCase() === this._answer.toUpperCase()) {
-      inputs[0].parentNode.classList.add('wordle-complete');
-      this._btn.innerText = '다시하기';
-      this._btn.setAttribute('data-wordle-retry', '');
+      inputParent.classList.add('wordle-complete');
+      (this._btn as HTMLButtonElement).innerText = '다시하기';
+      this._btn?.setAttribute('data-wordle-retry', '');
 
       this._success++;
-      localStorage.setItem('wordle-success', this._success);
-      this._successText.innerText = this._success;
+      localStorage.setItem('wordle-success', this._success.toString());
+      (this._successText as HTMLElement).innerText = this._success.toString();
       return false;
     } else {
-      inputs[0].parentNode.classList.add('wordle-fail');
+      inputParent.classList.add('wordle-fail');
     }
-    this._numberText.innerText = this._number + 1;
+    (this._numberText as HTMLElement).innerText = (this._number + 1).toString();
     this._number++;
 
-    this._btn.insertAdjacentHTML('beforebegin', this._config.template);
-    inputs[0].parentNode.nextElementSibling.children[0].focus();
+    this._btn?.insertAdjacentHTML('beforebegin', this._config.template);
+    (inputParent.nextElementSibling?.children[0] as HTMLElement).focus();
   }
 
   reset() {
@@ -105,19 +121,19 @@ class Wordle extends BaseComponent {
   }
 
   input() {
-    const inputs = this._element.querySelectorAll('[data-wordle-input]');
-    inputs.forEach((el, i, al) => {
-      EventHandler.on(el, 'input', e => {
+    const inputs: NodeListOf<HTMLInputElement> = this._element.querySelectorAll('[data-wordle-input]');
+    inputs.forEach((el, i, al: NodeListOf<HTMLInputElement>) => {
+      EventHandler.on(el, 'input', (e: InputEvent) => {
         if (el !== al[al.length - 1] && e.inputType !== 'deleteContentBackward') {
           al[i + 1].focus();
         }
       });
-      EventHandler.on(el, 'keyup', e => {
+      EventHandler.on(el, 'keyup', (e: KeyboardEvent) => {
         if (e.keyCode === 13) {
-          this._btn.click();
+          this._btn?.click();
         }
       });
-      EventHandler.on(el, 'keydown', e => {
+      EventHandler.on(el, 'keydown', (e: KeyboardEvent) => {
         if (e.keyCode === 8 && el !== al[0] && el.value === '') {
           al[i - 1].focus();
         }
@@ -129,7 +145,7 @@ class Wordle extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }
