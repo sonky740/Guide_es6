@@ -60,6 +60,6 @@
     "core-js": "^3.20.2"
   },
   "lint-staged": {
-    "*.ts": "npm run tsc"
+    "*.ts": "bash -c 'npm run tsc'"
   }
 }
