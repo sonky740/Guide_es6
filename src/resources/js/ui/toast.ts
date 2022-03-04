@@ -1,5 +1,12 @@
-import EventHandler from '../util/eventHandler.js';
-import { toHTML } from '../util/util.js';
+import EventHandler from '../util/eventHandler';
+import { toHTML } from '../util/util';
+
+interface ConfigType {
+  showing: string;
+  hiding: string;
+  container: string;
+  content: string;
+}
 
 const NAME = 'toast';
 const EVENT_KEY = `${NAME}`;
@@ -12,27 +19,29 @@ const defaultConfig = {
 };
 
 class Toast {
-  constructor(config) {
+  private _config: ConfigType;
+  private _toastContent: HTMLElement | null = null;
+
+  constructor(config: object | undefined) {
     this._config = {
       ...defaultConfig,
       ...config
     };
-    this._toastContent = null;
   }
 
-  static TOAST_HOLDER = null;
+  static TOAST_HOLDER: HTMLElement | null = null;
   static TOAST_COUNT = 0;
 
-  static getContainer(template) {
+  static getContainer(template: string): HTMLElement {
     if (Toast.TOAST_HOLDER === null) {
-      Toast.TOAST_HOLDER = toHTML(template);
+      Toast.TOAST_HOLDER = toHTML(template) as HTMLElement;
       document.body.appendChild(Toast.TOAST_HOLDER);
     }
     return Toast.TOAST_HOLDER;
   }
 
-  show(message, time = 2, addClass) {
-    this._toastContent = toHTML(this._config.content.replace('MESSAGE', message));
+  show(message: string, time = 2, addClass: string) {
+    this._toastContent = toHTML(this._config.content.replace('MESSAGE', message)) as HTMLElement;
     Toast.getContainer(this._config.container).appendChild(this._toastContent);
     this._toastContent.classList.add(this._config.showing);
     if (addClass) this._toastContent.classList.add(addClass);
@@ -48,13 +57,13 @@ class Toast {
   }
 
   hide() {
-    this._toastContent.classList.remove(this._config.showing);
-    this._toastContent.classList.add(this._config.hiding);
+    this._toastContent?.classList.remove(this._config.showing);
+    this._toastContent?.classList.add(this._config.hiding);
     EventHandler.one(this._toastContent, 'animationend', () => {
-      Toast.getContainer(this._config.container).removeChild(this._toastContent);
       Toast.TOAST_COUNT--;
+      Toast.getContainer(this._config.container).removeChild(this._toastContent as HTMLElement);
       if (Toast.TOAST_COUNT <= 0) {
-        document.body.removeChild(Toast.TOAST_HOLDER);
+        document.body.removeChild(Toast.TOAST_HOLDER as HTMLElement);
         Toast.TOAST_HOLDER = null;
       }
 

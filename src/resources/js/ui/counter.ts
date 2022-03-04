@@ -1,23 +1,20 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { numberComma } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { numberComma } from '../util/util';
 
 const NAME = 'counter';
 const EVENT_KEY = `${NAME}`;
 
 class Counter extends BaseComponent {
-  constructor(element, config) {
-    super(element);
-    this._config = {
-      ...config
-    };
+  private _counter = 0;
+  private _initNumber = 0;
+  private _duration = 0;
+  private _comma = false;
+  private _startTime = 0;
 
-    this._counter = 0;
-    this._initNumber = 0;
-    this._duration = 0;
-    this._comma = false;
-    this._startTime = 0;
+  constructor(element: HTMLElement) {
+    super(element);
 
     this.init();
 
@@ -35,7 +32,7 @@ class Counter extends BaseComponent {
   }
 
   _step() {
-    const step = currentTime => {
+    const step = (currentTime: number) => {
       if (this._startTime === 0) {
         this._startTime = currentTime;
       }
@@ -61,7 +58,7 @@ class Counter extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

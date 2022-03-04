@@ -1,11 +1,11 @@
 const lyNav = () => {
-  const trigger = document.querySelector('.ly-nav-bar');
-  const target = document.querySelector('.ly-nav-content');
-  const navList = document.querySelectorAll('.comp-list li a');
+  const trigger = document.querySelector('.ly-nav-bar') as HTMLElement;
+  const target = document.querySelector('.ly-nav-content') as HTMLElement;
+  const navList: NodeListOf<HTMLElement> = document.querySelectorAll('.comp-list li a');
   const url = window.location.href.split('/');
   const urlLast = url[url.length - 1].split('.html')[0];
 
-  navList.forEach(el => {
+  navList.forEach((el: HTMLElement) => {
     if (el.innerHTML.toLocaleLowerCase() === urlLast) el.classList.add('on');
   });
 

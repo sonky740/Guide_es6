@@ -120,7 +120,7 @@ const copyVendorJs = () => {
  */
 const copyJs = () => {
   return gulp
-    .src(paths.src('resources/js/ui.js'))
+    .src(paths.src('resources/js/ui.ts'))
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest(paths.srcDist('resources/js')))
     .pipe(devServer.stream());
@@ -144,12 +144,12 @@ const compileScss = () => {
 /**
  * 개발모드 실행시 처음에 기본적으로 실행 될 task
  */
-const devStartFunctions = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyJs, copyFonts, copyImages);
+const devStartFunctions = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyFonts, copyImages, copyJs);
 
 /**
  * 빌드 task 들을 순차적으로 실행한다.
  */
-exports.build = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyJs, copyFonts, copyImages);
+exports.build = series(cleanDir, toHTML, prettyHTML, compileScss, copyVendorJs, copyFonts, copyImages, copyJs);
 
 /**
  * 개발서버 시작

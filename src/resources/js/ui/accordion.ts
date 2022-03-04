@@ -1,7 +1,14 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { siblings } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { siblings } from '../util/util';
+
+interface ConfigType {
+  showing: string;
+  shown: string;
+  hiding: string;
+  hidden: string;
+}
 
 const NAME = 'accordion';
 const EVENT_KEY = `${NAME}`;
@@ -14,15 +21,16 @@ const defaultConfig = {
 };
 
 class Accordion extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _item: HTMLCollection = this._element.children;
+  private _isMoving = false;
+
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
       ...config
     };
-
-    this._item = this._element.children;
-    this._isMoving = false;
 
     this.init();
 
@@ -31,19 +39,20 @@ class Accordion extends BaseComponent {
 
   init() {
     Array.from(this._item).forEach(item => {
-      const target = item.querySelector('[data-accr-target]');
-      const trigger = item.querySelector('[data-accr-trigger]');
+      const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
+      const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+      const ir = trigger.querySelector('.blind') as HTMLSpanElement;
 
       // 처음에 열려있다면...
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
-        trigger.querySelector('.blind').innerText = '접기';
+        ir.innerText = '접기';
         target.classList.add(this._config.shown);
       } else {
         target.classList.add(this._config.hidden);
       }
 
-      EventHandler.on(trigger, 'click', e => {
+      EventHandler.on(trigger, 'click', (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -51,26 +60,27 @@ class Accordion extends BaseComponent {
         this._isMoving = true;
 
         if (!item.classList.contains('on')) {
-          this.show(item);
+          this.show(item as HTMLElement);
         } else if (item.classList.contains('on')) {
-          this.hide(item);
+          this.hide(item as HTMLElement);
         }
       });
     });
   }
 
-  show(item) {
+  show(item: HTMLElement | string | number) {
     if (typeof item === 'number') {
-      const number = this._element.children[item];
-      item = number;
+      const numberItem = this._element.children[item];
+      item = numberItem as HTMLElement;
     } else if (typeof item === 'string') {
-      const string = this._element.querySelector(item);
-      item = string;
+      const stringItem = this._element.querySelector(item);
+      item = stringItem as HTMLElement;
     }
 
-    const header = item.querySelector('[data-accr-header]');
-    const trigger = item.querySelector('[data-accr-trigger]');
-    const target = item.querySelector('[data-accr-target]');
+    const header = item.querySelector('[data-accr-header]') as HTMLElement;
+    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+    const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
+    const ir = trigger.querySelector('.blind') as HTMLSpanElement;
 
     if (item.classList.contains('on')) return false;
 
@@ -83,7 +93,7 @@ class Accordion extends BaseComponent {
 
     item.classList.add('on');
     trigger.classList.add('on');
-    trigger.querySelector('.blind').innerText = '접기';
+    ir.innerText = '접기';
     target.classList.remove(this._config.hidden);
     target.classList.add(this._config.showing);
     target.style.height = `${target.scrollHeight}px`;
@@ -105,7 +115,7 @@ class Accordion extends BaseComponent {
     // data-accr = "only" 하나만 열릴 때
     if (this._element.dataset.accr === 'only') {
       siblings(item).forEach(items => {
-        if (item.classList.contains('on')) this.hide(items);
+        if ((item as HTMLElement).classList.contains('on')) this.hide(items as HTMLElement);
       });
     }
 
@@ -116,18 +126,19 @@ class Accordion extends BaseComponent {
     }
   }
 
-  hide(item) {
+  hide(item: HTMLElement | string | number) {
     if (typeof item === 'number') {
-      const number = this._element.children[item];
-      item = number;
+      const numberItem = this._element.children[item];
+      item = numberItem as HTMLElement;
     } else if (typeof item === 'string') {
-      const string = this._element.querySelector(item);
-      item = string;
+      const stringItem = this._element.querySelector(item);
+      item = stringItem as HTMLElement;
     }
 
-    const header = item.querySelector('[data-accr-header]');
-    const target = item.querySelector('[data-accr-target]');
-    const trigger = item.querySelector('[data-accr-trigger]');
+    const header = item.querySelector('[data-accr-header]') as HTMLElement;
+    const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
+    const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
+    const ir = trigger.querySelector('.blind') as HTMLSpanElement;
 
     if (!item.classList.contains('on')) return false;
 
@@ -139,9 +150,9 @@ class Accordion extends BaseComponent {
     });
 
     trigger.classList.remove('on');
-    trigger.querySelector('.blind').innerText = '펼치기';
+    ir.innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
-    target.heightCache = target.scrollHeight;
+    target.style.height = `${target.scrollHeight}px`;
     target.classList.remove(this._config.shown);
     target.classList.add(this._config.hiding);
     target.removeAttribute('style');
@@ -149,7 +160,7 @@ class Accordion extends BaseComponent {
     const complete = () => {
       target.classList.remove(this._config.hiding);
       target.classList.add(this._config.hidden);
-      item.classList.remove('on');
+      (item as HTMLElement).classList.remove('on');
       this._isMoving = false;
 
       EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, {
@@ -172,13 +183,13 @@ class Accordion extends BaseComponent {
     Array.from(this._item).forEach(item => {
       if (this._element.dataset.accr === 'only') super._throwError('하나만 열릴 때는 동작하지 않습니다.');
       if (item.classList.contains('on')) return false;
-      this.show(item);
+      this.show(item as HTMLElement);
     });
   }
 
   hideAll() {
     Array.from(this._item).forEach(item => {
-      this.hide(item);
+      this.hide(item as HTMLElement);
     });
   }
 
@@ -186,7 +197,7 @@ class Accordion extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

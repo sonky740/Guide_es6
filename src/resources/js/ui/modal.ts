@@ -1,6 +1,12 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+
+interface ConfigType {
+  showing: string;
+  shown: string;
+  hiding: string;
+}
 
 const NAME = 'modal';
 const EVENT_KEY = `${NAME}`;
@@ -12,20 +18,21 @@ const defaultConfig = {
 };
 
 class Modal extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _wrap: HTMLDivElement = this._element.querySelector('.ly-modal-wrap') as HTMLDivElement;
+  private _header: HTMLElement | null = this._element.querySelector('.ly-modal-header') as HTMLDivElement;
+  private _trigger: HTMLButtonElement | HTMLAnchorElement | null = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
+  private _close: NodeListOf<HTMLButtonElement | HTMLAnchorElement> = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
+  private _isMoving = false; // true일 경우 이벤트 작동 안되게
+  private _touchStart = 0; // 터치 시작점
+  private _distance = 0; // 움직인 거리
+
+  constructor(element: HTMLElement, config?: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
       ...config
     };
-
-    this._wrap = this._element.querySelector('.ly-modal-wrap');
-    this._header = this._element.querySelector('.ly-modal-header');
-    this._trigger = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
-    this._close = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
-    this._isMoving = false; // true일 경우 이벤트 작동 안되게
-    this._touchStart = 0; // 터치 시작점
-    this._distance = 0; // 움직인 거리
 
     this.init();
 
@@ -35,11 +42,11 @@ class Modal extends BaseComponent {
   init() {
     // 모달 트리거 클릭 시 모달 show
     if (this._trigger) {
-      EventHandler.on(this._trigger, 'click', e => this.show(e));
+      EventHandler.on(this._trigger, 'click', (e: MouseEvent) => this.show(e));
     }
 
     // 모달 딤 클릭 시 닫기
-    EventHandler.on(this._element, 'click', e => {
+    EventHandler.on(this._element, 'click', (e: MouseEvent) => {
       if (e.target === this._element && this._element.dataset.modalBackdrop !== 'false') this.hide(e);
     });
 
@@ -52,7 +59,7 @@ class Modal extends BaseComponent {
     this._touchMove();
   }
 
-  show(e) {
+  show(e?: MouseEvent) {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
@@ -61,12 +68,12 @@ class Modal extends BaseComponent {
     this._isMoving = true;
 
     this._element.classList.add(this._config.showing);
-    this._element.setAttribute('tabindex', 0);
+    this._element.setAttribute('tabindex', '0');
 
     // window scroll 방지
     document.body.classList.add('modal-open');
-    let x = window.scrollX;
-    let y = window.scrollY;
+    const x = window.scrollX;
+    const y = window.scrollY;
     window.onscroll = function () {
       window.scrollTo(x, y);
     };
@@ -96,7 +103,7 @@ class Modal extends BaseComponent {
     }
   }
 
-  hide(e) {
+  hide(e?: MouseEvent) {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
@@ -115,17 +122,20 @@ class Modal extends BaseComponent {
     const complete = () => {
       this._isMoving = false;
       this._element.classList.remove(this._config.hiding);
-      this._trigger.focus();
+      this._trigger?.focus();
 
       // 마지막 모달을 닫을 때 window scroll 복구
-      const arr = [];
+      const arr: boolean[] = [];
       document.querySelectorAll('[data-modal]').forEach(modals => {
         arr.push(modals.classList.contains('shown'));
       });
+
       arr.some(isOpen => {
         if (!isOpen) {
           document.body.classList.remove('modal-open');
-          window.onscroll = function () {};
+          window.onscroll = function () {
+            return true;
+          };
         }
         return isOpen === true;
       });
@@ -145,10 +155,10 @@ class Modal extends BaseComponent {
 
   _touchMove() {
     if (this._element.classList.contains('btm') && this._element.dataset.modalTouch === 'true') {
-      EventHandler.on(this._header, 'touchstart', e => {
+      EventHandler.on(this._header, 'touchstart', (e: TouchEvent) => {
         this._touchStart = e.touches[0].screenY;
       });
-      EventHandler.on(this._header, 'touchmove', e => {
+      EventHandler.on(this._header, 'touchmove', (e: TouchEvent) => {
         this._distance = e.touches[0].screenY - this._touchStart;
         if (this._distance > 0) {
           this._wrap.style.bottom = `${-this._distance}px`;
@@ -171,13 +181,13 @@ class Modal extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }
 
-EventHandler.on(document, 'click', e => {
-  const target = e.target.getAttribute('data-modal-trigger');
+EventHandler.on(document, 'click', (e: MouseEvent) => {
+  const target = (e.target as HTMLButtonElement | HTMLAnchorElement).getAttribute('data-modal-trigger');
   if (target === null) {
     return false;
   } else {

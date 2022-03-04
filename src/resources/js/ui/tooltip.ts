@@ -1,6 +1,11 @@
-import Data from '../util/data.js';
-import BaseComponent from '../util/baseComponent.js';
-import EventHandler from '../util/eventHandler.js';
+import Data from '../util/data';
+import BaseComponent from '../util/baseComponent';
+import EventHandler from '../util/eventHandler';
+
+interface ConfigType {
+  shown: string;
+  hiding: string;
+}
 
 const NAME = 'tooltip';
 const EVENT_KEY = `${NAME}`;
@@ -11,14 +16,15 @@ const defaultConfig = {
 };
 
 class Tooltip extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _trigger: HTMLButtonElement | null = this._element.querySelector('[data-tooltip-trigger]');
+
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
       ...config
     };
-
-    this._trigger = this._element.querySelector('[data-tooltip-trigger]');
 
     this.init();
 
@@ -28,11 +34,11 @@ class Tooltip extends BaseComponent {
   init() {
     if (this._element.dataset.tooltip !== 'mouseover') {
       // tooltip click
-      EventHandler.on(this._element, 'click', e => {
+      EventHandler.on(this._element, 'click', (e: MouseEvent) => {
         e.preventDefault();
 
         // show toggle
-        if (e.target.hasAttribute('data-tooltip-trigger')) {
+        if ((e.target as HTMLButtonElement).hasAttribute('data-tooltip-trigger')) {
           if (this._element.classList.contains(this._config.shown)) {
             this.hide();
             return false;
@@ -40,15 +46,15 @@ class Tooltip extends BaseComponent {
           this.show();
 
           setTimeout(() => {
-            EventHandler.on(window, 'click', e => {
-              if (!e.target.closest('[data-tooltip-target]') && this._element.dataset.tooltipBackdrop !== 'false') {
+            EventHandler.on(window, 'click', (e: MouseEvent) => {
+              if (!(e.target as HTMLButtonElement).closest('[data-tooltip-target]') && this._element.dataset.tooltipBackdrop !== 'false') {
                 this.hide();
               }
             });
           }, 0);
         }
         // hide
-        else if (e.target.hasAttribute('data-tooltip-close')) {
+        else if ((e.target as HTMLButtonElement).hasAttribute('data-tooltip-close')) {
           this.hide();
         }
       });
@@ -106,7 +112,7 @@ class Tooltip extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }

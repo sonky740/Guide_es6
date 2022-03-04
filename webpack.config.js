@@ -6,7 +6,7 @@ const mode = process.env.NODE_ENV || 'development';
 module.exports = {
   mode,
   entry: {
-    ui: './src/resources/js/ui.js'
+    ui: './src/resources/js/ui.ts'
   },
   output: {
     filename: '[name].js'
@@ -25,11 +25,14 @@ module.exports = {
       //   }
       // },
       {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.ts']
   },
   optimization: {
     minimizer:

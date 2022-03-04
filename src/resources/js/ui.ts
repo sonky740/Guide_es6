@@ -1,16 +1,16 @@
-import polyfill from './util/polyfill.js';
-import lyNav from './layout/ly_nav.js';
-import Modal from './ui/modal.js';
-import Accordion from './ui/accordion.js';
-import Tab from './ui/tab.js';
-import Tooltip from './ui/tooltip.js';
-import Toast from './ui/toast.js';
-import ScrollView from './ui/scrollView.js';
-import Range from './ui/range.js';
-import Checkbox from './ui/checkbox.js';
-import Counter from './ui/counter.js';
-import Common from './ui/common.js';
-import Wordle from './ui/wordle.js';
+import polyfill from './util/polyfill';
+import lyNav from './layout/ly_nav';
+import Modal from './ui/modal';
+import Accordion from './ui/accordion';
+import Tab from './ui/tab';
+import Tooltip from './ui/tooltip';
+import Toast from './ui/toast';
+import ScrollView from './ui/scrollView';
+import Range from './ui/range';
+import Checkbox from './ui/checkbox';
+import Counter from './ui/counter';
+import Common from './ui/common';
+import Wordle from './ui/wordle';
 
 /**
  * @author 손기연
@@ -18,11 +18,16 @@ import Wordle from './ui/wordle.js';
  * @namespace SKY
  */
 
-const UIInitializer = (target, UI, options = {}) => {
+interface UiType {
+  getInstance(el: HTMLElement): (el: HTMLElement) => object;
+  new (el: HTMLElement, options?: object): void;
+}
+
+const UIInitializer = (target: string, UI: UiType, options = {}) => {
   const elements = document.querySelectorAll(target);
-  elements.forEach(el => {
-    if (!UI.getInstance(el)) {
-      new UI(el, options);
+  elements.forEach((el: Element) => {
+    if (!UI.getInstance(el as HTMLElement)) {
+      new UI(el as HTMLElement, options);
     }
   });
 };
@@ -46,6 +51,12 @@ window.addEventListener('DOMContentLoaded', function () {
   lyNav();
   init();
 });
+
+declare global {
+  interface Window {
+    SKY: object;
+  }
+}
 
 // 전역객체로 선언
 window.SKY = { init, Modal, Accordion, Tab, Tooltip, Toast, ScrollView, Range, Checkbox, Counter, Common, UIInitializer };

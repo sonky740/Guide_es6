@@ -1,7 +1,14 @@
-import Data from '../util/data.js';
-import EventHandler from '../util/eventHandler.js';
-import BaseComponent from '../util/baseComponent.js';
-import { siblings } from '../util/util.js';
+import Data from '../util/data';
+import EventHandler from '../util/eventHandler';
+import BaseComponent from '../util/baseComponent';
+import { siblings } from '../util/util';
+
+interface ConfigType {
+  showing: string;
+  shown: string;
+  hiding: string;
+  hidden: string;
+}
 
 const NAME = 'tab';
 const EVENT_KEY = `${NAME}`;
@@ -14,15 +21,16 @@ const defaultConfig = {
 };
 
 class Tab extends BaseComponent {
-  constructor(element, config) {
+  private _config: ConfigType;
+  private _trigger: NodeListOf<HTMLButtonElement | HTMLAnchorElement> = this._element.querySelectorAll('[data-tab-trigger]');
+  private _isMoving = false;
+
+  constructor(element: HTMLElement, config: object | undefined) {
     super(element);
     this._config = {
       ...defaultConfig,
       ...config
     };
-
-    this._trigger = this._element.querySelectorAll('[data-tab-trigger]');
-    this._isMoving = false;
 
     this.init();
 
@@ -32,21 +40,21 @@ class Tab extends BaseComponent {
   init() {
     this.initVars();
 
-    this._trigger.forEach(trigger => {
-      const target = document.querySelector(trigger.dataset.tabTrigger);
+    this._trigger.forEach((trigger: HTMLButtonElement | HTMLAnchorElement) => {
+      const target = document.querySelector(trigger.dataset.tabTrigger as string);
 
       if (trigger.classList.contains('on')) {
-        target.classList.add(this._config.shown);
+        target?.classList.add(this._config.shown);
       } else {
-        target.classList.add(this._config.hidden);
+        target?.classList.add(this._config.hidden);
       }
 
-      EventHandler.on(trigger, 'click', e => {
+      EventHandler.on(trigger, 'click', (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
 
         if (!trigger.classList.contains('on')) {
-          this.show(target);
+          this.show(target as HTMLElement);
         }
       });
     });
@@ -55,22 +63,22 @@ class Tab extends BaseComponent {
   initVars() {
     this._element.setAttribute('role', 'tablist');
     this._trigger.forEach(trigger => {
-      const target = document.querySelector(trigger.dataset.tabTrigger);
+      const target = document.querySelector(trigger.dataset.tabTrigger as string);
       trigger.setAttribute('role', 'tab');
-      target.setAttribute('role', 'tabpanel');
+      target?.setAttribute('role', 'tabpanel');
     });
   }
 
-  show(target) {
-    let trigger;
+  show(target: HTMLElement | string | number) {
+    let trigger!: HTMLElement;
     if (typeof target === 'number') {
-      trigger = this._element.children[target];
-      target = document.querySelector(trigger.dataset.tabTrigger);
+      trigger = this._element.children[target] as HTMLButtonElement | HTMLAnchorElement;
+      target = document.querySelector(trigger.dataset.tabTrigger as string) as HTMLElement;
     } else if (typeof target === 'string') {
-      trigger = document.querySelector(`[data-tab-trigger="${target}"]`);
-      target = document.querySelector(target);
+      trigger = document.querySelector(`[data-tab-trigger="${target}"]`) as HTMLButtonElement | HTMLAnchorElement;
+      target = document.querySelector(target) as HTMLElement;
     } else if (typeof target === 'object') {
-      trigger = document.querySelector(`[data-tab-trigger="#${target.getAttribute('id')}"]`);
+      trigger = document.querySelector(`[data-tab-trigger="#${target.getAttribute('id')}"]`) as HTMLButtonElement | HTMLAnchorElement;
     }
 
     if (this._isMoving || trigger.classList.contains('on')) return false;
@@ -95,12 +103,12 @@ class Tab extends BaseComponent {
           group.classList.add(this._config.hidden);
 
           EventHandler.trigger(this._element, `${EVENT_KEY}.hidden`, { target: group, trigger: hideTrigger });
-          target.classList.remove(this._config.hidden);
+          (target as HTMLElement).classList.remove(this._config.hidden);
 
           EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, { target: target, trigger: trigger });
-          target.classList.add(this._config.showing);
+          (target as HTMLElement).classList.add(this._config.showing);
 
-          target.classList.add(this._config.shown);
+          (target as HTMLElement).classList.add(this._config.shown);
         };
 
         if (this._element.dataset.animation === 'false') {
@@ -112,8 +120,8 @@ class Tab extends BaseComponent {
     });
 
     const targetComplete = () => {
-      target.classList.remove(this._config.showing);
-      target.classList.add(this._config.shown);
+      (target as HTMLElement).classList.remove(this._config.showing);
+      (target as HTMLElement).classList.add(this._config.shown);
       EventHandler.trigger(this._element, `${EVENT_KEY}.shown`, { target: target, trigger: trigger });
 
       this._isMoving = false;
@@ -130,7 +138,7 @@ class Tab extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element) {
+  static getInstance(element: HTMLElement) {
     return Data.getData(element, this.NAME);
   }
 }
