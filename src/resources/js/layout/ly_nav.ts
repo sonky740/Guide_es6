@@ -6,7 +6,7 @@ const lyNav = () => {
   const urlLast = url[url.length - 1].split('.html')[0];
 
   navList.forEach((el: HTMLElement) => {
-    if (el.innerHTML.toLocaleLowerCase() === urlLast) el.classList.add('on');
+    if (el.innerHTML.toLocaleLowerCase() === urlLast.toLocaleLowerCase()) el.classList.add('on');
   });
 
   function show() {
