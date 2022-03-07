@@ -17,8 +17,6 @@ class Counter extends BaseComponent {
     super(element);
 
     this.init();
-
-    Data.setData(element, NAME, this);
   }
 
   init() {

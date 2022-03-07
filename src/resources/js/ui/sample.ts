@@ -27,8 +27,6 @@ class Sample extends BaseComponent {
       ...defaultConfig,
       ...config
     };
-
-    Data.setData(element, NAME, this);
   }
 
   static get NAME() {

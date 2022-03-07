@@ -27,8 +27,6 @@ class Tooltip extends BaseComponent {
     };
 
     this.init();
-
-    Data.setData(element, NAME, this);
   }
 
   init() {

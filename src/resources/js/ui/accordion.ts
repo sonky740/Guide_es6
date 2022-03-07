@@ -33,8 +33,6 @@ class Accordion extends BaseComponent {
     };
 
     this.init();
-
-    Data.setData(element, NAME, this);
   }
 
   init() {

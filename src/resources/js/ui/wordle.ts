@@ -47,8 +47,6 @@ class Wordle extends BaseComponent {
     this.init();
 
     this.input();
-
-    Data.setData(element, NAME, this);
   }
 
   init() {

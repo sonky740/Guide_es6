@@ -2,6 +2,7 @@ import Data from './data';
 
 class BaseComponent {
   public _element: HTMLElement;
+
   constructor(element: HTMLElement | null) {
     element = typeof element === 'string' ? document.querySelector(element) : element;
 

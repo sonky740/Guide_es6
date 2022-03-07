@@ -16,6 +16,12 @@ npm i -g cross-env gulp-cli
 npm install
 ```
 
+husky (commit전에 타입 체크를 위함) 설치
+```
+npm run prepare
+npx husky add .husky/pre-commit "npm run tsc"
+```
+
 ## 2. 실행
 ```
 npm run dev
