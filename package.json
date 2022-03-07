@@ -56,9 +56,6 @@
   "browserslist": [
     "last 2 version, > 2%"
   ],
-  "dependencies": {
-    "core-js": "^3.20.2"
-  },
   "lint-staged": {
     "*.ts": "bash -c 'npm run tsc'"
   }
