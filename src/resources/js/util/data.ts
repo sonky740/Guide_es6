@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.1.3): dom/data.js
+ * Bootstrap (v5.1.3): dom/data.js => typescript feat.SKY
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -9,10 +9,15 @@
  * Constants
  */
 
+interface componentObject {
+  _element: HTMLElement;
+  hide: () => void;
+}
+
 const elementMap = new Map();
 
 export default {
-  set(element, key, instance) {
+  set(element: HTMLElement, key: string, instance: object) {
     if (!elementMap.has(element)) {
       elementMap.set(element, new Map());
     }
@@ -30,18 +35,19 @@ export default {
     instanceMap.set(key, instance);
   },
 
-  get(element, key) {
+  get(element: HTMLElement, key: string) {
     if (elementMap.has(element)) {
       return elementMap.get(element).get(key) || null;
     }
 
     return null;
   },
-  getAll(key) {
-    const instances = [];
-    elementMap.forEach((value, _key) => {
-      value.forEach((value2, _key2) => {
+  getAll(key: string) {
+    const instances: componentObject[] = [];
+    elementMap.forEach(value => {
+      value.forEach((value2: componentObject, _key2: string) => {
         if (_key2 === key) {
+          console.log(value2);
           instances.push(value2);
         }
       });
@@ -49,7 +55,7 @@ export default {
     return instances;
   },
 
-  remove(element, key) {
+  remove(element: HTMLElement, key: string) {
     if (!elementMap.has(element)) {
       return;
     }
