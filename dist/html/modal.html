@@ -72,11 +72,14 @@
 
 &lt;!-- id는 따로 제어할거 아니면 부여 안해도됨. --&gt;
 &lt;div id="modal1" class="ly-modal full" data-modal&gt;
+    &lt;!-- role, aria-labelledby, aria-describedby 스크립트로 부여됨. --&gt;
     &lt;div class="ly-modal-wrap"&gt;
+        &lt;!-- header에 id가 없으면 스크립트로 부여됨. --&gt;
         &lt;header class="ly-modal-header"&gt;
             &lt;h1 class="ly-modal-title"&gt;모달 타이틀&lt;/h1&gt;
             &lt;button type="button" class="ly-modal-close" data-modal-close&gt;&lt;span class="blind"&gt;닫기&lt;/span&gt;&lt;/button&gt;
         &lt;/header&gt;
+        &lt;!-- content에 id가 없으면 스크립트로 부여됨. --&gt;
         &lt;div class="ly-modal-content"&gt;
             &lt;button type="button" class="guide-btn" data-modal-trigger="modal2"&gt;모달 트리거2&lt;/button&gt;
             내용

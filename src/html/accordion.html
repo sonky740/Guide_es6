@@ -29,7 +29,7 @@
                         <li id="accordion1_1" class="accordion-item on" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button plus on" data-accr-trigger><span class="blind">접기</span></button>
+                                <button type="button" class="accordion-button plus on" data-accr-trigger>타이틀<span class="blind">접기</span></button>
                             </div>
                             <div class="accordion-content shown" data-accr-target>
                                 <div class="accordion-body">
@@ -40,7 +40,7 @@
                         <li id="accordion1_2" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -53,7 +53,7 @@
                         <li id="accordion1_3" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -65,7 +65,7 @@
                         <li id="accordion1_4" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -78,10 +78,15 @@
                     <pre><code class="language-html">&lt;!-- id는 따로 제어할거 아니면 부여 안해도됨. --&gt;
 &lt;ul id="accordion1" class="accordion" data-accr&gt;
     &lt;li id="accordion1_1" class="accordion-item on" data-accr-item&gt;
+        &lt;!-- 컨텐츠에 따라 적절한 heading 태그로 바꿔서 쓸 것. --&gt;
         &lt;div class="accordion-header" data-accr-header&gt;
             타이틀
-            &lt;button type="button" class="accordion-button plus on" data-accr-trigger&gt;&lt;span class="blind"&gt;접기&lt;/span&gt;&lt;/button&gt;
+            &lt;!-- button에 id가 없으면 스크립트로 부여됨. --&gt;
+            &lt;!-- aria-expanded, aria-controls 스크립트로 부여됨. --&gt;
+            &lt;button type="button" class="accordion-button plus on" data-accr-trigger&gt;타이틀&lt;span class="blind"&gt;접기&lt;/span&gt;&lt;/button&gt;
         &lt;/div&gt;
+        &lt;!-- content에 id가 없으면 스크립트로 부여됨. --&gt;
+        &lt;!-- aria-labelledby 스크립트로 부여됨. --&gt;
         &lt;div class="accordion-content shown" data-accr-target&gt;
             &lt;div class="accordion-body"&gt;
                 내용
@@ -106,7 +111,7 @@
                         <li id="accordion2_1" class="accordion-item on" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button plus on" data-accr-trigger><span class="blind">접기</span></button>
+                                <button type="button" class="accordion-button plus on" data-accr-trigger>타이틀<span class="blind">접기</span></button>
                             </div>
                             <div class="accordion-content shown" data-accr-target>
                                 <div class="accordion-body">
@@ -115,7 +120,7 @@
                                         <li class="accordion-item on" data-accr-item>
                                             <div class="accordion-header" data-accr-header>
                                                 아코디언 속 아코디언
-                                                <button type="button" class="accordion-button plus on" data-accr-trigger><span class="blind">접기</span></button>
+                                                <button type="button" class="accordion-button plus on" data-accr-trigger>아코디언 속 아코디언<span class="blind">접기</span></button>
                                             </div>
                                             <div class="accordion-content shown" data-accr-target>
                                                 <div class="accordion-body">
@@ -126,7 +131,7 @@
                                         <li class="accordion-item" data-accr-item>
                                             <div class="accordion-header" data-accr-header>
                                                 아코디언 속 아코디언
-                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                <button type="button" class="accordion-button" data-accr-trigger>아코디언 속 아코디언<span class="blind">펼치기</span></button>
                                             </div>
                                             <div class="accordion-content" data-accr-target>
                                                 <div class="accordion-body">
@@ -139,7 +144,7 @@
                                         <li class="accordion-item" data-accr-item>
                                             <div class="accordion-header" data-accr-header>
                                                 아코디언 속 아코디언
-                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                <button type="button" class="accordion-button" data-accr-trigger>아코디언 속 아코디언<span class="blind">펼치기</span></button>
                                             </div>
                                             <div class="accordion-content" data-accr-target>
                                                 <div class="accordion-body">
@@ -151,7 +156,7 @@
                                         <li class="accordion-item" data-accr-item>
                                             <div class="accordion-header" data-accr-header>
                                                 아코디언 속 아코디언
-                                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                                <button type="button" class="accordion-button" data-accr-trigger>아코디언 속 아코디언<span class="blind">펼치기</span></button>
                                             </div>
                                             <div class="accordion-content" data-accr-target>
                                                 <div class="accordion-body">
@@ -166,7 +171,7 @@
                         <li id="accordion2_2" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -179,7 +184,7 @@
                         <li id="accordion2_3" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -191,7 +196,7 @@
                         <li id="accordion2_4" class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -214,7 +219,7 @@
                         <li class="accordion-item on" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button plus on" data-accr-trigger><span class="blind">접기</span></button>
+                                <button type="button" class="accordion-button plus on" data-accr-trigger>타이틀<span class="blind">접기</span></button>
                             </div>
                             <div class="accordion-content shown" data-accr-target>
                                 <div class="accordion-body">
@@ -225,7 +230,7 @@
                         <li class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -238,7 +243,7 @@
                         <li class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">
@@ -250,7 +255,7 @@
                         <li class="accordion-item" data-accr-item>
                             <div class="accordion-header" data-accr-header>
                                 타이틀
-                                <button type="button" class="accordion-button" data-accr-trigger><span class="blind">펼치기</span></button>
+                                <button type="button" class="accordion-button" data-accr-trigger>타이틀<span class="blind">펼치기</span></button>
                             </div>
                             <div class="accordion-content" data-accr-target>
                                 <div class="accordion-body">

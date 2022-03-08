@@ -32,6 +32,22 @@ const toHTML = (htmlString: string): ChildNode | null => {
 };
 
 /**
+ * 현재 엘리먼트의 index 체크
+ */
+const getIndex = (element: Element) => {
+  if (!element) {
+    return -1;
+  }
+  let currentElement = element;
+  let index = 0;
+  while (currentElement.previousElementSibling) {
+    index += 1;
+    currentElement = currentElement.previousElementSibling;
+  }
+  return index;
+};
+
+/**
  * version check
  * @returns {Object} mo, iosVer, aosVer, name, version
  */
@@ -107,4 +123,4 @@ function getClientInfo() {
   return browser;
 }
 
-export { numberComma, siblings, toHTML, getClientInfo };
+export { numberComma, siblings, toHTML, getIndex, getClientInfo };

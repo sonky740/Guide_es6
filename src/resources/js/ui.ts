@@ -33,6 +33,7 @@ const UIInitializer = (target: string, UI: UiType, options = {}) => {
 };
 
 const init = () => {
+  UIInitializer('[data-modal]', Modal);
   UIInitializer('[data-accr]', Accordion);
   UIInitializer('[data-tab]', Tab);
   UIInitializer('[data-tooltip]', Tooltip);

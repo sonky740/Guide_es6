@@ -44,11 +44,20 @@ class Accordion extends BaseComponent {
       // 처음에 열려있다면...
       if (item.classList.contains('on')) {
         trigger.classList.add('on');
+        trigger.setAttribute('aria-expanded', 'true');
         ir.innerText = '접기';
         target.classList.add(this._config.shown);
       } else {
         target.classList.add(this._config.hidden);
+        ir.innerText = '펼치기';
+        trigger.setAttribute('aria-expanded', 'false');
       }
+
+      // aria
+      target.hasAttribute('id') ? false : target.setAttribute('id', this._getRandomSerial());
+      trigger.hasAttribute('id') ? false : trigger.setAttribute('id', this._getRandomSerial());
+      trigger.setAttribute('aria-controls', `${target.getAttribute('id')}`);
+      target.setAttribute('aria-labelledby', `${trigger.getAttribute('id')}`);
 
       EventHandler.on(trigger, 'click', (e: MouseEvent) => {
         e.preventDefault();
@@ -91,6 +100,7 @@ class Accordion extends BaseComponent {
 
     item.classList.add('on');
     trigger.classList.add('on');
+    trigger.setAttribute('aria-expanded', 'true');
     ir.innerText = '접기';
     target.classList.remove(this._config.hidden);
     target.classList.add(this._config.showing);
@@ -148,6 +158,7 @@ class Accordion extends BaseComponent {
     });
 
     trigger.classList.remove('on');
+    trigger.setAttribute('aria-expanded', 'false');
     ir.innerText = '펼치기';
     target.style.height = `${target.scrollHeight}px`;
     target.style.height = `${target.scrollHeight}px`;

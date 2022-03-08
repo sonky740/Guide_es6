@@ -21,6 +21,7 @@ class Modal extends BaseComponent {
   private _config: ConfigType;
   private _wrap: HTMLDivElement = this._element.querySelector('.ly-modal-wrap') as HTMLDivElement;
   private _header: HTMLElement | null = this._element.querySelector('.ly-modal-header') as HTMLDivElement;
+  private _content: HTMLElement | null = this._element.querySelector('.ly-modal-content') as HTMLDivElement;
   private _trigger: HTMLButtonElement | HTMLAnchorElement | null = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
   private _close: NodeListOf<HTMLButtonElement | HTMLAnchorElement> = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
   private _isMoving = false; // true일 경우 이벤트 작동 안되게
@@ -38,6 +39,8 @@ class Modal extends BaseComponent {
   }
 
   init() {
+    this._ariaInit();
+
     // 모달 트리거 클릭 시 모달 show
     if (this._trigger) {
       EventHandler.on(this._trigger, 'click', (e: MouseEvent) => this.show(e));
@@ -55,6 +58,14 @@ class Modal extends BaseComponent {
 
     // 바텀 모달이고, data-modal-touch가 true일 때
     this._touchMove();
+  }
+
+  _ariaInit() {
+    this._wrap.setAttribute('role', 'dialog');
+    this._header?.hasAttribute('id') ? false : this._header?.setAttribute('id', this._getRandomSerial());
+    this._content?.hasAttribute('id') ? false : this._content?.setAttribute('id', this._getRandomSerial());
+    this._wrap.setAttribute('aria-labelledby', `${this._header?.getAttribute('id')}`);
+    this._wrap.setAttribute('aria-describedby', `${this._content?.getAttribute('id')}`);
   }
 
   show(e?: MouseEvent) {
