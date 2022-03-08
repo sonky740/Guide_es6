@@ -62,9 +62,6 @@ class Accordion extends BaseComponent {
         e.preventDefault();
         e.stopPropagation();
 
-        if (this._isMoving) return false;
-        this._isMoving = true;
-
         if (!item.classList.contains('on')) {
           this.show(item as HTMLElement);
         } else if (item.classList.contains('on')) {
@@ -82,6 +79,9 @@ class Accordion extends BaseComponent {
       const stringItem = this._element.querySelector(item);
       item = stringItem as HTMLElement;
     }
+
+    if (this._isMoving) return false;
+    this._isMoving = true;
 
     const header = item.querySelector('[data-accr-header]') as HTMLElement;
     const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
@@ -142,6 +142,9 @@ class Accordion extends BaseComponent {
       item = stringItem as HTMLElement;
     }
 
+    if (this._isMoving) return false;
+    this._isMoving = true;
+
     const header = item.querySelector('[data-accr-header]') as HTMLElement;
     const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
     const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
@@ -192,12 +195,14 @@ class Accordion extends BaseComponent {
       if (this._element.dataset.accr === 'only') super._throwError('하나만 열릴 때는 동작하지 않습니다.');
       if (item.classList.contains('on')) return false;
       this.show(item as HTMLElement);
+      this._isMoving = false;
     });
   }
 
   hideAll() {
     Array.from(this._item).forEach(item => {
       this.hide(item as HTMLElement);
+      this._isMoving = false;
     });
   }
 
