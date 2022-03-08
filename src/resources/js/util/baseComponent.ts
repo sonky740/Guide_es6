@@ -11,7 +11,7 @@ class BaseComponent {
     }
 
     this._element = element;
-    Data.setData(this._element, (this as any).constructor.NAME, this);
+    Data.set(this._element, (this as any).constructor.NAME, this);
   }
 
   _getRandomSerial() {
@@ -27,9 +27,17 @@ class BaseComponent {
   }
 
   // dispose() {
-  //   Data.removeData(this._element, this.constructor.NAME);
+  //   Data.remove(this._element, this.constructor.NAME);
   //   console.log('dispose');
   // }
+
+  static getInstance(element: HTMLElement) {
+    return Data.get(element, (this as any).NAME);
+  }
+
+  static getInstances() {
+    return Data.getAll((this as any).NAME);
+  }
 }
 
 export default BaseComponent;

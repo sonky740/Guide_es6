@@ -109,10 +109,6 @@ class Tooltip extends BaseComponent {
   static get NAME() {
     return NAME;
   }
-
-  static getInstance(element: HTMLElement) {
-    return Data.getData(element, this.NAME);
-  }
 }
 
 export default Tooltip;

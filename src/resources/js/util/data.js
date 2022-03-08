@@ -1,55 +1,66 @@
-const mapData = (() => {
-  const storeData = {};
-  let id = 1;
+/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v5.1.3): dom/data.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * --------------------------------------------------------------------------
+ */
 
-  return {
-    set(element, key, data) {
-      if (typeof element.key === 'undefined') {
-        element.key = {
-          key,
-          id
-        };
-        id++;
-      }
+/**
+ * Constants
+ */
 
-      storeData[element.key.id] = data;
-    },
-    get(element, key) {
-      if (!element || typeof element.key === 'undefined') {
-        return null;
-      }
+const elementMap = new Map();
 
-      const keyProperties = element.key;
-      if (keyProperties.key === key) {
-        return storeData[keyProperties.id];
-      }
-
-      return null;
-    },
-    delete(element, key) {
-      if (typeof element.key === 'undefined') {
-        return;
-      }
-
-      const keyProperties = element.key;
-      if (keyProperties.key === key) {
-        delete storeData[keyProperties.id];
-        delete element.key;
-      }
+export default {
+  set(element, key, instance) {
+    if (!elementMap.has(element)) {
+      elementMap.set(element, new Map());
     }
-  };
-})();
 
-const Data = {
-  setData(instance, key, data) {
-    mapData.set(instance, key, data);
+    const instanceMap = elementMap.get(element);
+
+    // make it clear we only want one instance per element
+    // can be removed later when multiple key/instances are fine to be used
+    if (!instanceMap.has(key) && instanceMap.size !== 0) {
+      // eslint-disable-next-line no-console
+      console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+      return;
+    }
+
+    instanceMap.set(key, instance);
   },
-  getData(instance, key) {
-    return mapData.get(instance, key);
+
+  get(element, key) {
+    if (elementMap.has(element)) {
+      return elementMap.get(element).get(key) || null;
+    }
+
+    return null;
   },
-  removeData(instance, key) {
-    mapData.delete(instance, key);
+  getAll(key) {
+    const instances = [];
+    elementMap.forEach((value, _key) => {
+      value.forEach((value2, _key2) => {
+        if (_key2 === key) {
+          instances.push(value2);
+        }
+      });
+    });
+    return instances;
+  },
+
+  remove(element, key) {
+    if (!elementMap.has(element)) {
+      return;
+    }
+
+    const instanceMap = elementMap.get(element);
+
+    instanceMap.delete(key);
+
+    // free up element references if there are no instances left for an element
+    if (instanceMap.size === 0) {
+      elementMap.delete(element);
+    }
   }
 };
-
-export default Data;

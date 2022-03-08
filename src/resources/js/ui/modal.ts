@@ -190,8 +190,14 @@ class Modal extends BaseComponent {
     return NAME;
   }
 
-  static getInstance(element: HTMLElement) {
-    return Data.getData(element, this.NAME);
+  static hideAll() {
+    const instances = Modal.getInstances();
+    for (const p in instances) {
+      if (Object.prototype.hasOwnProperty.call(instances, p)) {
+        const modal = instances[p];
+        if (modal._element.classList.contains('shown')) modal.hide();
+      }
+    }
   }
 }
 
