@@ -47,7 +47,6 @@ export default {
     elementMap.forEach(value => {
       value.forEach((value2: componentObject, _key2: string) => {
         if (_key2 === key) {
-          console.log(value2);
           instances.push(value2);
         }
       });
