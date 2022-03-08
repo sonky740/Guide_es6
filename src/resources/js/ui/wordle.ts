@@ -1,4 +1,3 @@
-import Data from '../util/data';
 import EventHandler from '../util/eventHandler';
 import BaseComponent from '../util/baseComponent';
 
