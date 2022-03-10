@@ -18,7 +18,8 @@ module.exports = {
         semi: true,
         printWidth: 1000,
         arrowParens: 'avoid',
-        trailingComma: 'none'
+        trailingComma: 'none',
+        endOfLine: 'auto'
       }
     ]
   }
