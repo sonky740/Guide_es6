@@ -6,6 +6,7 @@
     max-width: 640px;
     padding: 0 1.2rem;
     transform: translateX(-50%);
+    z-index: 10;
 
     @media (min-width: 640px) {
         left: calc(50% - 3.2rem);
