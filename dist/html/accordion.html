@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -375,36 +375,36 @@ accr.hide(document.querySelector('#accordion1_3')); // object</code></pre>
     <script src="../resources/js/ui.js"></script>
     <script>
         document.querySelectorAll('[data-accr]').forEach(function (el) {
-          el.addEventListener('accordion.showing', function (e) {
-            console.log(e.item, e.header, e.trigger, e.target, 'showing');
-          })
-          el.addEventListener('accordion.shown', function (e) {
-            console.log(e.item, e.header, e.trigger, e.target, 'shown');
-          })
-          el.addEventListener('accordion.hiding', function (e) {
-            console.log(e.item, e.header, e.trigger, e.target, 'hiding');
-          })
-          el.addEventListener('accordion.hidden', function (e) {
-            console.log(e.item, e.header, e.trigger, e.target, 'hidden');
-          })
+            el.addEventListener('accordion.showing', function (e) {
+                console.log(e.item, e.header, e.trigger, e.target, 'showing');
+            })
+            el.addEventListener('accordion.shown', function (e) {
+                console.log(e.item, e.header, e.trigger, e.target, 'shown');
+            })
+            el.addEventListener('accordion.hiding', function (e) {
+                console.log(e.item, e.header, e.trigger, e.target, 'hiding');
+            })
+            el.addEventListener('accordion.hidden', function (e) {
+                console.log(e.item, e.header, e.trigger, e.target, 'hidden');
+            })
         })
 
         const accrEl = document.querySelector('#accordion1');
         const accr = new SKY.Accordion(accrEl);
         document.getElementById('showAll').addEventListener('click', function () {
-          accr.showAll();
+            accr.showAll();
         })
         document.getElementById('hideAll').addEventListener('click', function () {
-          accr.hideAll();
+            accr.hideAll();
         })
 
         const accrEl2 = document.querySelector('#accordion2');
         const accr2 = new SKY.Accordion(accrEl2);
         document.getElementById('show1').addEventListener('click', function () {
-          accr2.show(0);
+            accr2.show(0);
         })
         document.getElementById('show2').addEventListener('click', function () {
-          accr2.show(document.querySelector('#accordion2_3'));
+            accr2.show(document.querySelector('#accordion2_3'));
         })
     </script>
 </body>

@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -156,15 +156,15 @@ const checkbox = new SKY.Checkbox(checkbox1);</code></pre>
 
         // 전부 체크되었을 때
         document.querySelector('#checkbox1').addEventListener('checkbox.checked', function () {
-          console.log('checked')
-          document.querySelector('#checkboxBtn').removeAttribute('disabled');
-          document.querySelector('#checkboxBtn').innerText = '활성화';
+            console.log('checked')
+            document.querySelector('#checkboxBtn').removeAttribute('disabled');
+            document.querySelector('#checkboxBtn').innerText = '활성화';
         })
         // 하나라도 체크해제 되었을 때
         document.querySelector('#checkbox1').addEventListener('checkbox.unchecked', function () {
-          console.log('unchecked')
-          document.querySelector('#checkboxBtn').setAttribute('disabled', '');
-          document.querySelector('#checkboxBtn').innerText = '비활성화';
+            console.log('unchecked')
+            document.querySelector('#checkboxBtn').setAttribute('disabled', '');
+            document.querySelector('#checkboxBtn').innerText = '비활성화';
         })
     </script>
 </body>

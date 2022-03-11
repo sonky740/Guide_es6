@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -153,12 +153,12 @@ const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView)</
         // const scrollView = new SKY.UIInitializer('[data-scroll-view]', SKY.ScrollView);
 
         document.querySelectorAll('[data-scroll-view]').forEach(function (el) {
-          el.addEventListener('scrollView.shown', function (e) {
-            console.log(e.target, 'shown');
-          })
-          el.addEventListener('scrollView.hidden', function (e) {
-            console.log(e.target, 'hidden');
-          })
+            el.addEventListener('scrollView.shown', function (e) {
+                console.log(e.target, 'shown');
+            })
+            el.addEventListener('scrollView.hidden', function (e) {
+                console.log(e.target, 'hidden');
+            })
         })
     </script>
 </body>

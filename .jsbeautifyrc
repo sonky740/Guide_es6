@@ -2,6 +2,6 @@
   "wrap_line_length": 0,
   "space_after_anon_function": true,
   "js": {
-    "indent_size": 2
+    "indent_size": 4
   }
 }

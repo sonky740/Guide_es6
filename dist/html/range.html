@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -179,12 +179,12 @@ const multiRange = new SKY.Range(multiRangeEl);</code></pre>
         const multiRange = new SKY.Range(multiRangeEl);
 
         document.querySelectorAll('[data-range]').forEach(function (el) {
-          el.addEventListener('range.input', function (e) {
-            console.log('single: ' + e.value);
-          })
-          el.addEventListener('range.multi', function (e) {
-            console.log(e.value);
-          })
+            el.addEventListener('range.input', function (e) {
+                console.log('single: ' + e.value);
+            })
+            el.addEventListener('range.multi', function (e) {
+                console.log(e.value);
+            })
         })
     </script>
 </body>

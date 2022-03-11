@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -192,18 +192,18 @@ const tooltip = new SKY.Tooltip(tooltipEl);</code></pre>
         const tooltip = new SKY.Tooltip(tooltipEl);
 
         document.querySelectorAll('[data-tooltip]').forEach(function (el) {
-          el.addEventListener('tooltip.showing', function (e) {
-            console.log(e.target, 'showing');
-          })
-          el.addEventListener('tooltip.shown', function (e) {
-            console.log(e.target, 'shown');
-          })
-          el.addEventListener('tooltip.hiding', function (e) {
-            console.log(e.target, 'hiding');
-          })
-          el.addEventListener('tooltip.hidden', function (e) {
-            console.log(e.target, 'hidden');
-          })
+            el.addEventListener('tooltip.showing', function (e) {
+                console.log(e.target, 'showing');
+            })
+            el.addEventListener('tooltip.shown', function (e) {
+                console.log(e.target, 'shown');
+            })
+            el.addEventListener('tooltip.hiding', function (e) {
+                console.log(e.target, 'hiding');
+            })
+            el.addEventListener('tooltip.hidden', function (e) {
+                console.log(e.target, 'hidden');
+            })
         })
     </script>
 </body>

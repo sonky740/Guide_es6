@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -113,9 +113,9 @@ const counter = new SKY.Counter(counterEl);</code></pre>
         const counter = new SKY.Counter(counterEl);
 
         document.querySelectorAll('[data-counter]').forEach(function (el) {
-          el.addEventListener('counter.end', function (e) {
-            console.log(e.target, 'counter end')
-          })
+            el.addEventListener('counter.end', function (e) {
+                console.log(e.target, 'counter end')
+            })
         })
     </script>
 </body>

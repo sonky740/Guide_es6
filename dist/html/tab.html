@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -214,18 +214,18 @@ tab.show(document.querySelector('#tab2')); // object</code></pre>
         const tab = new SKY.Tab(tabEl);
 
         document.querySelectorAll('[data-tab]').forEach(function (el) {
-          el.addEventListener('tab.showing', function (e) {
-            console.log(e.target, e.trigger, 'showing');
-          })
-          el.addEventListener('tab.shown', function (e) {
-            console.log(e.target, e.trigger, 'shown');
-          })
-          el.addEventListener('tab.hiding', function (e) {
-            console.log(e.target, e.trigger, 'hiding');
-          })
-          el.addEventListener('tab.hidden', function (e) {
-            console.log(e.target, e.trigger, 'hidden');
-          })
+            el.addEventListener('tab.showing', function (e) {
+                console.log(e.target, e.trigger, 'showing');
+            })
+            el.addEventListener('tab.shown', function (e) {
+                console.log(e.target, e.trigger, 'shown');
+            })
+            el.addEventListener('tab.hiding', function (e) {
+                console.log(e.target, e.trigger, 'hiding');
+            })
+            el.addEventListener('tab.hidden', function (e) {
+                console.log(e.target, e.trigger, 'hidden');
+            })
         })
     </script>
 </body>

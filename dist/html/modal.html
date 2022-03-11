@@ -13,7 +13,7 @@
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'G-LC0TRJNJFE');
@@ -284,18 +284,18 @@ const modal = new SKY.Modal(modalEl);
         const modal = new SKY.Modal(modalEl);
 
         document.querySelectorAll('[data-modal]').forEach(function (el) {
-          el.addEventListener('modal.showing', function (e) {
-            console.log(e.target, e.trigger, 'showing');
-          })
-          el.addEventListener('modal.shown', function (e) {
-            console.log(e.target, e.trigger, 'shown');
-          })
-          el.addEventListener('modal.hiding', function (e) {
-            console.log(e.target, e.trigger, 'hiding');
-          })
-          el.addEventListener('modal.hidden', function (e) {
-            console.log(e.target, e.trigger, 'hidden');
-          })
+            el.addEventListener('modal.showing', function (e) {
+                console.log(e.target, e.trigger, 'showing');
+            })
+            el.addEventListener('modal.shown', function (e) {
+                console.log(e.target, e.trigger, 'shown');
+            })
+            el.addEventListener('modal.hiding', function (e) {
+                console.log(e.target, e.trigger, 'hiding');
+            })
+            el.addEventListener('modal.hidden', function (e) {
+                console.log(e.target, e.trigger, 'hidden');
+            })
         })
     </script>
 </body>
