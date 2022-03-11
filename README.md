@@ -60,7 +60,7 @@ npm run build
 │
 ├─ .eslintrc.json                  // eslint 설정
 │
-├─ .jsbeautify.json                // vscode에서 beautify를 쓸 경우 설정 (안쓴다면 없어도 됨)
+├─ .jsbeautify.json                // html이 빌드되었을 때 beautify 적용
 │
 ├─ gulpfile.js                     // gulp 설정
 │
