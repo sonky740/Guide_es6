@@ -62,6 +62,9 @@ class Accordion extends BaseComponent {
         e.preventDefault();
         e.stopPropagation();
 
+        if (this._isMoving) return false;
+        this._isMoving = true;
+
         if (!item.classList.contains('on')) {
           this.show(item as HTMLElement);
         } else if (item.classList.contains('on')) {
@@ -80,15 +83,12 @@ class Accordion extends BaseComponent {
       item = stringItem as HTMLElement;
     }
 
-    if (this._isMoving) return false;
-    this._isMoving = true;
+    if (item.classList.contains('on')) return false;
 
     const header = item.querySelector('[data-accr-header]') as HTMLElement;
     const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
     const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
     const ir = trigger.querySelector('.blind') as HTMLSpanElement;
-
-    if (item.classList.contains('on')) return false;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.showing`, {
       item: item,
@@ -122,7 +122,7 @@ class Accordion extends BaseComponent {
     // data-accr = "only" 하나만 열릴 때
     if (this._element.dataset.accr === 'only') {
       siblings(item).forEach(items => {
-        if ((item as HTMLElement).classList.contains('on')) this.hide(items as HTMLElement);
+        if ((items as HTMLElement).classList.contains('on')) this.hide(items as HTMLElement);
       });
     }
 
@@ -142,15 +142,12 @@ class Accordion extends BaseComponent {
       item = stringItem as HTMLElement;
     }
 
-    if (this._isMoving) return false;
-    this._isMoving = true;
+    if (!item.classList.contains('on')) return false;
 
     const header = item.querySelector('[data-accr-header]') as HTMLElement;
     const trigger = item.querySelector('[data-accr-trigger]') as HTMLButtonElement;
     const target = item.querySelector('[data-accr-target]') as HTMLDivElement;
     const ir = trigger.querySelector('.blind') as HTMLSpanElement;
-
-    if (!item.classList.contains('on')) return false;
 
     EventHandler.trigger(this._element, `${EVENT_KEY}.hiding`, {
       item: item,
