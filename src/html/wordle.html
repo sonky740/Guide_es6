@@ -31,7 +31,10 @@
     <script src="../resources/js/vendor/prism.js"></script>
     <script src="../resources/js/ui.js"></script>
     <script>
-
+        const wordle = document.querySelector('[data-wordle]');
+        wordle.addEventListener('wordle.complete', function(e) {
+            console.log('정답!: ' + e.value);
+        })
     </script>
 </body>
 

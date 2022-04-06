@@ -9,12 +9,12 @@ interface ConfigType {
 }
 
 const NAME = 'wordle';
-// const EVENT_KEY = `${NAME}`;
+const EVENT_KEY = `${NAME}`;
 
 const defaultConfig = {
   info: `<div class="wordle-info">
-    <div><span>성공 횟수: </span><strong data-wordle-success>0</strong></div>
-    <div><span>실패 횟수: </span><strong data-wordle-number>0</strong></div>
+    <div><span>완료 횟수: </span><strong data-wordle-success>0</strong></div>
+    <div><span>시도 횟수: </span><strong data-wordle-number>0</strong></div>
   </div>`,
   template: `<div class="wordle-row">
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
@@ -23,7 +23,7 @@ const defaultConfig = {
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
     <input type="input" class="wordle-input" maxlength="1" data-wordle-input>
   </div>`,
-  btn: `<button type="button" class="wordle-btn" data-wordle-btn>확인</button>`,
+  btn: `<button type="submit" class="wordle-btn" data-wordle-btn>확인</button>`,
   answer: ['ABOUT', 'ABOVE', 'AFTER', 'AGAIN', 'ALONE', 'APPLE', 'BEACH', 'BEGIN', 'BLACK', 'BRING', 'BROWN', 'BUNNY', 'CAMEL', 'CANDY', 'CARRY', 'CHILD', 'CLEAN', 'CLOSE', 'COUNT', 'DADDY', 'DREAM', 'DRESS', 'DRIVE', 'EIGHT', 'EVERY', 'FIGHT', 'FLOOR', 'FOUND', 'GHOST', 'GOOSE', 'GREAT', 'GREEN', 'HAPPY', 'HEARD', 'HEART', 'HIPPO', 'HORSE', 'HOUSE', 'INDIA', 'JUICE', 'KOALA', 'LARGE', 'LIGHT', 'LUCKY', 'MOMMY', 'MONEY', 'MOOSE', 'MOUSE', 'MUMMY', 'MUSIC', 'NEVER', 'NURSE', 'PANDA', 'PAPER', 'PARTY', 'PIZZA', 'PLANE', 'PLANT', 'PLATE', 'PRICE', 'PUPPY', 'QUACK', 'QUEEN', 'QUIET', 'RIGHT', 'RIVER', 'ROBIN', 'ROBOT', 'ROUND', 'SEVEN', 'SHEEP', 'SKUNK', 'SLEEP', 'SMALL', 'SPOON', 'STAMP', 'STAND', 'STICK', 'STORE', 'STORY', 'STRAY', 'SUNNY', 'SWEET', 'TABLE', 'THERE', 'THING', 'THREE', 'TIGER', 'TODAY', 'TRAIN', 'TRUCK', 'TUMMY', 'UNDER', 'WATER', 'WHITE', 'WITCH', 'WOMAN', 'WOMEN', 'WRITE', 'ZEBRA']
 };
 
@@ -62,7 +62,8 @@ class Wordle extends BaseComponent {
 
     this._successText.innerText = this._success.toString();
 
-    EventHandler.on(this._btn, 'click', () => {
+    EventHandler.on(this._btn, 'click', (e: KeyboardEvent) => {
+      e.preventDefault();
       if (!this._btn?.hasAttribute('data-wordle-retry')) {
         this.confirm();
       } else {
@@ -101,6 +102,11 @@ class Wordle extends BaseComponent {
       this._success++;
       localStorage.setItem('wordle-success', this._success.toString());
       (this._successText as HTMLElement).innerText = this._success.toString();
+
+      setTimeout(() => {
+        EventHandler.trigger(this._element, `${EVENT_KEY}.complete`, { value: this._answer });
+      }, 40);
+
       return false;
     } else {
       inputParent.classList.add('wordle-fail');
@@ -123,11 +129,6 @@ class Wordle extends BaseComponent {
       EventHandler.on(el, 'input', (e: InputEvent) => {
         if (el !== al[al.length - 1] && e.inputType !== 'deleteContentBackward') {
           al[i + 1].focus();
-        }
-      });
-      EventHandler.on(el, 'keyup', (e: KeyboardEvent) => {
-        if (e.keyCode === 13) {
-          this._btn?.click();
         }
       });
       EventHandler.on(el, 'keydown', (e: KeyboardEvent) => {
