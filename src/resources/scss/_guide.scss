@@ -145,27 +145,30 @@ hr.guide-hr {
             &:after {
                 content: "";
                 position: absolute;
+                right: 0;
                 bottom: 0;
-                left: 50%;
-                width: 0;
+                left: 0;
                 height: 2px;
                 background: #ffbd39;
-                transform: translateX(-50%);
-                transition: width .3s $timing-in;
+                transform: scaleX(0);
+                transform-origin: bottom right;
+                transition: transform .4s ease;
             }
 
             &.on {
                 color: #ffbd39;
 
                 &:after {
-                    width: 100%;
                     background: #ffbd39;
+                    transform: scaleX(1);
+                    transform-origin: bottom left;
                 }
             }
 
             &:hover:not(.on) {
                 &:after {
-                    width: 100%;
+                    transform: scaleX(1);
+                    transform-origin: bottom left;
                 }
             }
         }
