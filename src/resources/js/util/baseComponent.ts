@@ -1,5 +1,11 @@
 import Data from './data';
 
+declare global {
+  interface Function {
+    NAME: string;
+  }
+}
+
 class BaseComponent {
   public _element: HTMLElement;
 
@@ -7,23 +13,23 @@ class BaseComponent {
     element = typeof element === 'string' ? document.querySelector(element) : element;
 
     if (!element) {
-      throw new Error(`${(this as any).constructor.NAME}이 없습니다.`);
+      throw new Error(`${this.constructor.NAME}이 없습니다.`);
     }
 
     this._element = element;
-    Data.set(this._element, (this as any).constructor.NAME, this);
+    Data.set(this._element, this.constructor.NAME, this);
   }
 
   _getRandomSerial() {
-    return `${(this as any).constructor.NAME}_${Math.random().toString(36).slice(2, 11)}`;
+    return `${this.constructor.NAME}_${Math.random().toString(36).slice(2, 11)}`;
   }
 
   _throwError(message: string) {
-    throw new Error(`${(this as any).constructor.NAME}: ${message}`);
+    throw new Error(`${this.constructor.NAME}: ${message}`);
   }
 
   _warn(message: string) {
-    console.warn(`${(this as any).constructor.NAME}: ${message}`);
+    console.warn(`${this.constructor.NAME}: ${message}`);
   }
 
   // dispose() {
@@ -32,11 +38,11 @@ class BaseComponent {
   // }
 
   static getInstance(element: HTMLElement) {
-    return Data.get(element, (this as any).NAME);
+    return Data.get(element, this.NAME);
   }
 
   static getInstances() {
-    return Data.getAll((this as any).NAME);
+    return Data.getAll(this.NAME);
   }
 }
 
