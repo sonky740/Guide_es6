@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-class BaseComponent {
+abstract class BaseComponent {
   public _element: HTMLElement;
 
   constructor(element: HTMLElement | null) {
