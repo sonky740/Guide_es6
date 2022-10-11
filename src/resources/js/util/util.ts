@@ -1,14 +1,22 @@
 /**
- * 세자리마다 , 표시
+ * 숫자에 콤마를 추가
+ * @param {number} x
+ * @returns {string}
+ * @example
+ * numberComma(1000) // 1,000
  */
-function numberComma(x: number): string {
+const numberComma = (x: number): string => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+};
 
 /**
  * 형제요소
+ * @param {HTMLElement} node
+ * @returns {Array}
+ * @example
+ * siblings(document.querySelector('div')) // [div, div, div]
  */
-function siblings(node: HTMLElement) {
+const siblings = (node: HTMLElement): Element[] => {
   const parent = node.parentElement as HTMLElement;
   const children = parent?.children as HTMLCollection;
   const tempArr = [];
@@ -20,10 +28,14 @@ function siblings(node: HTMLElement) {
   return tempArr.filter(function (e) {
     return e != node;
   });
-}
+};
 
 /**
- * HTML스트링을 HTML형태로 반환
+ * HTML을 파싱하여 DOM객체를 생성
+ * @param {string} htmlString
+ * @returns {ChildNode}
+ * @example
+ * toHTML('<div>test</div>') // <div>test</div>
  */
 const toHTML = (htmlString: string): ChildNode | null => {
   const div = document.createElement('div');
@@ -32,7 +44,10 @@ const toHTML = (htmlString: string): ChildNode | null => {
 };
 
 /**
- * 현재 엘리먼트의 index 체크
+ * 현재 엘리먼트의 index
+ * @param {Element} element
+ * @example
+ * getIndex(document.querySelector('div')) // 0
  */
 const getIndex = (element: Element) => {
   if (!element) {
@@ -51,7 +66,7 @@ const getIndex = (element: Element) => {
  * version check
  * @returns {Object} mo, iosVer, aosVer, name, version
  */
-function getClientInfo() {
+const getClientInfo = () => {
   let userAgent = navigator.userAgent;
   const browser = {
     mo: '',
@@ -123,6 +138,6 @@ function getClientInfo() {
     }
   }
   return browser;
-}
+};
 
 export { numberComma, siblings, toHTML, getIndex, getClientInfo };
