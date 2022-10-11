@@ -21,7 +21,8 @@ const defaultConfig = {
 
 class Tab extends BaseComponent {
   private _config: ConfigType;
-  private _trigger: NodeListOf<HTMLButtonElement | HTMLAnchorElement> = this._element.querySelectorAll('[data-tab-trigger]');
+  private _trigger: NodeListOf<HTMLButtonElement | HTMLAnchorElement> =
+    this._element.querySelectorAll('[data-tab-trigger]');
   private _isMoving = false;
 
   constructor(element: HTMLElement, config: object | undefined) {
@@ -136,7 +137,9 @@ class Tab extends BaseComponent {
       trigger = document.querySelector(`[data-tab-trigger="${target}"]`) as HTMLButtonElement | HTMLAnchorElement;
       target = document.querySelector(target) as HTMLElement;
     } else if (typeof target === 'object') {
-      trigger = document.querySelector(`[data-tab-trigger="#${target.getAttribute('id')}"]`) as HTMLButtonElement | HTMLAnchorElement;
+      trigger = document.querySelector(`[data-tab-trigger="#${target.getAttribute('id')}"]`) as
+        | HTMLButtonElement
+        | HTMLAnchorElement;
     }
 
     if (this._isMoving || trigger.classList.contains('on')) return false;

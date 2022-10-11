@@ -21,8 +21,11 @@ class Modal extends BaseComponent {
   private _wrap: HTMLDivElement = this._element.querySelector('.ly-modal-wrap') as HTMLDivElement;
   private _header: HTMLElement | null = this._element.querySelector('.ly-modal-header') as HTMLDivElement;
   private _content: HTMLElement | null = this._element.querySelector('.ly-modal-content') as HTMLDivElement;
-  private _trigger: HTMLButtonElement | HTMLAnchorElement | null = document.querySelector(`[data-modal-trigger="${this._element.getAttribute('id')}"]`); // [data-modal-trigger]
-  private _close: NodeListOf<HTMLButtonElement | HTMLAnchorElement> = this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
+  private _trigger: HTMLButtonElement | HTMLAnchorElement | null = document.querySelector(
+    `[data-modal-trigger="${this._element.getAttribute('id')}"]`
+  ); // [data-modal-trigger]
+  private _close: NodeListOf<HTMLButtonElement | HTMLAnchorElement> =
+    this._element.querySelectorAll('[data-modal-close]'); // 모달 닫기 버튼
   private _isMoving = false; // true일 경우 이벤트 작동 안되게
   private _touchStart = 0; // 터치 시작점
   private _distance = 0; // 움직인 거리

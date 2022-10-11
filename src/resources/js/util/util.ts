@@ -76,7 +76,9 @@ function getClientInfo() {
 
   // aos 버전 체크
   if (userAgent.indexOf('Android') > -1) {
-    browser.aosVer = window.Number(userAgent.substring(userAgent.indexOf('Android') + 8, userAgent.indexOf('Android') + 9));
+    browser.aosVer = window.Number(
+      userAgent.substring(userAgent.indexOf('Android') + 8, userAgent.indexOf('Android') + 9)
+    );
   }
 
   userAgent = userAgent.toLowerCase();

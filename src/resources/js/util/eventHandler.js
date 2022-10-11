@@ -30,7 +30,55 @@ const customEvents = {
   mouseleave: 'mouseout'
 };
 const customEventsRegex = /^(mouseenter|mouseleave)/i;
-const nativeEvents = new Set(['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'input', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll']);
+const nativeEvents = new Set([
+  'click',
+  'dblclick',
+  'mouseup',
+  'mousedown',
+  'contextmenu',
+  'mousewheel',
+  'DOMMouseScroll',
+  'input',
+  'mouseover',
+  'mouseout',
+  'mousemove',
+  'selectstart',
+  'selectend',
+  'keydown',
+  'keypress',
+  'keyup',
+  'orientationchange',
+  'touchstart',
+  'touchmove',
+  'touchend',
+  'touchcancel',
+  'pointerdown',
+  'pointermove',
+  'pointerup',
+  'pointerleave',
+  'pointercancel',
+  'gesturestart',
+  'gesturechange',
+  'gestureend',
+  'focus',
+  'blur',
+  'change',
+  'reset',
+  'select',
+  'submit',
+  'focusin',
+  'focusout',
+  'load',
+  'unload',
+  'beforeunload',
+  'resize',
+  'move',
+  'DOMContentLoaded',
+  'readystatechange',
+  'error',
+  'abort',
+  'scroll'
+]);
 
 /**
  * Private methods
@@ -126,7 +174,10 @@ function addHandler(element, originalTypeEvent, handler, delegationFn, oneOff) {
   if (customEventsRegex.test(originalTypeEvent)) {
     const wrapFn = fn => {
       return function (event) {
-        if (!event.relatedTarget || (event.relatedTarget !== event.delegateTarget && !event.delegateTarget.contains(event.relatedTarget))) {
+        if (
+          !event.relatedTarget ||
+          (event.relatedTarget !== event.delegateTarget && !event.delegateTarget.contains(event.relatedTarget))
+        ) {
           return fn.call(this, event);
         }
       };
@@ -151,7 +202,9 @@ function addHandler(element, originalTypeEvent, handler, delegationFn, oneOff) {
   }
 
   const uid = getUidEvent(originalHandler, originalTypeEvent.replace(namespaceRegex, ''));
-  const fn = delegation ? bootstrapDelegationHandler(element, handler, delegationFn) : bootstrapHandler(element, handler);
+  const fn = delegation
+    ? bootstrapDelegationHandler(element, handler, delegationFn)
+    : bootstrapHandler(element, handler);
 
   fn.delegationSelector = delegation ? handler : null;
   fn.originalHandler = originalHandler;

@@ -38,14 +38,10 @@ class Counter extends BaseComponent {
       if (this._startTime === 0) {
         this._startTime = currentTime;
       }
-      const progress = this._easingFn(
-        Math.min((currentTime - this._startTime) / this._duration, 1)
-      );
+      const progress = this._easingFn(Math.min((currentTime - this._startTime) / this._duration, 1));
       if (this._comma) {
         this._element.innerHTML = numberComma(
-          Math.floor(
-            progress * (this._counter - this._initNumber) + this._initNumber
-          )
+          Math.floor(progress * (this._counter - this._initNumber) + this._initNumber)
         );
       } else {
         this._element.innerHTML = Math.floor(
@@ -56,7 +52,7 @@ class Counter extends BaseComponent {
         window.requestAnimationFrame(step);
       } else {
         EventHandler.trigger(this._element, `${EVENT_KEY}.end`, {
-          target: this._element,
+          target: this._element
         });
       }
     };

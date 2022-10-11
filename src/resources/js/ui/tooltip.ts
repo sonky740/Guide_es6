@@ -44,7 +44,10 @@ class Tooltip extends BaseComponent {
 
           setTimeout(() => {
             EventHandler.on(window, 'click', (e: MouseEvent) => {
-              if (!(e.target as HTMLButtonElement).closest('[data-tooltip-target]') && this._element.dataset.tooltipBackdrop !== 'false') {
+              if (
+                !(e.target as HTMLButtonElement).closest('[data-tooltip-target]') &&
+                this._element.dataset.tooltipBackdrop !== 'false'
+              ) {
                 this.hide();
               }
             });

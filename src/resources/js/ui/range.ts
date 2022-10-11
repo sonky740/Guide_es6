@@ -8,7 +8,9 @@ const EVENT_KEY = `${NAME}`;
 class Range extends BaseComponent {
   private _range = this._element.querySelector('input[type="range"]') as HTMLInputElement;
   private _fill = this._element.querySelector('.range-fill') as HTMLDivElement;
-  private _startRange = this._element.querySelector('input[type="range"][data-range-multi="start"]') as HTMLInputElement;
+  private _startRange = this._element.querySelector(
+    'input[type="range"][data-range-multi="start"]'
+  ) as HTMLInputElement;
   private _endRange = this._element.querySelector('input[type="range"][data-range-multi="end"]') as HTMLInputElement;
   private _value = 0;
   private _multiValues = {
@@ -62,7 +64,10 @@ class Range extends BaseComponent {
   }
 
   startInput() {
-    this._startRange.value = Math.min(Number(this._startRange.value), Number(this._endRange.value) - Number(this._startRange.dataset.rangeMinstep)).toString();
+    this._startRange.value = Math.min(
+      Number(this._startRange.value),
+      Number(this._endRange.value) - Number(this._startRange.dataset.rangeMinstep)
+    ).toString();
     this._multiValues.start = Number(this._startRange.value);
     const perStart = Number(this._startRange.value) / Number(this._startRange.step);
     this._fill.style.left = `${perStart}%`;
@@ -83,7 +88,10 @@ class Range extends BaseComponent {
   }
 
   endInput() {
-    this._endRange.value = Math.max(Number(this._endRange.value), Number(this._startRange.value) + Number(this._endRange.dataset.rangeMinstep)).toString();
+    this._endRange.value = Math.max(
+      Number(this._endRange.value),
+      Number(this._startRange.value) + Number(this._endRange.dataset.rangeMinstep)
+    ).toString();
     this._multiValues.end = Number(this._endRange.value);
     const perEnd = Number(this._endRange.value) / Number(this._endRange.step);
     this._fill.style.right = `${100 - perEnd}%`;
